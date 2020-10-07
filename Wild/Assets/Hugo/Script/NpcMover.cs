@@ -5,7 +5,7 @@ using UnityEngine.AI;
 
 public class NpcMover : MonoBehaviour
 {
-
+    public bool Sneak;
     public GameObject Target;
     public GameObject InitTarget;
     
@@ -35,6 +35,8 @@ public class NpcMover : MonoBehaviour
 
     }
 
+    
+
     private void OnTriggerEnter(Collider other)
     {
 
@@ -46,7 +48,20 @@ public class NpcMover : MonoBehaviour
         {
             Routine = true;
         }
+        if (other.tag == "Hide")
+        {
+            Sneak = true;
+ 
+        }
+    }
 
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.tag == "Hide")
+        {
+            Sneak = false;
+
+        }
     }
 }
 

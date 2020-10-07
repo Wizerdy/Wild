@@ -8,6 +8,7 @@ TagManager:
   - ChaseZone
   - Grass
   - Target
+  - Hide
   layers:
   - Default
   - TransparentFX

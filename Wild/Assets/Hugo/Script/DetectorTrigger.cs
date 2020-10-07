@@ -18,7 +18,7 @@ public class DetectorTrigger : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Player")
+        if (other.tag == "Player" && other.gameObject.GetComponent<NpcMover>().Sneak == false)
         {
             
             Parent.GetComponent<Carnivore>().Detected(other.gameObject);
