@@ -2,6 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LionCubEntity : AnimalEntity {
-
+public abstract class ActionEntity : Action {
+    protected Entity entity;
 }
