@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Entity_Controller : MonoBehaviour
 {
-    public Player entity;
+    public Player player;
 
     void Update()
     {
