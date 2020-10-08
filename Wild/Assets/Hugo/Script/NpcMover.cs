@@ -5,18 +5,18 @@ using UnityEngine.AI;
 
 public class NpcMover : MonoBehaviour
 {
-    public bool Sneak;
-    public GameObject Target;
-    public GameObject InitTarget;
+    public bool sneak;
+    public GameObject target;
+    public GameObject initTarget;
     
-    public bool Routine;
-    private NavMeshAgent NavA;
+    public bool routine;
+    private NavMeshAgent navA;
 
     // Start is called before the first frame update
     void Start()
     {
-        NavA = gameObject.GetComponent<NavMeshAgent>();
-        Routine = true;
+        navA = gameObject.GetComponent<NavMeshAgent>();
+        routine = true;
         
     }
 
@@ -24,13 +24,13 @@ public class NpcMover : MonoBehaviour
     void Update()
     {
 
-        if (Routine)
+        if (routine)
         {
-            NavA.destination = Target.transform.position;
+            navA.destination = target.transform.position;
         }
         else
         {
-            NavA.destination = InitTarget.transform.position;
+            navA.destination = initTarget.transform.position;
         }
 
     }
@@ -42,15 +42,15 @@ public class NpcMover : MonoBehaviour
 
         if (other.tag == "Player")
         {
-            Routine = false;
+            routine = false;
         }
         if (other.tag == "Grass")
         {
-            Routine = true;
+            routine = true;
         }
         if (other.tag == "Hide")
         {
-            Sneak = true;
+            sneak = true;
  
         }
     }
@@ -59,7 +59,7 @@ public class NpcMover : MonoBehaviour
     {
         if (other.tag == "Hide")
         {
-            Sneak = false;
+            sneak = false;
 
         }
     }

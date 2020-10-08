@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class DetectorTrigger : MonoBehaviour
 {
-    private GameObject Parent;
+    private GameObject parent;
     // Start is called before the first frame update
     void Start()
     {
-        Parent = gameObject.transform.parent.gameObject;
+        parent = gameObject.transform.parent.gameObject;
     }
 
     // Update is called once per frame
@@ -18,10 +18,10 @@ public class DetectorTrigger : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Player" && other.gameObject.GetComponent<NpcMover>().Sneak == false)
+        if (other.tag == "Player" && other.gameObject.GetComponent<NpcMover>().sneak == false)
         {
             
-            Parent.GetComponent<Carnivore>().Detected(other.gameObject);
+            parent.GetComponent<Carnivore>().Detected(other.gameObject);
         }
         
     }

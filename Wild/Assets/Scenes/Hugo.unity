@@ -575,8 +575,8 @@ GameObject:
   - component: {fileID: 728051160}
   - component: {fileID: 728051159}
   - component: {fileID: 728051158}
-  - component: {fileID: 728051164}
   - component: {fileID: 728051157}
+  - component: {fileID: 728051163}
   m_Layer: 0
   m_Name: Chaser
   m_TagString: Untagged
@@ -597,12 +597,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   chased: {fileID: 0}
+  NavA: {fileID: 0}
   Targets:
   - {fileID: 317837058}
   - {fileID: 734630333}
   - {fileID: 1122096323}
   target: {fileID: 317837059}
-  Chasing: 0
+  chasing: 0
   InitPos: {x: 0, y: 0, z: 0}
 --- !u!54 &728051158
 Rigidbody:
@@ -698,28 +699,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!195 &728051164
-NavMeshAgent:
+--- !u!114 &728051163
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 728051156}
   m_Enabled: 1
-  m_AgentTypeID: 0
-  m_Radius: 0.5000001
-  m_Speed: 3.5
-  m_Acceleration: 8
-  avoidancePriority: 50
-  m_AngularSpeed: 120
-  m_StoppingDistance: 0
-  m_AutoTraverseOffMeshLink: 1
-  m_AutoBraking: 1
-  m_AutoRepath: 1
-  m_Height: 2
-  m_BaseOffset: 1
-  m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d08f6ada358a3e045a52492a231fe7e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  destination: {fileID: 0}
+  iD: Carnivore
+  speed: 5
+  refreshPathDuration: 0.1
 --- !u!1 &734630333
 GameObject:
   m_ObjectHideFlags: 0
@@ -834,10 +829,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fbac141df9fbbf14e9bf12106f12784a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Sneak: 0
-  Target: {fileID: 1967473139}
-  InitTarget: {fileID: 1853049820}
-  Routine: 0
+  sneak: 0
+  target: {fileID: 1967473139}
+  initTarget: {fileID: 1853049820}
+  routine: 0
 --- !u!136 &736329492
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -909,7 +904,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 736329489}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.7, y: 3.17, z: 14.51}
+  m_LocalPosition: {x: -3.34, y: 3.17, z: 3.26}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}

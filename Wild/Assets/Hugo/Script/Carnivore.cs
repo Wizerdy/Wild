@@ -6,36 +6,35 @@ using UnityEngine.AI;
 public class Carnivore : MonoBehaviour
 {
     public GameObject chased;
-    private NavMeshAgent NavA;
+    public Transform NavA;
     public List <GameObject> Targets = new List<GameObject>();
     public Transform target;
-    public bool Chasing;
+    public bool chasing;
    
     public Vector3 InitPos;
 
-    // Start is called before the first frame update
+    
     void Start()
     {
-        InitPos = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, gameObject.transform.position.z);
-
-        NavA = gameObject.GetComponent<NavMeshAgent>();
+       
+        
     }
 
-    // Update is called once per frame
+    
     void Update()
     {
         UpdateBool();
        
         
-        if (Chasing )
+        if (chasing )
         {
-            NavA.destination = chased.transform.position;
+            NavA = chased.transform;
         }
         
-        if (!Chasing )
+        if (!chasing )
         {
             
-            NavA.destination = target.position;
+            NavA = target;
         }
 
     }
@@ -46,11 +45,11 @@ public class Carnivore : MonoBehaviour
         
         if (chased != null)
         {
-            Chasing = true;
+            chasing = true;
         }
         else
         {
-            Chasing = false;
+            chasing = false;
         }
     }
     private void UpdateTarget(int id) 
@@ -70,7 +69,7 @@ public class Carnivore : MonoBehaviour
     }
     public void Detected(GameObject newTarget)
     {
-        Debug.Log("detected");
+        
         chased = newTarget;
     }
 
@@ -78,7 +77,7 @@ public class Carnivore : MonoBehaviour
     {
         if (other.tag == "Lair")
         {
-            Chasing = false;
+            chasing = false;
             chased = null;
         }
     }
