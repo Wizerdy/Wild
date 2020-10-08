@@ -4,35 +4,30 @@ using UnityEngine;
 
 public class Entity_Controller : MonoBehaviour
 {
-    public Player entity;
+    public Entity entity;
 
     void Update()
     {
-        
         Vector2 dir_Move = Vector2.zero;
-        if (Input.GetKey(KeyCode.LeftArrow))
-        {
-            dir_Move.x = -1f;
+
+        if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.Q)) {
+            dir_Move += Vector2.left;
         }
-        else if(Input.GetKey(KeyCode.RightArrow))
-        {
-            dir_Move.x = 1f;
+        else if(Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D)) {
+            dir_Move += Vector2.right;
         }
 
+        if (Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.Z)) {
+            dir_Move += Vector2.up;
+        }
+        else if (Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.S)) {
+            dir_Move += Vector2.down;
+        }
 
-        if (Input.GetKey(KeyCode.UpArrow))
-        {
-            dir_Move.y = 1f;
-        }
-        else if (Input.GetKey(KeyCode.DownArrow))
-        {
-            dir_Move.y = -1f;
-        }
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
+        if (Input.GetKeyDown(KeyCode.Space)) {
             entity.Dash();
         }
 
-          entity.Move(dir_Move);
+        entity.MoveDir(dir_Move);
     }
 }

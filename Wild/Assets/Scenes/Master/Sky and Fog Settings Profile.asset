@@ -1,29 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-6465312623910754730
-MonoBehaviour:
-  m_ObjectHideFlags: 3
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0d7593b3a9277ac4696b20006c21dde2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  active: 1
-  m_AdvancedMode: 0
-  skyType:
-    m_OverrideState: 1
-    m_Value: 4
-  skyAmbientMode:
-    m_OverrideState: 0
-    m_Value: 0
-  fogType:
-    m_OverrideState: 1
-    m_Value: 0
---- !u!114 &-3147930048024152939
+--- !u!114 &-6140834678794148086
 MonoBehaviour:
   m_ObjectHideFlags: 3
   m_CorrespondingSourceObject: {fileID: 0}
@@ -48,10 +25,10 @@ MonoBehaviour:
     m_Value: 1
   fixedExposure:
     m_OverrideState: 1
-    m_Value: 1.56
+    m_Value: 10
   compensation:
     m_OverrideState: 1
-    m_Value: 1.95
+    m_Value: 10
   limitMin:
     m_OverrideState: 1
     m_Value: -10
@@ -95,7 +72,7 @@ MonoBehaviour:
     m_OverrideState: 1
     m_Value: 1
     min: 0.001
---- !u!114 &-1060609462613108714
+--- !u!114 &-4834674082569275813
 MonoBehaviour:
   m_ObjectHideFlags: 3
   m_CorrespondingSourceObject: {fileID: 0}
@@ -185,7 +162,7 @@ MonoBehaviour:
   filter:
     m_OverrideState: 0
     m_Value: 0
---- !u!114 &-402417490009708676
+--- !u!114 &-1644782543869455178
 MonoBehaviour:
   m_ObjectHideFlags: 3
   m_CorrespondingSourceObject: {fileID: 0}
@@ -374,7 +351,30 @@ MonoBehaviour:
   m_Name: Sky and Fog Settings Profile
   m_EditorClassIdentifier: 
   components:
-  - {fileID: -6465312623910754730}
-  - {fileID: -402417490009708676}
-  - {fileID: -1060609462613108714}
-  - {fileID: -3147930048024152939}
+  - {fileID: 5607422203293357079}
+  - {fileID: -1644782543869455178}
+  - {fileID: -4834674082569275813}
+  - {fileID: -6140834678794148086}
+--- !u!114 &5607422203293357079
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d7593b3a9277ac4696b20006c21dde2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  active: 1
+  m_AdvancedMode: 0
+  skyType:
+    m_OverrideState: 1
+    m_Value: 4
+  skyAmbientMode:
+    m_OverrideState: 0
+    m_Value: 0
+  fogType:
+    m_OverrideState: 1
+    m_Value: 0

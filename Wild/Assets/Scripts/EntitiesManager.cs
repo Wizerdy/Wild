@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public static class EntitiesManager {
-    public static List<Entity> entities;
+    public static List<Entity> entities = new List<Entity>();
 
     public static Entity FindEntity(string id) {
         for (int i = 0; i < entities.Count; i++)
