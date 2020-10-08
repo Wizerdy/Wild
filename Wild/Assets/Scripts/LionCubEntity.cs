@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LionCubEntity : AnimalEntity
-{
+public class LionCubEntity : AnimalEntity {
 
 }

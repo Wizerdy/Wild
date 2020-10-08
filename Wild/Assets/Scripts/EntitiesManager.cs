@@ -3,12 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public static class EntitiesManager
-{
+public static class EntitiesManager {
     public static List<Entity> entities;
 
-    public static Entity FindEntity(string id)
-    {
+    public static Entity FindEntity(string id) {
         for (int i = 0; i < entities.Count; i++)
             if (String.Compare(entities[i].entityId, id) == 0)
                 return entities[i];
@@ -16,8 +14,7 @@ public static class EntitiesManager
         return null;
     }
 
-    public static Entity[] FindEntities(string group)
-    {
+    public static Entity[] FindEntities(string group) {
         List<Entity> entitiesGroup = new List<Entity>();
 
         for (int i = 0; i < entities.Count; i++)
@@ -30,8 +27,7 @@ public static class EntitiesManager
             return entitiesGroup.ToArray();
     }
 
-    public static void AddEntity(Entity entity)
-    {
+    public static void AddEntity(Entity entity) {
         entities.Add(entity);
     }
 }

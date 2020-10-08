@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class ActionEntity : Action
-{
+public abstract class ActionEntity : Action {
     protected Entity entity;
 }
