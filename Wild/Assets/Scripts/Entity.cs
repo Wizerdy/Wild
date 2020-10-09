@@ -14,8 +14,8 @@ public class Entity : MonoBehaviour {
     public float friction = 20f;
     public float turnFriction = 20f;
     private Vector3 moveDirection = Vector3.zero;
-    private Vector3 direction = Vector3.up;
-    private Vector3 velocity = Vector3.zero;
+    protected Vector3 direction = Vector3.up;
+    protected Vector3 velocity = Vector3.zero;
 
     private GameObject goToFollow = null;
     private Vector3 followPositionDelta = Vector3.zero;
@@ -36,7 +36,7 @@ public class Entity : MonoBehaviour {
     private bool isDashing = false;
     private Vector3 dashDirection = Vector3.zero;
 
-    protected Rigidbody2D rigidbody = null;
+    protected Rigidbody rigidbody = null;
 
     #region Properties
 
@@ -68,7 +68,7 @@ public class Entity : MonoBehaviour {
     }
 
     protected void Start() {
-        rigidbody = GetComponent<Rigidbody2D>();
+        rigidbody = GetComponent<Rigidbody>();
         navPath = new NavMeshPath();
     }
 
@@ -97,7 +97,7 @@ public class Entity : MonoBehaviour {
                     RefreshPath();
                 }
 
-                if((new Vector2(navPath.corners[followPathIndex].x, navPath.corners[followPathIndex].z) - new Vector2(Position.x, Position.z)).sqrMagnitude <= 1f) {
+                if(IsNearPoint(new Vector2(navPath.corners[followPathIndex].x, navPath.corners[followPathIndex].z), 1f)) {
                     followPathIndex++;
                     if(followPathIndex >= navPath.corners.Length) {
                         goToDestination = false;
@@ -115,7 +115,7 @@ public class Entity : MonoBehaviour {
                 }
 
             } else { // Sans PathFinding
-                if ((new Vector2(destination.x, destination.z) - new Vector2(Position.x, Position.z)).sqrMagnitude <= 2f) {
+                if (IsNearPoint(new Vector2(destination.x, destination.z), 2f)) {
                     goToDestination = false;
                     MoveDir(Vector2.zero);
                 } else {
@@ -185,13 +185,15 @@ public class Entity : MonoBehaviour {
     public void UpdateDash() {
         if(dashCountdown > 0) {
             dashCountdown -= Time.fixedDeltaTime;
-            Vector3 pos = Position;
-            pos.x = pos.x + dashDirection.x * dashSpeed * Time.fixedDeltaTime;
-            pos.z = pos.z + dashDirection.y * dashSpeed * Time.fixedDeltaTime;
-            Position = pos;
+            if (rigidbody != null) {
+                velocity = dashDirection * dashSpeed;
+            }
         } else {
             isDashing = false;
             velocity = dashDirection * speedMax;
+            if(rigidbody != null) {
+                rigidbody.velocity = new Vector3(velocity.x, 0, velocity.y);
+            }
         }
     }
 
@@ -250,5 +252,21 @@ public class Entity : MonoBehaviour {
     public void ResetVelocityY()
     {
         velocity.y = 0f;
+    }
+
+    protected bool IsNearPoint(Vector2 pos, float radius) {
+        if((pos - new Vector2(Position.x, Position.z)).sqrMagnitude <= radius * radius) {
+            return true;
+        }
+        return false;
+    }
+
+    protected void ChangeAlphaMaterial(GameObject obj, byte alpha) {
+        if (obj.GetComponent<Renderer>() != null) {
+            Renderer renderer = obj.GetComponent<Renderer>();
+            Color32 col = renderer.material.GetColor("_BaseColor");
+            col.a = alpha;
+            renderer.material.SetColor("_BaseColor", col);
+        }
     }
 }
