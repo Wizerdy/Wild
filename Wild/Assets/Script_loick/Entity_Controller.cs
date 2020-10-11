@@ -24,10 +24,31 @@ public class Entity_Controller : MonoBehaviour
             dir_Move += Vector2.down;
         }
 
-        if (Input.GetKeyDown(KeyCode.Space)) {
+        if (Input.GetKeyDown(KeyCode.Space) && entity.CanDash) {
             entity.Dash();
         }
 
         entity.MoveDir(dir_Move);
+    }
+
+    protected void OnCollisionEnter(Collision collide) {
+        if (collide.gameObject.tag == "Enemy") {
+            Lose();
+        }
+    }
+
+    protected void OnTriggerEnter(Collider collide) {
+        if(collide.gameObject.tag == "End") {
+            Debug.Log("Fin");
+            NextLevel();
+        }
+    }
+
+    protected void Lose() {
+        Tools.LoadScene(0);
+    }
+
+    protected void NextLevel() {
+        Application.Quit();
     }
 }

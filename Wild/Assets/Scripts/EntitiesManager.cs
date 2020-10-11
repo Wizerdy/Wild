@@ -30,4 +30,18 @@ public static class EntitiesManager {
     public static void AddEntity(Entity entity) {
         entities.Add(entity);
     }
+
+    public static void RemoveEntity(Entity entity) {
+        entities.Remove(entity);
+    }
+
+    public static void ClearEntities() {
+        entities.Clear();
+    }
+
+    public static void DebugEntities() {
+        for (int i = 0; i < entities.Count; i++) {
+            Debug.Log(entities[i].name);
+        }
+    }
 }

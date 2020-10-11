@@ -34,8 +34,8 @@ public class CameraManager : MonoBehaviour
 
     void Update()
     {
+        EntitiesManager.DebugEntities();
         ZoneCollision();
-
     }
 
     public void ZoneCollision()

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class AnimalEntity : Entity {
     public bool hidden;
-    private int hideCoat;
+    protected int hideCoat;
     public string hideId = "";
 
     protected virtual void OnTriggerEnter(Collider collide) {
