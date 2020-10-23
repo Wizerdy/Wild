@@ -328,7 +328,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &230394486
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -388,7 +388,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d6a76abf52f08d44a1528161b850dc4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speedMax: 5
+  speedMax: 2
   acceleration: 10
   friction: 10
   trunFriction: 50
@@ -461,7 +461,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f02d207cbc5082479fb588ddcb60a84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  entity: {fileID: 0}
+  player: {fileID: 395084279}
+  joyaxeX: 0
+  joyaxeY: 0
+  test: 0
+  run: 0
+  walk: 0
 --- !u!4 &561869267
 Transform:
   m_ObjectHideFlags: 0
