@@ -52,7 +52,7 @@ public class ActionSequencer : MonoBehaviour
         }
 
         if (actions[actions.Length - 1].IsFinished()) {
-            running = false;
+            ResetActions();
         }
     }
 
