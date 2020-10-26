@@ -45,7 +45,7 @@ public class Entity : MonoBehaviour {
     private bool isDashing = false;
     private Vector3 dashDirection = Vector3.zero;
 
-    protected Rigidbody rigidbody = null;
+    protected Rigidbody rigidBody = null;
 
     #region Properties
 
@@ -87,7 +87,7 @@ public class Entity : MonoBehaviour {
     }
 
     protected virtual void Start() {
-        rigidbody = GetComponent<Rigidbody>();
+        rigidBody = GetComponent<Rigidbody>();
         navPath = new NavMeshPath();
     }
 
@@ -172,9 +172,9 @@ public class Entity : MonoBehaviour {
     }
 
     public void ApplySpeed() {
-        if (rigidbody != null) {
+        if (rigidBody != null) {
             //rigidbody.velocity = new Vector3(velocity.x, 0, velocity.y);
-            rigidbody.velocity = velocity.ConvertTo3D();
+            rigidBody.velocity = velocity.ConvertTo3D();
         } else {
             Vector3 pos = Position;
             pos.x = pos.x + velocity.x * Time.fixedDeltaTime;
@@ -261,6 +261,13 @@ public class Entity : MonoBehaviour {
         }
     }
 
+    public void DoMoveLerp(Vector3 destination, float time, int steps) {
+        if (forcedMovementsRoutine != null) { StopCoroutine(forcedMovementsRoutine); }
+
+        forcedMovementsRoutine = StartCoroutine(MoveLerp(destination, time, steps));
+        forcedMovements = true;
+    }
+
     public void ClearFollow()
     {
         goToFollow = null;
@@ -298,15 +305,15 @@ public class Entity : MonoBehaviour {
     public void UpdateDash() {
         if (dashCountdown > 0) {
             dashCountdown -= Time.fixedDeltaTime;
-            if (rigidbody != null) {
+            if (rigidBody != null) {
                 velocity = dashDirection * dashSpeed;
             }
         } else {
             isDashing = false;
             velocity = dashDirection * speedMax;
-            if (rigidbody != null) {
+            if (rigidBody != null) {
                 //rigidbody.velocity = new Vector3(velocity.x, 0, velocity.y);
-                rigidbody.velocity = velocity.ConvertTo3D();
+                rigidBody.velocity = velocity.ConvertTo3D();
             }
             StartCoroutine(DashCooldown(dashCooldown));
         }
@@ -322,27 +329,10 @@ public class Entity : MonoBehaviour {
         return false;
     }
 
-    protected void ChangeAlphaMaterial(GameObject obj, byte alpha) {
-        if (obj.GetComponent<Renderer>() != null) {
-            Renderer renderer = obj.GetComponent<Renderer>();
-            Color32 col = renderer.material.GetColor("_BaseColor");
-            col.a = alpha;
-            renderer.material.SetColor("_BaseColor", col);
-        }
-    }
-
     IEnumerator DashCooldown(float time) {
         canDash = false;
         yield return new WaitForSeconds(time);
         canDash = true;
-    }
-
-    public void DoMoveLerp(Vector3 destination, float time, int steps)
-    {
-        if (forcedMovementsRoutine != null) { StopCoroutine(forcedMovementsRoutine); }
-
-        forcedMovementsRoutine = StartCoroutine(MoveLerp(destination, time, steps));
-        forcedMovements = true;
     }
 
     IEnumerator MoveLerp(Vector3 destination, float time, int steps)

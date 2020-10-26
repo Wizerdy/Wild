@@ -16,6 +16,8 @@ public class ActionEntityEditor : ActionEditor {
     public override void OnInspectorGUI() {
         base.OnInspectorGUI();
 
+        GUILayout.Space(5);
+
         EditorGUI.BeginChangeCheck();
 
         GUILayout.BeginVertical("box");

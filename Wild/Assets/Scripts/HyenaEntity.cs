@@ -31,6 +31,8 @@ public class HyenaEntity : AnimalEntity
     private float searchCountdown = -1f;
     private Vector2 lastPreyPos = Vector2.zero;
 
+    #region Unity callbacks
+
     protected override void Start() {
         base.Start();
     }
@@ -48,6 +50,10 @@ public class HyenaEntity : AnimalEntity
                 break;
         }
     }
+
+    #endregion
+
+    #region Movements
 
     void UpdatePatrol() {
         if(patrolPoints.Length > 0) {
@@ -82,10 +88,12 @@ public class HyenaEntity : AnimalEntity
         if(IsNearPoint(lastPreyPos, destinationRadius)) {
             searchCountdown -= Time.deltaTime;
             if(searchCountdown <= 0) {
-                patrol();
+                Patrol();
             }
         }
     }
+
+    #endregion
 
     GameObject Looking() {
         RaycastHit[] hits;
@@ -128,7 +136,7 @@ public class HyenaEntity : AnimalEntity
         return null;
     }
 
-    private void patrol() {
+    private void Patrol() {
         if (awarness == Awarness.CHASING) {
             MultMovements(1f / chaseSpeedFactor);
         }

@@ -25,4 +25,13 @@ public static class Tools
         EntitiesManager.ClearEntities();
         SceneManager.LoadScene(num);
     }
+
+    public static void ChangeAlphaMaterial(GameObject obj, byte alpha) {
+        if (obj.GetComponent<Renderer>() != null) {
+            Renderer renderer = obj.GetComponent<Renderer>();
+            Color32 col = renderer.material.GetColor("_BaseColor");
+            col.a = alpha;
+            renderer.material.SetColor("_BaseColor", col);
+        }
+    }
 }

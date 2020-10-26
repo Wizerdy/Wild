@@ -52,7 +52,7 @@ public class ActionSequencer : MonoBehaviour
         }
 
         if (actions[actions.Length - 1].IsFinished()) {
-            running = false;
+            ResetActions();
         }
     }
 
@@ -66,5 +66,9 @@ public class ActionSequencer : MonoBehaviour
         actionIndex = -1;
         running = false;
         launch = false;
+    }
+
+    public void Launch() {
+        launch = true;
     }
 }
