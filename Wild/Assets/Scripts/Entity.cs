@@ -33,6 +33,9 @@ public class Entity : MonoBehaviour {
 
     public bool rotate = false;
 
+    private Coroutine forcedMovementsRoutine = null;
+    private bool forcedMovements = false;
+
     [Header("Dash")]
     public float dashTime = 1f;
     public float dashSpeed = 50f;
@@ -68,6 +71,11 @@ public class Entity : MonoBehaviour {
     public bool CanDash {
         get { return canDash; }
         private set {}
+    }
+
+    public bool IsMovementForced {
+        get { return forcedMovements; }
+        private set { }
     }
 
     #endregion
@@ -202,6 +210,10 @@ public class Entity : MonoBehaviour {
 
     #region Movements controller
 
+    public void MoveInstant(Vector3 pos) {
+        transform.position = pos;
+    }
+
     public void MoveDir(Vector2 dir) {
         MoveDirection = dir.normalized;
     }
@@ -323,6 +335,26 @@ public class Entity : MonoBehaviour {
         canDash = false;
         yield return new WaitForSeconds(time);
         canDash = true;
+    }
+
+    public void DoMoveLerp(Vector3 destination, float time, int steps)
+    {
+        if (forcedMovementsRoutine != null) { StopCoroutine(forcedMovementsRoutine); }
+
+        forcedMovementsRoutine = StartCoroutine(MoveLerp(destination, time, steps));
+        forcedMovements = true;
+    }
+
+    IEnumerator MoveLerp(Vector3 destination, float time, int steps)
+    {
+        Vector3 pos = Position;
+        for (int i = 0; i < steps; i++)
+        {
+            yield return new WaitForSeconds(time / (float)steps);
+            MoveInstant(Vector3.Lerp(pos, destination, (float)i / (float)steps));
+        }
+        MoveInstant(destination);
+        forcedMovements = false;
     }
 
     ~Entity() {

@@ -11,6 +11,7 @@ public static class EntitiesManager {
             if (String.Compare(entities[i].entityId, id) == 0)
                 return entities[i];
 
+        Debug.LogError("Entity not found : " + id);
         return null;
     }
 
@@ -30,7 +31,7 @@ public static class EntitiesManager {
     public static void AddEntity(Entity entity) {
         entities.Add(entity);
     }
-
+    
     public static void RemoveEntity(Entity entity) {
         entities.Remove(entity);
     }

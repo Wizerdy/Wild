@@ -8,19 +8,33 @@ public class ActionMoveLerp : ActionEntity {
     public int steps = 0;
 
     // Editor
-    [HideInInspector] public int currentTab;
+    [HideInInspector] public int destinationCurrentTab;
+    [HideInInspector] public Transform goDestination;
+    [HideInInspector] public Vector3 vectorDestination;
 
-    public override void Execute() {
-        StartCoroutine(MoveTo(destination, time, steps));
+    protected override void Start() {
+        base.Start();
+
+        switch (destinationCurrentTab) {
+            case 0:
+                destination = goDestination.position;
+                break;
+            case 1:
+                destination = vectorDestination;
+                break;
+        }
     }
 
-    IEnumerator MoveTo(Vector3 destination, float time, int steps) {
-        Vector3 pos = transform.position;
-        for (int i = 0; i < steps; i++) {
-            yield return new WaitForSeconds(time / (float)steps);
-            entity.MoveToDestination(Vector3.Lerp(pos, destination, (float)i / (float)steps));
+    public override void Execute() {
+        base.Execute();
+
+        entity.DoMoveLerp(destination, time, steps);
+    }
+
+    public override bool IsActionEnded() {
+        if (!entity.IsMovementForced) {
+            actionEnded = true;
         }
-        entity.MoveToDestination(destination);
-        actionEnded = true;
+        return actionEnded;
     }
 }
