@@ -95,9 +95,10 @@ public class Entity : MonoBehaviour {
         if (isDashing)
             UpdateDash();
         else if (!IsMovementForced)
+        {
             UpdateMove();
-
-        ApplySpeed();
+            ApplySpeed();
+        }
     }
 
     #endregion

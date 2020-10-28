@@ -19,7 +19,7 @@ public class ActionPause : ActionEntity
     {
         base.Execute();
 
-        entity.DoMoveLerp(entity.transform.position, time, 1);
+        entity.DoMoveLerp(entity.transform.position, time, 60);
     }
 
     public override bool IsActionEnded()
