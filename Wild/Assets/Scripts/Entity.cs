@@ -94,7 +94,7 @@ public class Entity : MonoBehaviour {
     protected virtual void FixedUpdate() {
         if (isDashing)
             UpdateDash();
-        else
+        else if (!IsMovementForced)
             UpdateMove();
 
         ApplySpeed();
@@ -254,9 +254,15 @@ public class Entity : MonoBehaviour {
 
     public void FollowLock(GameObject go)
     {
+        FollowLock(go, Position - go.transform.position);
+    }
+
+    public void FollowLock(GameObject go, Vector3 delta)
+    {
         goToFollow = go;
-        followPositionDelta = Position - go.transform.position;
-        if (usePathFinding) {
+        followPositionDelta = delta;
+        if (usePathFinding)
+        {
             RefreshPath();
         }
     }
@@ -352,9 +358,11 @@ public class Entity : MonoBehaviour {
         {
             yield return new WaitForSeconds(time / (float)steps);
             MoveInstant(Vector3.Lerp(pos, destination, (float)i / (float)steps));
+            Debug.Log("Time : " + time + " Steps : " + steps + " Time/Steps : " + (time / (float)steps));
         }
         MoveInstant(destination);
         forcedMovements = false;
+        Debug.Log("Forced movements : " + forcedMovements);
     }
 
     ~Entity() {

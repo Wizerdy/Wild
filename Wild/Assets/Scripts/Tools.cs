@@ -65,4 +65,9 @@ public static class Tools
             obj.GetComponent<Material>().color = c;
         }
     }
+
+    public static void ChangeAnim(GameObject obj, Animation anim)
+    {
+        obj.GetComponent<Animation>().clip = anim.clip;
+    }
 }

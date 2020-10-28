@@ -13,8 +13,11 @@ public class CameraManager : MonoBehaviour
     private Camera cam;
     private float height;
     private float width;
+    private Vector3 followDelta;
+    private Quaternion baseRotation;
 
-    private Entity cameraEntity;
+    [HideInInspector] public Entity cameraEntity;
+    [HideInInspector] public float percentage;
     public string entityToFollow;
 
     [System.Serializable]
@@ -49,13 +52,18 @@ public class CameraManager : MonoBehaviour
             arrayOfCamera[i].gameZoneSize = arrayOfBoxes[i].size;
         }
 
-        startPosition = arrayOfCamera[Random.Range(0, arrayOfBoxes.Length)].startPosition;
-        gameZoneSize = arrayOfCamera[Random.Range(0, arrayOfBoxes.Length)].gameZoneSize;
+        baseRotation = transform.rotation;
+
+        //startPosition = arrayOfCamera[Random.Range(0, arrayOfBoxes.Length)].startPosition;
+        //gameZoneSize = arrayOfCamera[Random.Range(0, arrayOfBoxes.Length)].gameZoneSize;
 
         if(cameraEntity != null)
         {
-            cameraEntity.FollowLock(EntitiesManager.FindEntity(entityToFollow).gameObject);
-            cameraEntity.CopyMovementValues(EntitiesManager.FindEntity(entityToFollow));
+            Entity entity = EntitiesManager.FindEntity(entityToFollow);
+            followDelta = cameraEntity.transform.position - entity.transform.position;
+
+            cameraEntity.FollowLock(entity.gameObject, followDelta);
+            cameraEntity.CopyMovementValues(entity);
             cameraEntity.acceleration *= 3f;
             cameraEntity.friction *= 2f;
             cameraEntity.turnFriction *= 2f;
@@ -65,7 +73,7 @@ public class CameraManager : MonoBehaviour
     void Update()
     {
         //EntitiesManager.DebugEntities();
-        ZoneCollision();
+        //ZoneCollision();
     }
 
     private Vector3 _CameraClampBoundsPosition(Vector3 position, Rect rect)
@@ -115,5 +123,18 @@ public class CameraManager : MonoBehaviour
     {
         startPosition = arrayOfCamera[index].startPosition;
         gameZoneSize = arrayOfCamera[index].gameZoneSize;
+    }
+
+    public void Zoom(Vector3 destination, float time, int steps, float percentage)
+    {
+        cameraEntity.DoMoveLerp(Vector3.Lerp(cam.transform.position, destination, percentage), time, steps);
+        this.percentage = percentage;
+    }
+
+    public void ResetCameraToBase(float time, int steps)
+    {
+        Entity entity = EntitiesManager.FindEntity(entityToFollow);
+        cameraEntity.DoMoveLerp(followDelta - entity.transform.position, time, steps);
+        cam.transform.rotation = baseRotation;
     }
 }
