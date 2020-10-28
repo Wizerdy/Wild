@@ -1,10 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Rewired;
 
 public class Entity_Controller : MonoBehaviour
 {
     public Player player;
+    private string _rewiredPlayerName = "Player0";
+    private Rewired.Player _rewiredPlayer = null;
     public float joyaxeX;
     public float joyaxeY;
     public bool test;
@@ -14,14 +17,15 @@ public class Entity_Controller : MonoBehaviour
     {
         run = player.speedMax;
         walk = player.speedMax / 2;
+        _rewiredPlayer = ReInput.players.GetPlayer(_rewiredPlayerName);
     }
     void Update()
     {
-        joyaxeX = Input.GetAxis("Horizontal");
-        joyaxeY = Input.GetAxis("Vertical");
+        joyaxeX = _rewiredPlayer.GetAxis("MoveHorizontal");
+        joyaxeY = _rewiredPlayer.GetAxis("MoveVertical");
 
         Vector2 dir_Move = Vector2.zero;
-        if (joyaxeX >0 && joyaxeX != 1 || joyaxeX<0 && joyaxeX != -1|| joyaxeY > 0 && joyaxeY != 1 || joyaxeY < 0 && joyaxeY != -1)
+        if (joyaxeX == Mathf.Clamp(joyaxeX,-0.9f,0.9f) && joyaxeY == Mathf.Clamp(joyaxeY, -0.9f, 0.9f))
         {
             test = true;
             dir_Move.x =joyaxeX;
