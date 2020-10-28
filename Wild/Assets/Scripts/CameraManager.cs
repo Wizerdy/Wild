@@ -134,7 +134,7 @@ public class CameraManager : MonoBehaviour
     public void ResetCameraToBase(float time, int steps)
     {
         Entity entity = EntitiesManager.FindEntity(entityToFollow);
-        cameraEntity.DoMoveLerp(followDelta - entity.transform.position, time, steps);
+        cameraEntity.DoMoveLerp(entity.transform.position + followDelta, time, steps);
         cam.transform.rotation = baseRotation;
     }
 }
