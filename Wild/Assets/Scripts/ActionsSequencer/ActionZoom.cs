@@ -2,20 +2,23 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ActionMoveLerp : ActionEntity {
+public class ActionZoom : ActionCamera
+{
     public Vector3 destination = new Vector3();
     public float time = 0f;
+    public float percentage;
     public int steps = 0;
 
-    // Editor
     [HideInInspector] public int destinationCurrentTab;
     [HideInInspector] public Transform goDestination;
     [HideInInspector] public Vector3 vectorDestination;
 
-    protected override void Start() {
+    protected override void Start()
+    {
         base.Start();
 
-        switch (destinationCurrentTab) {
+        switch (destinationCurrentTab)
+        {
             case 0:
                 destination = goDestination.position;
                 break;
@@ -25,14 +28,17 @@ public class ActionMoveLerp : ActionEntity {
         }
     }
 
-    public override void Execute() {
+    public override void Execute()
+    {
         base.Execute();
 
-        entity.DoMoveLerp(destination, time, steps);
+        cam.Zoom(destination, time, steps, percentage);
     }
 
-    public override bool IsActionEnded() {
-        if (!entity.IsMovementForced) {
+    public override bool IsActionEnded()
+    {
+        if (!cam.cameraEntity.IsMovementForced)
+        {
             actionEnded = true;
         }
         return actionEnded;

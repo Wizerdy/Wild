@@ -5,48 +5,66 @@ using UnityEngine;
 public class ActionSequencer : MonoBehaviour
 {
     [HideInInspector] public Action[] actions;
-    [HideInInspector] public bool launch = false;
-    [HideInInspector] int actionIndex = -1;
+    public bool launch = false;
 
+    private int actionIndex = -1;
     private bool running = false;
 
-    void Awake()
-    {
+    #region Properties
+
+    public bool IsRunning {
+        get { return running; }
+        private set {}
+    }
+
+    public bool HasActions {
+        get { return actions.Length > 0; }
+        private set {}
+    }
+
+    #endregion
+
+    #region Unity callbacks
+
+    void Awake() {
         actions = GetComponentsInChildren<Action>();
     }
 
-    void Update()
-    {
-        if(launch && actions.Length > 0)
-        {
+    void Update() {
+        if (launch && HasActions) {
             UpdateAction();
         }
     }
 
-    void UpdateAction()
-    {
+    #endregion
+
+    void UpdateAction() {
         running = true;
 
-        if(actionIndex == -1)
-        {
+        if (actionIndex == -1) {
             actionIndex++;
             actions[actionIndex].Execute();
         }
 
-        while (!(actionIndex == actions.Length - 1) && actions[actionIndex].IsFinished())
-        {
+        while (!(actionIndex == actions.Length - 1) && actions[actionIndex].IsFinished()) {
             actionIndex++;
             actions[actionIndex].Execute();
         }
 
-        if(actions[actions.Length - 1].IsFinished())
-        {
-            running = false;
+        if (actionIndex == actions.Length - 1 && actions[actions.Length - 1].IsFinished()) {
+            ResetActions();
         }
     }
 
-    public bool IsRunning()
-    {
-        return running;
+    public void ResetActions() {
+        if (HasActions) {
+            for (int i = 0; i < actions.Length; i++) {
+                actions[i].ResetAction();
+            }
+        }
+
+        actionIndex = -1;
+        running = false;
+        launch = false;
     }
 }

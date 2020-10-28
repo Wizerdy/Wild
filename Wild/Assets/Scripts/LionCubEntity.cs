@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class LionCubEntity : AnimalEntity {
+
     protected override void OnTriggerEnter(Collider collide) {
         base.OnTriggerEnter(collide);
         if (collide.gameObject.tag == "Hide") {
@@ -16,7 +17,6 @@ public class LionCubEntity : AnimalEntity {
             }
         }
     }
-
     protected override void OnTriggerExit(Collider collide) {
         base.OnTriggerExit(collide);
         if (hideCoat <= 0 && collide.gameObject.tag == "Hide") {
