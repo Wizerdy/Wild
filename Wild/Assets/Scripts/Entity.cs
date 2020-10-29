@@ -498,6 +498,7 @@ public class Entity : MonoBehaviour {
 
     public void CopyMovementValues(Entity entity)
     {
+        speedMax = entity.speedMax;
         speed = entity.Speed;
         acceleration = entity.Acceleration;
         frictions = entity.Frictions;
