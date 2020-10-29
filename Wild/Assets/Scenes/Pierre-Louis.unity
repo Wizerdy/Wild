@@ -1094,10 +1094,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4662288bc82b3a54c9342f1a3b698eee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  entityId: Bush1
+  entityId: Bush12
   entityGroup:
-  - Bush
-  - Bush1
+  - Bush12
   speedMax: 0
   speed:
     curve:
@@ -1361,6 +1360,83 @@ MonoBehaviour:
   entityCurrentTab: 1
   alpha: 0
   currentAlpha: 160
+--- !u!1 &121417989
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 121417990}
+  - component: {fileID: 121417991}
+  m_Layer: 0
+  m_Name: Main Camera ZOOM TO Player
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &121417990
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 121417989}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 198918912}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &121417991
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 121417989}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f37e76ce414e2a43a53f5114f89eafa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  waitType: 0
+  timeToWait: 0
+  cam: {fileID: 963194230}
+  destination: {x: 0, y: 0, z: 0}
+  percentage: 0
+  transition:
+    duration: 0
+    curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 1
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 1
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+  destinationCurrentTab: 0
+  goDestination: {fileID: 172313524}
+  vectorDestination: {x: 0, y: 0, z: 0}
 --- !u!1 &124065913
 GameObject:
   m_ObjectHideFlags: 0
@@ -1748,7 +1824,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   entityId: Bush4
   entityGroup:
-  - Bush
   - Bush4
   speedMax: 0
   speed:
@@ -2323,6 +2398,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2016675284}
+  - {fileID: 121417990}
   m_Father: {fileID: 1727730766}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2639,7 +2715,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   entityId: Bush1
   entityGroup:
-  - Bush
   - Bush1
   speedMax: 0
   speed:
@@ -4900,10 +4975,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4662288bc82b3a54c9342f1a3b698eee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  entityId: Bush1
+  entityId: Bush4
   entityGroup:
-  - Bush
-  - Bush1
+  - Bush4
   speedMax: 0
   speed:
     curve:
@@ -5398,10 +5472,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4662288bc82b3a54c9342f1a3b698eee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  entityId: Bush1
+  entityId: Bush3
   entityGroup:
-  - Bush
-  - Bush1
+  - Bush3
   speedMax: 0
   speed:
     curve:
@@ -5886,10 +5959,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4662288bc82b3a54c9342f1a3b698eee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  entityId: Bush1
+  entityId: Bush8
   entityGroup:
-  - Bush
-  - Bush1
+  - Bush8
   speedMax: 0
   speed:
     curve:
@@ -6151,10 +6223,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4662288bc82b3a54c9342f1a3b698eee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  entityId: Bush1
+  entityId: Bush13
   entityGroup:
-  - Bush
-  - Bush1
+  - Bush3
   speedMax: 0
   speed:
     curve:
@@ -6519,10 +6590,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4662288bc82b3a54c9342f1a3b698eee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  entityId: Bush1
+  entityId: Bush4
   entityGroup:
-  - Bush
-  - Bush1
+  - Bush4
   speedMax: 0
   speed:
     curve:
@@ -6784,10 +6854,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4662288bc82b3a54c9342f1a3b698eee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  entityId: Bush1
+  entityId: Bush7
   entityGroup:
-  - Bush
-  - Bush1
+  - Bush7
   speedMax: 0
   speed:
     curve:
@@ -7575,10 +7644,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4662288bc82b3a54c9342f1a3b698eee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  entityId: Bush1
+  entityId: Bush9
   entityGroup:
-  - Bush
-  - Bush1
+  - Bush9
   speedMax: 0
   speed:
     curve:
@@ -8811,10 +8879,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4662288bc82b3a54c9342f1a3b698eee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  entityId: Bush1
+  entityId: Bush2
   entityGroup:
-  - Bush
-  - Bush1
+  - Bush2
   speedMax: 0
   speed:
     curve:
@@ -9900,10 +9967,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4662288bc82b3a54c9342f1a3b698eee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  entityId: Bush1
+  entityId: Bush5
   entityGroup:
-  - Bush
-  - Bush1
+  - Bush5
   speedMax: 0
   speed:
     curve:
@@ -12110,10 +12176,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4662288bc82b3a54c9342f1a3b698eee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  entityId: Bush1
+  entityId: Bush3
   entityGroup:
-  - Bush
-  - Bush1
+  - Bush3
   speedMax: 0
   speed:
     curve:
@@ -13034,10 +13099,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4662288bc82b3a54c9342f1a3b698eee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  entityId: Bush1
+  entityId: Bush7
   entityGroup:
-  - Bush
-  - Bush1
+  - Bush7
   speedMax: 0
   speed:
     curve:
@@ -13357,7 +13421,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1397854205}
   m_LocalRotation: {x: 0.5, y: 0, z: 0, w: 0.8660254}
-  m_LocalPosition: {x: 0.4, y: 3.12, z: 0.2}
+  m_LocalPosition: {x: -1.03, y: 3.12, z: 0.2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 172313524}
@@ -13598,10 +13662,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4662288bc82b3a54c9342f1a3b698eee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  entityId: Bush1
+  entityId: Bush10
   entityGroup:
-  - Bush
-  - Bush1
+  - Bush10
   speedMax: 0
   speed:
     curve:
@@ -13956,6 +14019,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1343895945}
+  - {fileID: 1827742987}
   m_Father: {fileID: 1727730766}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -15147,10 +15211,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4662288bc82b3a54c9342f1a3b698eee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  entityId: Bush1
+  entityId: Bush10
   entityGroup:
-  - Bush
-  - Bush1
+  - Bush10
   speedMax: 0
   speed:
     curve:
@@ -16274,7 +16337,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1821111940}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -80.9, y: -11.891025, z: -2}
+  m_LocalPosition: {x: -92.4, y: -11.891025, z: 50}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1089580827}
@@ -16328,6 +16391,83 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   actions: []
   launch: 0
+--- !u!1 &1827742986
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1827742987}
+  - component: {fileID: 1827742988}
+  m_Layer: 0
+  m_Name: Main Camera ZOOM TO Player
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1827742987
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1827742986}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1453738647}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1827742988
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1827742986}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f37e76ce414e2a43a53f5114f89eafa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  waitType: 2
+  timeToWait: 0
+  cam: {fileID: 963194230}
+  destination: {x: 0, y: 0, z: 0}
+  percentage: 0.3
+  transition:
+    duration: 1
+    curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 1
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 1
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+  destinationCurrentTab: 0
+  goDestination: {fileID: 172313524}
+  vectorDestination: {x: 0, y: 0, z: 0}
 --- !u!1 &1834366669
 GameObject:
   m_ObjectHideFlags: 0
@@ -18002,10 +18142,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4662288bc82b3a54c9342f1a3b698eee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  entityId: Bush1
+  entityId: Bush11
   entityGroup:
-  - Bush
-  - Bush1
+  - Bush11
   speedMax: 0
   speed:
     curve:
@@ -18318,10 +18457,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4662288bc82b3a54c9342f1a3b698eee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  entityId: Bush1
+  entityId: Bush9
   entityGroup:
-  - Bush
-  - Bush1
+  - Bush9
   speedMax: 0
   speed:
     curve:
@@ -19066,10 +19204,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4662288bc82b3a54c9342f1a3b698eee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  entityId: Bush4
+  entityId: Bush6
   entityGroup:
-  - Bush
-  - Bush4
+  - Bush6
   speedMax: 0
   speed:
     curve:
