@@ -37,6 +37,8 @@ public static class Tools
         SceneManager.LoadScene(num);
     }
 
+    #region Actions
+
     public static void ChangeAlphaMaterial(GameObject obj, byte alpha) {
         if (obj.GetComponent<Renderer>() != null) {
             Renderer renderer = obj.GetComponent<Renderer>();
@@ -45,4 +47,40 @@ public static class Tools
             renderer.material.SetColor("_BaseColor", col);
         }
     }
+
+    public static void ChangeSpeed(GameObject obj, int speed)
+    {
+        if (obj.GetComponent<Entity>() != null)
+        {
+            obj.GetComponent<Entity>().speedMax = speed;
+        }
+    }
+
+    public static void ChangeSize(GameObject obj, int size)
+    {
+        obj.transform.localScale = new Vector3(size, size, size);
+    }
+
+    public static void ChangeSpriteColor(GameObject obj, Color c)
+    {
+        if (obj.GetComponent<SpriteRenderer>() != null)
+        {
+            obj.GetComponent<SpriteRenderer>().color = c;
+        }
+    }
+
+    public static void ChangeMaterialColor(GameObject obj, Color c)
+    {
+        if (obj.GetComponent<Material>() != null)
+        {
+            obj.GetComponent<Material>().color = c;
+        }
+    }
+
+    public static void ChangeAnim(GameObject obj, Animation anim)
+    {
+        obj.GetComponent<Animation>().clip = anim.clip;
+    }
+
+    #endregion
 }
