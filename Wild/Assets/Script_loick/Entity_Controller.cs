@@ -1,54 +1,50 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Rewired;
 
 public class Entity_Controller : MonoBehaviour
 {
-    public Entity entity;
-
+    public Player player;
+    private string _rewiredPlayerName = "Player0";
+    private Rewired.Player _rewiredPlayer = null;
+    public float joyaxeX;
+    public float joyaxeY;
+    public bool test;
+    public float run;
+    public float walk;
+    private void Start()
+    {
+        run = player.speedMax;
+        walk = player.speedMax / 2;
+        _rewiredPlayer = ReInput.players.GetPlayer(_rewiredPlayerName);
+    }
     void Update()
     {
+        joyaxeX = _rewiredPlayer.GetAxis("MoveHorizontal");
+        joyaxeY = _rewiredPlayer.GetAxis("MoveVertical");
+
         Vector2 dir_Move = Vector2.zero;
-
-        if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.Q)) {
-            dir_Move += Vector2.left;
+        if (joyaxeX == Mathf.Clamp(joyaxeX,-0.9f,0.9f) && joyaxeY == Mathf.Clamp(joyaxeY, -0.9f, 0.9f))
+        {
+            test = true;
+            dir_Move.x =joyaxeX;
+            dir_Move.y =joyaxeY;
+            player.speedMax = walk;
         }
-        else if(Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D)) {
-            dir_Move += Vector2.right;
-        }
-
-        if (Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.Z)) {
-            dir_Move += Vector2.up;
-        }
-        else if (Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.S)) {
-            dir_Move += Vector2.down;
-        }
-
-        if (Input.GetKeyDown(KeyCode.Space) && entity.CanDash) {
-            entity.Dash();
+        else 
+        {
+            test = false;
+            dir_Move.x = joyaxeX;
+            dir_Move.y = joyaxeY;
+            player.speedMax = run;
         }
 
-        entity.MoveDir(dir_Move);
-    }
-
-    protected void OnCollisionEnter(Collision collide) {
-        if (collide.gameObject.tag == "Enemy") {
-            Lose();
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            player.Dash();
         }
-    }
 
-    protected void OnTriggerEnter(Collider collide) {
-        if(collide.gameObject.tag == "End") {
-            Debug.Log("Fin");
-            NextLevel();
-        }
-    }
-
-    protected void Lose() {
-        Tools.LoadScene(0);
-    }
-
-    protected void NextLevel() {
-        Application.Quit();
+          player.Move(dir_Move);
     }
 }
