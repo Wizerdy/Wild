@@ -23,8 +23,8 @@ public class Entity_Controller : MonoBehaviour
 
     void Update()
     {
-        joyaxeX = _rewiredPlayer.GetAxis("MoveHorizontal");
-        joyaxeY = _rewiredPlayer.GetAxis("MoveVertical");
+        joyaxeX = _rewiredPlayer.GetAxis("Horizontal");
+        joyaxeY = _rewiredPlayer.GetAxis("Vertical");
 
         Vector2 dir_Move = Vector2.zero;
         if (joyaxeX == Mathf.Clamp(joyaxeX, -0.9f, 0.9f) && joyaxeY == Mathf.Clamp(joyaxeY, -0.9f, 0.9f))
