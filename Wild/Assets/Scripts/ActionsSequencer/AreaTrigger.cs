@@ -14,14 +14,16 @@ public class AreaTrigger : MonoBehaviour {
     public Color gizmosColor = Color.red;
 
     private Rigidbody rigidBody;
-    private BoxCollider boxCollider;
+    private BoxCollider[] boxCollider;
 
     private void Awake() {
         rigidBody = GetComponent<Rigidbody>();
-        boxCollider = GetComponent<BoxCollider>();
+        boxCollider = GetComponents<BoxCollider>();
         rigidBody.isKinematic = true;
         rigidBody.useGravity = false;
-        boxCollider.isTrigger = true;
+        for (int i = 0; i < boxCollider.Length; i++) {
+            boxCollider[i].isTrigger = true;
+        }
 
         foreach (ActionSequencer sequencer in GetComponentsInChildren<ActionSequencer>()) {
             if (sequencer.name == "OnEnter") {
@@ -74,6 +76,8 @@ public class AreaTrigger : MonoBehaviour {
         Color color = gizmosColor;
         color.a = 0.5f;
         Gizmos.color = color;
-        Gizmos.DrawCube(transform.position + boxCollider.center, boxCollider.size);
+        for (int i = 0; i < boxCollider.Length; i++) {
+            Gizmos.DrawCube(transform.position + boxCollider[i].center, boxCollider[i].size);
+        }
     }
 }

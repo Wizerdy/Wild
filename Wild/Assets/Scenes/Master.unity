@@ -340,7 +340,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f02d207cbc5082479fb588ddcb60a84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  entity: {fileID: 172313523}
+  player: {fileID: 0}
+  joyaxeX: 0
+  joyaxeY: 0
+  test: 0
+  run: 0
+  walk: 0
 --- !u!54 &172313526
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -3211,7 +3216,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 8e6dbbc0d903daa42a950348cd62e1e0, type: 2}
+  - {fileID: 2100000, guid: f1e32ff53f13ee34984607cb50c80509, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

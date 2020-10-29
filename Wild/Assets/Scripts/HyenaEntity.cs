@@ -11,6 +11,7 @@ public class HyenaEntity : AnimalEntity
 
     [Serializable]
     public struct MovementsValues {
+        public float speedMax;
         public MovementCurve speed;
         public MovementCurve acceleration;
         public MovementCurve frictions;
@@ -197,6 +198,7 @@ public class HyenaEntity : AnimalEntity
     }
 
     public void CopyMovementsValues(MovementsValues values) {
+        speedMax = values.speedMax;
         speed = values.speed;
         acceleration = values.acceleration;
         frictions = values.frictions;
