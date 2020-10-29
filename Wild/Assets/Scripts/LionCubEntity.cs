@@ -10,10 +10,10 @@ public class LionCubEntity : AnimalEntity {
             if (collide.gameObject.GetComponent<Entity>() != null) {
                 Entity[] entities = EntitiesManager.FindEntities(collide.gameObject.GetComponent<Entity>().entityGroup[1]);
                 for (int i = 0; i < entities.Length; i++) {
-                    ChangeAlphaMaterial(entities[i].gameObject, 100);
+                    Tools.ChangeAlphaMaterial(entities[i].gameObject, 100);
                 }
             } else {
-                ChangeAlphaMaterial(collide.gameObject, 100);
+                Tools.ChangeAlphaMaterial(collide.gameObject, 100);
             }
         }
     }
@@ -23,10 +23,10 @@ public class LionCubEntity : AnimalEntity {
             if (collide.gameObject.GetComponent<Entity>() != null) {
                 Entity[] entities = EntitiesManager.FindEntities(collide.gameObject.GetComponent<Entity>().entityGroup[1]);
                 for (int i = 0; i < entities.Length; i++) {
-                    ChangeAlphaMaterial(entities[i].gameObject, 255);
+                    Tools.ChangeAlphaMaterial(entities[i].gameObject, 255);
                 }
             } else {
-                ChangeAlphaMaterial(collide.gameObject, 255);
+                Tools.ChangeAlphaMaterial(collide.gameObject, 255);
             }
         }
     }

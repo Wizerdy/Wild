@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 
 public static class Tools
 {
+    public enum IgnoreMode { X, Y, Z }
+
     public static Vector3 ConvertTo3D(this Vector2 vector) {
         return new Vector3(vector.x, 0, vector.y);
     }
@@ -17,8 +19,17 @@ public static class Tools
         return new Vector2(vector.x, vector.z);
     }
 
-    public static Vector3 OverwriteY(this Vector3 vector, float y) {
-        return new Vector3(vector.x, y, vector.z);
+    public static Vector3 Overwrite(this Vector3 vector, float value, IgnoreMode ignore) {
+        switch(ignore) {
+            case IgnoreMode.X:
+                return new Vector3(value, vector.y, vector.z);
+            case IgnoreMode.Y:
+                return new Vector3(vector.x, value, vector.z);
+            case IgnoreMode.Z:
+                return new Vector3(vector.x, vector.y, value);
+        }
+
+        return vector;
     }
 
     public static void LoadScene(int num) {
@@ -26,10 +37,10 @@ public static class Tools
         SceneManager.LoadScene(num);
     }
 
-    public static void ChangeAlphaMaterial(GameObject obj, byte alpha)
-    {
-        if (obj.GetComponent<Renderer>() != null)
-        {
+    #region Actions
+
+    public static void ChangeAlphaMaterial(GameObject obj, byte alpha) {
+        if (obj.GetComponent<Renderer>() != null) {
             Renderer renderer = obj.GetComponent<Renderer>();
             Color32 col = renderer.material.GetColor("_BaseColor");
             col.a = alpha;
@@ -70,4 +81,6 @@ public static class Tools
     {
         obj.GetComponent<Animation>().clip = anim.clip;
     }
+
+    #endregion
 }
