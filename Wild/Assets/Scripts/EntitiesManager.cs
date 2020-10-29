@@ -8,7 +8,7 @@ public static class EntitiesManager {
 
     public static Entity FindEntity(string id) {
         for (int i = 0; i < entities.Count; i++)
-            if (String.Compare(entities[i].entityId, id) == 0)
+            if (entities[i].entityId.Equals(id))
                 return entities[i];
 
         Debug.LogError("Entity not found : " + id);
@@ -19,7 +19,7 @@ public static class EntitiesManager {
         List<Entity> entitiesGroup = new List<Entity>();
 
         for (int i = 0; i < entities.Count; i++)
-            if (String.Compare(entities[i].entityId, group) == 0)
+            if (entities[i].entityId.Equals(group))
                 entitiesGroup.Add(entities[i]);
 
         if (entitiesGroup.Count <= 0)

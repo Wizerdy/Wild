@@ -26,9 +26,9 @@ public class CameraManager : MonoBehaviour
         {
             cameraEntity.FollowLock(EntitiesManager.FindEntity(entityToFollow).gameObject);
             cameraEntity.CopyMovementValues(EntitiesManager.FindEntity(entityToFollow));
-            cameraEntity.acceleration *= 3f;
-            cameraEntity.friction *= 2f;
-            cameraEntity.turnFriction *= 2f;
+            //cameraEntity.acceleration *= 3f;
+            //cameraEntity.friction *= 2f;
+            //cameraEntity.turnFriction *= 2f;
         }
     }
 
