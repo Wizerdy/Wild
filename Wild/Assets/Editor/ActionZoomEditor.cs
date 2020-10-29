@@ -6,19 +6,18 @@ using UnityEditor;
 
 [ExecuteInEditMode]
 [CustomEditor(typeof(ActionZoom))]
-public class ActionZoomEditor : ActionCameraEditor
-{
+public class ActionZoomEditor : ActionCameraEditor {
     private ActionZoom script;
 
-    public override void OnEnable()
-    {
+    public override void OnEnable() {
         base.OnEnable();
         script = (ActionZoom)target;
     }
 
-    public override void OnInspectorGUI()
-    {
+    public override void OnInspectorGUI() {
         base.OnInspectorGUI();
+
+        serializedObject.Update();
 
         GUILayout.Space(5);
 
@@ -30,8 +29,7 @@ public class ActionZoomEditor : ActionCameraEditor
         GUILayout.BeginVertical("box");
 
         script.destinationCurrentTab = GUILayout.Toolbar(script.destinationCurrentTab, new string[] { "GameObject", "Position" });
-        switch (script.destinationCurrentTab)
-        {
+        switch (script.destinationCurrentTab) {
             case 0:
                 script.goDestination = (Transform)EditorGUILayout.ObjectField(script.goDestination, typeof(Transform), true);
                 break;
@@ -42,31 +40,30 @@ public class ActionZoomEditor : ActionCameraEditor
 
         GUILayout.EndVertical();
 
-        script.time = EditorGUILayout.FloatField("Time", script.time);
-        script.steps = EditorGUILayout.IntField("Steps", script.steps);
+        SerializedProperty transitionProperty = serializedObject.FindProperty("transition");
+        EditorGUILayout.PropertyField(transitionProperty);
+
         script.percentage = EditorGUILayout.FloatField("Percentage", script.percentage);
 
         GUILayout.EndVertical();
 
-        if (EditorGUI.EndChangeCheck())
-        {
+        if (EditorGUI.EndChangeCheck()) {
             OnValidate();
         }
+
+        serializedObject.ApplyModifiedProperties();
     }
 
-    protected override void OnValidate()
-    {
+    protected override void OnValidate() {
         base.OnValidate();
 
         string name = script.cam.name + " ZOOM";
 
-        if (String.Compare(script.name, "") != 0)
-        {
+        if (String.Compare(script.name, "") != 0) {
             name = " " + name;
         }
 
-        if (script.destinationCurrentTab == 0 && script.goDestination != null) { name += " TO " + script.goDestination.name; }
-        else if (script.destinationCurrentTab == 1) { name += " TO " + script.vectorDestination; }
+        if (script.destinationCurrentTab == 0 && script.goDestination != null) { name += " TO " + script.goDestination.name; } else if (script.destinationCurrentTab == 1) { name += " TO " + script.vectorDestination; }
 
         script.name += name;
     }
