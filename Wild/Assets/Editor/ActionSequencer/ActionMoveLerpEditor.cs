@@ -53,9 +53,7 @@ public class ActionMoveLerpEditor : ActionEntityEditor {
 
         string name = "MOVE LERP";
 
-        if(String.Compare(script.name, "") != 0) {
-            name = " " + name;
-        }
+        if(String.Compare(script.name, "") != 0) { name = " " + name; }
 
         if (script.destinationCurrentTab == 0 && script.goDestination != null) { name += " TO " + script.goDestination.name; }
         else if (script.destinationCurrentTab == 1) { name += " TO " + script.vectorDestination; }

@@ -1,13 +1,15 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class CollisionActions : MonoBehaviour
-{
+[RequireComponent(typeof(Rigidbody))]
+[RequireComponent(typeof(BoxCollider))]
+[ExecuteInEditMode]
+public class AreaTrigger : MonoBehaviour {
     public string entityGroup = "";
     private ActionSequencer enterActions;
     private ActionSequencer exitActions;
+
+    public bool alwaysExitActions = false;
 
     public Color gizmosColor = Color.red;
 
@@ -41,7 +43,15 @@ public class CollisionActions : MonoBehaviour
             exitActions = exitActionGo.AddComponent<ActionSequencer>();
         }
 
-        if (String.IsNullOrWhiteSpace(gameObject.name)) { gameObject.name = "AreaTrigger"; }
+        if (gameObject.name.Equals("GameObject")) { gameObject.name = "AreaTrigger"; }
+    }
+
+    public void OnAreaEnter() {
+        enterActions.Launch();
+    }
+
+    public void OnAreaExit() {
+        exitActions.Launch();
     }
 
     private void OnTriggerEnter(Collider other) {
@@ -49,7 +59,7 @@ public class CollisionActions : MonoBehaviour
         if (null == otherEntity) return;
         if (!string.IsNullOrWhiteSpace(entityGroup) && Array.IndexOf(otherEntity.entityGroup, entityGroup) < 0) return;
 
-        enterActions.Launch();
+        otherEntity.EnterAreaTrigger(this);
     }
 
     private void OnTriggerExit(Collider other) {
@@ -57,14 +67,12 @@ public class CollisionActions : MonoBehaviour
         if (null == otherEntity) return;
         if (!string.IsNullOrWhiteSpace(entityGroup) && Array.IndexOf(otherEntity.entityGroup, entityGroup) < 0) return;
 
-        exitActions.Launch();
+        otherEntity.ExitAreaTrigger(this);
     }
 
     private void OnDrawGizmos() {
-        if(boxCollider == null) { return; }
-
         Color color = gizmosColor;
-        color.a = 0.75f;
+        color.a = 0.5f;
         Gizmos.color = color;
         Gizmos.DrawCube(transform.position + boxCollider.center, boxCollider.size);
     }

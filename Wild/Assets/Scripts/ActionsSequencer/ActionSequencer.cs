@@ -51,7 +51,7 @@ public class ActionSequencer : MonoBehaviour
             actions[actionIndex].Execute();
         }
 
-        if (actionIndex == actions.Length - 1 && actions[actions.Length - 1].IsFinished()) {
+        if (actions[actions.Length - 1].IsFinished()) {
             ResetActions();
         }
     }
@@ -66,5 +66,9 @@ public class ActionSequencer : MonoBehaviour
         actionIndex = -1;
         running = false;
         launch = false;
+    }
+
+    public void Launch() {
+        launch = true;
     }
 }
