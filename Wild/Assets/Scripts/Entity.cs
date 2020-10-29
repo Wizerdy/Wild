@@ -547,23 +547,33 @@ public class Entity : MonoBehaviour {
 
     #region AreaTriggers
 
-    public void EnterAreaTrigger(AreaTrigger trigger) {
-        if(areaTriggers.Contains(trigger)) { return; }
-
+    public void EnterAreaTrigger(AreaTrigger trigger)
+    {
+        if (areaTriggers.Contains(trigger)) { areaTriggers.Add(trigger); return; }
         areaTriggers.Add(trigger);
+
         trigger.OnAreaEnter();
     }
 
-    public void ExitAreaTrigger(AreaTrigger trigger) {
+    public void ExitAreaTrigger(AreaTrigger trigger)
+    {
         if (!areaTriggers.Contains(trigger)) { return; }
 
-        if (areaTriggers.Count > 1) {
-            if(trigger.alwaysExitActions) {
+        if (areaTriggers.Count > 1)
+        {
+            if (trigger.alwaysExitActions)
+            {
                 trigger.OnAreaExit();
             }
             areaTriggers.Remove(trigger);
-            areaTriggers[areaTriggers.Count - 1].OnAreaEnter();
-        } else {
+
+            if (trigger != areaTriggers[areaTriggers.Count - 1])
+            {
+                areaTriggers[areaTriggers.Count - 1].OnAreaEnter();
+            }
+        }
+        else
+        {
             trigger.OnAreaExit();
             areaTriggers.Remove(trigger);
         }
