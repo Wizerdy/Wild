@@ -2,23 +2,23 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ActionZoom : ActionCamera
-{
+public class ActionZoom : ActionCamera {
     public Vector3 destination = new Vector3();
-    public float time = 0f;
     public float percentage;
-    public int steps = 0;
+    public CameraTransition transition;
 
     [HideInInspector] public int destinationCurrentTab;
     [HideInInspector] public Transform goDestination;
     [HideInInspector] public Vector3 vectorDestination;
 
-    protected override void Start()
-    {
+    protected override void Start() {
         base.Start();
+    }
 
-        switch (destinationCurrentTab)
-        {
+    public override void Execute() {
+        base.Execute();
+
+        switch (destinationCurrentTab) {
             case 0:
                 destination = goDestination.position;
                 break;
@@ -26,19 +26,12 @@ public class ActionZoom : ActionCamera
                 destination = vectorDestination;
                 break;
         }
+
+        cam.Zoom(destination, percentage, transition);
     }
 
-    public override void Execute()
-    {
-        base.Execute();
-
-        cam.Zoom(destination, time, steps, percentage);
-    }
-
-    public override bool IsActionEnded()
-    {
-        if (!cam.cameraEntity.IsMovementForced)
-        {
+    public override bool IsActionEnded() {
+        if (!cam.IsMoving) {
             actionEnded = true;
         }
         return actionEnded;
