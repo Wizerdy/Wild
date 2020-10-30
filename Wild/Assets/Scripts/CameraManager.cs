@@ -20,6 +20,7 @@ public class CameraManager : MonoBehaviour {
     private float _currentSize = 0f;
 
     private Vector3 _defaultPosition = Vector3.zero;
+    private Vector3 _defaultRotation = Vector3.zero;
 
     private Transform _defaultParent = null;
     private Transform _currentParent = null;
@@ -34,7 +35,14 @@ public class CameraManager : MonoBehaviour {
     private Vector3 _moveTransitionOrigin = Vector3.zero;
     private Vector3 _moveTransitionDestination = Vector3.zero;
     private float _moveTransitionTimer = 0f;
+
+    private CameraTransition _rotateTransition = null;
+    private Vector3 _rotateTransitionOrigin = Vector3.zero;
+    private Vector3 _rotateTransitionDestination = Vector3.zero;
+    private float _rotateTransitionTimer = 0f;
+
     private bool _isMoveTransitonActive = false;
+    private bool _isRotateTransitonActive = false;
 
     private void Awake() {
         Instance = this;
@@ -50,6 +58,7 @@ public class CameraManager : MonoBehaviour {
         _UpdateSizeTransition();
         _UpdateMoveTransition();
         //_UpdateZoomTransition();
+        _UpdateRotateTransition();
     }
 
     public float DefaultSize => _defaultSize;
@@ -64,6 +73,7 @@ public class CameraManager : MonoBehaviour {
 
         ChangeSize(camera.orthographicSize, profileMode, transition);
         MoveTo(_currentParent.transform.position, profileMode, transition);
+        RotateTo(_currentParent.transform.position, profileMode, transition);
     }
 
     public void RestoreDefaultProfile(CameraTransition transition = null) {
@@ -73,6 +83,7 @@ public class CameraManager : MonoBehaviour {
         transform.SetParent(_currentParent);
 
         MoveTo(_currentParent.transform.position, PROFILE_MODE.OVERRIDE, transition);
+        RotateTo(_defaultRotation, PROFILE_MODE.OVERRIDE, transition);
     }
 
     public void ChangeSize(float size, PROFILE_MODE profileMode, CameraTransition transition = null) {
@@ -108,6 +119,23 @@ public class CameraManager : MonoBehaviour {
         }
     }
 
+    public void RotateTo(Vector3 angle, PROFILE_MODE profileMode, CameraTransition transition = null) {
+        if (null != transition) {
+            _rotateTransition = transition;
+            _rotateTransitionOrigin = transform.localEulerAngles;
+            //_moveTransitionDestination = destination;
+            _rotateTransitionDestination = angle;
+            _rotateTransitionTimer = 0f;
+            _isMoveTransitonActive = true;
+        } else {
+            transform.localEulerAngles = angle;
+        }
+
+        if (profileMode == PROFILE_MODE.DEFAULT) {
+            _defaultRotation = angle;
+        }
+    }
+
     private void _UpdateSizeTransition() {
         if (!_isSizeTransitionActive) return;
 
@@ -139,6 +167,23 @@ public class CameraManager : MonoBehaviour {
             }
 
             transform.localPosition = Vector3.Lerp(_moveTransitionOrigin, _moveTransitionDestination, r);
+        }
+    }
+
+    private void _UpdateRotateTransition() {
+        if (!_isRotateTransitonActive) return;
+
+        _rotateTransitionTimer += Time.deltaTime;
+        if (_rotateTransitionTimer >= _rotateTransition.duration) {
+            transform.localEulerAngles = _rotateTransitionDestination;
+            _isRotateTransitonActive = false;
+        } else {
+            float r = _rotateTransitionTimer / _rotateTransition.duration;
+            if (null != _rotateTransition.curve) {
+                r = _rotateTransition.curve.Evaluate(r);
+            }
+
+            transform.localEulerAngles = Vector3.Lerp(_rotateTransitionOrigin, _rotateTransitionDestination, r);
         }
     }
 
