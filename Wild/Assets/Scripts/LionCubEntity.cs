@@ -49,11 +49,13 @@ public class LionCubEntity : AnimalEntity {
         MoveInstant(spawnPoint.ConvertTo3D());
 
         if (hyenas == null) return;
+
         for (int i = 0; i < hyenas.Length; i++) {
-            HyenaEntity hyena = hyenas[i].GetComponent<HyenaEntity>();
-            if (hyena != null && hyena.HasPrey) {
+            HyenaEntity hyena = hyenas[i].gameObject.GetComponent<HyenaEntity>();
+            //if (hyena != null && (hyena.awarness == HyenaEntity.Awarness.SUSPICIOUS || hyena.awarness == HyenaEntity.Awarness.CHASING)) {
                 hyenas[i].GetComponent<HyenaEntity>().Patrol();
-            }
+                //Debug.Log("Patrol " + hyenas[i].name);
+            //}
         }
     }
 

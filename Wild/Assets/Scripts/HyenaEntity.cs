@@ -108,12 +108,12 @@ public class HyenaEntity : AnimalEntity
             return;
         }
 
-        if(IsNearPoint(lastPreyPos, destinationRadius)) {
+        //if(IsNearPoint(lastPreyPos, destinationRadius)) {
             searchCountdown -= Time.deltaTime;
             if(searchCountdown <= 0) {
                 Patrol();
             }
-        }
+        //}
     }
 
     #endregion

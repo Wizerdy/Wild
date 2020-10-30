@@ -19,7 +19,7 @@ public static class EntitiesManager {
         List<Entity> entitiesGroup = new List<Entity>();
 
         for (int i = 0; i < entities.Count; i++)
-            if (Array.IndexOf(entities[i].entityGroup, group) < 0)
+            if (Array.IndexOf(entities[i].entityGroup, group) >= 0)
                 entitiesGroup.Add(entities[i]);
 
         if (entitiesGroup.Count <= 0)
