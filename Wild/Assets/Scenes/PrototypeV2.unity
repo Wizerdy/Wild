@@ -106,7 +106,7 @@ NavMeshSettings:
   m_BuildSettings:
     serializedVersion: 2
     agentTypeID: 0
-    agentRadius: 3
+    agentRadius: 1.5
     agentHeight: 2
     agentSlope: 45
     agentClimb: 0.4
@@ -114,7 +114,7 @@ NavMeshSettings:
     maxJumpAcrossDistance: 0
     minRegionArea: 2
     manualCellSize: 0
-    cellSize: 1
+    cellSize: 0.5
     manualTileSize: 0
     tileSize: 256
     accuratePlacement: 0
@@ -122,7 +122,7 @@ NavMeshSettings:
     preserveTilesOutsideBounds: 0
     debug:
       m_Flags: 0
-  m_NavMeshData: {fileID: 23800000, guid: 32d07d143c6250447b840ddc994a3e26, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: 1b2328c58d71fa64fb53159c22973988, type: 2}
 --- !u!1 &307863
 GameObject:
   m_ObjectHideFlags: 0
@@ -451,7 +451,7 @@ Transform:
   m_GameObject: {fileID: 35138967}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 52.919296, y: 47.407543, z: -44.012856}
-  m_LocalScale: {x: 1, y: 0.94138, z: 1.1519}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children:
   - {fileID: 674316332}
   - {fileID: 767238136}
@@ -647,7 +647,7 @@ MonoBehaviour:
   usePathFinding: 1
   refreshPathDuration: 1
   destinationRadius: 5
-  rotateTowardDirection: 1
+  rotateTowardDirection: 0
   rotationAcceleration:
     serializedVersion: 2
     m_Curve: []
@@ -669,8 +669,8 @@ MonoBehaviour:
   - {x: 89.85092, y: -213.46786}
   - {x: 41.862682, y: -213.88168}
   - {x: 8.121788, y: -194.02464}
-  - {x: -9.560226, y: -142.70547}
-  - {x: 57.449608, y: -134.08047}
+  - {x: -2.3119812, y: -154.6905}
+  - {x: 57.449608, y: -143.93025}
   patrolValues:
     speedMax: 12
     acceleration:
@@ -1199,8 +1199,34 @@ PrefabInstance:
       propertyPath: m_Name
       value: BigRock_1
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 634d87550dd7539419303c264d34aa92, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 634d87550dd7539419303c264d34aa92, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 634d87550dd7539419303c264d34aa92, type: 3}
+--- !u!1 &52508407 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 634d87550dd7539419303c264d34aa92, type: 3}
+  m_PrefabInstance: {fileID: 52508406}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &52508408
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 52508407}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.1106744, y: 0.5532088, z: 0.5896045}
+  m_Center: {x: 0.033566102, y: 0.072879665, z: 0.28339043}
 --- !u!1001 &62034047
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1268,8 +1294,34 @@ PrefabInstance:
       propertyPath: m_Name
       value: BigRock_1
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 634d87550dd7539419303c264d34aa92, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 634d87550dd7539419303c264d34aa92, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 634d87550dd7539419303c264d34aa92, type: 3}
+--- !u!1 &62034048 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 634d87550dd7539419303c264d34aa92, type: 3}
+  m_PrefabInstance: {fileID: 62034047}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &62034049
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 62034048}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.1106738, y: 0.55320865, z: 0.5896044}
+  m_Center: {x: 0.033565525, y: 0.07287951, z: 0.28339013}
 --- !u!1 &70276325
 GameObject:
   m_ObjectHideFlags: 0
@@ -1388,8 +1440,34 @@ PrefabInstance:
       propertyPath: m_Name
       value: BigRock_2
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 58722727fcc827f4896dff9c68765109, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 58722727fcc827f4896dff9c68765109, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 58722727fcc827f4896dff9c68765109, type: 3}
+--- !u!1 &70575205 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 58722727fcc827f4896dff9c68765109, type: 3}
+  m_PrefabInstance: {fileID: 70575204}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &70575206
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 70575205}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.1360497, y: 0.55662537, z: 0.5899714}
+  m_Center: {x: 0.030492393, y: 0.021452349, z: 0.28843972}
 --- !u!1 &71763099
 GameObject:
   m_ObjectHideFlags: 0
@@ -1918,8 +1996,34 @@ PrefabInstance:
       propertyPath: m_Name
       value: BigRock_1
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 634d87550dd7539419303c264d34aa92, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 634d87550dd7539419303c264d34aa92, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 634d87550dd7539419303c264d34aa92, type: 3}
+--- !u!1 &90649493 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 634d87550dd7539419303c264d34aa92, type: 3}
+  m_PrefabInstance: {fileID: 90649492}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &90649494
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 90649493}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.1106739, y: 0.55320853, z: 0.5896042}
+  m_Center: {x: 0.033565134, y: 0.07287948, z: 0.2833903}
 --- !u!1 &93355531
 GameObject:
   m_ObjectHideFlags: 0
@@ -2115,8 +2219,34 @@ PrefabInstance:
       propertyPath: m_Name
       value: BigRock_2
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 58722727fcc827f4896dff9c68765109, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 58722727fcc827f4896dff9c68765109, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 58722727fcc827f4896dff9c68765109, type: 3}
+--- !u!1 &102266637 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 58722727fcc827f4896dff9c68765109, type: 3}
+  m_PrefabInstance: {fileID: 102266636}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &102266638
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 102266637}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.1360499, y: 0.5566253, z: 0.5899713}
+  m_Center: {x: 0.03049165, y: 0.02145183, z: 0.28843978}
 --- !u!4 &104272721 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 634d87550dd7539419303c264d34aa92, type: 3}
@@ -3261,8 +3391,34 @@ PrefabInstance:
       propertyPath: m_Name
       value: BigRock_3
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 53f8249d8fe190d458e6f795d18a091a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 53f8249d8fe190d458e6f795d18a091a, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 53f8249d8fe190d458e6f795d18a091a, type: 3}
+--- !u!1 &154708467 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 53f8249d8fe190d458e6f795d18a091a, type: 3}
+  m_PrefabInstance: {fileID: 154708466}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &154708468
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 154708467}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.0805563, y: 0.5144293, z: 0.55967146}
+  m_Center: {x: 0.051124718, y: 0.03993754, z: 0.27533022}
 --- !u!1 &166497917
 GameObject:
   m_ObjectHideFlags: 0
@@ -3407,8 +3563,34 @@ PrefabInstance:
       propertyPath: m_Name
       value: BigRock_1
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 634d87550dd7539419303c264d34aa92, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 634d87550dd7539419303c264d34aa92, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 634d87550dd7539419303c264d34aa92, type: 3}
+--- !u!1 &170124867 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 634d87550dd7539419303c264d34aa92, type: 3}
+  m_PrefabInstance: {fileID: 170124866}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &170124868
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 170124867}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.1106744, y: 0.5532088, z: 0.5896045}
+  m_Center: {x: 0.03356515, y: 0.07287895, z: 0.2833904}
 --- !u!1 &172313522
 GameObject:
   m_ObjectHideFlags: 0
@@ -3611,7 +3793,7 @@ Transform:
   m_GameObject: {fileID: 172313522}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -157.1, y: 0, z: 1.1042}
-  m_LocalScale: {x: 1.478715, y: 1.478715, z: 1.478715}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1397854207}
   - {fileID: 1650200644}
@@ -3736,7 +3918,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &192803432
 Transform:
   m_ObjectHideFlags: 0
@@ -3791,7 +3973,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 47b2d7cb76392484685e14383ddca35c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 462d79b8274db6746b2fe40f2ec1017e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -5114,8 +5296,34 @@ PrefabInstance:
       propertyPath: m_Name
       value: BigRock_2
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 58722727fcc827f4896dff9c68765109, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 58722727fcc827f4896dff9c68765109, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 58722727fcc827f4896dff9c68765109, type: 3}
+--- !u!1 &268571287 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 58722727fcc827f4896dff9c68765109, type: 3}
+  m_PrefabInstance: {fileID: 268571286}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &268571288
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 268571287}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.1360499, y: 0.5566253, z: 0.5899713}
+  m_Center: {x: 0.030492365, y: 0.021452308, z: 0.28843978}
 --- !u!1001 &269287223
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5245,8 +5453,34 @@ PrefabInstance:
       propertyPath: m_Name
       value: BigRock_1
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 634d87550dd7539419303c264d34aa92, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 634d87550dd7539419303c264d34aa92, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 634d87550dd7539419303c264d34aa92, type: 3}
+--- !u!1 &272176754 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 634d87550dd7539419303c264d34aa92, type: 3}
+  m_PrefabInstance: {fileID: 272176753}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &272176755
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 272176754}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.1106739, y: 0.5532085, z: 0.58960414}
+  m_Center: {x: 0.033565134, y: 0.072879344, z: 0.2833904}
 --- !u!1 &274305730
 GameObject:
   m_ObjectHideFlags: 0
@@ -5307,7 +5541,7 @@ Transform:
   m_GameObject: {fileID: 274318210}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 205.41928, y: 47.407543, z: -68.71285}
-  m_LocalScale: {x: 1, y: 0.94138, z: 1.1519}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children:
   - {fileID: 192803432}
   - {fileID: 753234793}
@@ -5503,7 +5737,7 @@ MonoBehaviour:
   usePathFinding: 1
   refreshPathDuration: 1
   destinationRadius: 5
-  rotateTowardDirection: 1
+  rotateTowardDirection: 0
   rotationAcceleration:
     serializedVersion: 2
     m_Curve: []
@@ -5524,8 +5758,8 @@ MonoBehaviour:
   - {x: 193.22147, y: -182.4938}
   - {x: 139.8934, y: -191.07703}
   - {x: 126.519684, y: -223.05214}
-  - {x: 193.32437, y: -248.19687}
-  - {x: 256.64758, y: -237.2234}
+  - {x: 193.32437, y: -230.63358}
+  - {x: 256.64758, y: -226.69984}
   - {x: 259.71558, y: -182.15742}
   patrolValues:
     speedMax: 12
@@ -6028,8 +6262,34 @@ PrefabInstance:
       propertyPath: m_Name
       value: BigRock_2
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 58722727fcc827f4896dff9c68765109, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 58722727fcc827f4896dff9c68765109, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 58722727fcc827f4896dff9c68765109, type: 3}
+--- !u!1 &296348844 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 58722727fcc827f4896dff9c68765109, type: 3}
+  m_PrefabInstance: {fileID: 296348843}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &296348845
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 296348844}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.1360505, y: 0.55662555, z: 0.58997154}
+  m_Center: {x: 0.030493572, y: 0.021452483, z: 0.28843993}
 --- !u!4 &296690988 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 634d87550dd7539419303c264d34aa92, type: 3}
@@ -6063,7 +6323,7 @@ Transform:
   m_GameObject: {fileID: 298156028}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 4.519291, y: 47.407543, z: 111.087135}
-  m_LocalScale: {x: 1, y: 0.94138, z: 1.1519}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children:
   - {fileID: 1371267898}
   - {fileID: 691438108}
@@ -6256,7 +6516,7 @@ MonoBehaviour:
   turnAngleMax: 180
   turnDurationMin: 0.1
   turnDurationMax: 1
-  usePathFinding: 1
+  usePathFinding: 0
   refreshPathDuration: 1
   destinationRadius: 5
   rotateTowardDirection: 1
@@ -7164,8 +7424,34 @@ PrefabInstance:
       propertyPath: m_Name
       value: BigRock_1
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 634d87550dd7539419303c264d34aa92, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 634d87550dd7539419303c264d34aa92, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 634d87550dd7539419303c264d34aa92, type: 3}
+--- !u!1 &337514057 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 634d87550dd7539419303c264d34aa92, type: 3}
+  m_PrefabInstance: {fileID: 337514056}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &337514058
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 337514057}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.1106739, y: 0.5532086, z: 0.58960426}
+  m_Center: {x: 0.033564895, y: 0.072879, z: 0.2833903}
 --- !u!1001 &354831655
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7717,8 +8003,34 @@ PrefabInstance:
       propertyPath: m_Name
       value: BigRock_2
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 58722727fcc827f4896dff9c68765109, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 58722727fcc827f4896dff9c68765109, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 58722727fcc827f4896dff9c68765109, type: 3}
+--- !u!1 &373172393 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 58722727fcc827f4896dff9c68765109, type: 3}
+  m_PrefabInstance: {fileID: 373172392}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &373172394
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 373172393}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.1360499, y: 0.5566252, z: 0.5899712}
+  m_Center: {x: 0.030492127, y: 0.021452066, z: 0.28843984}
 --- !u!4 &374178858 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 58722727fcc827f4896dff9c68765109, type: 3}
@@ -7791,8 +8103,34 @@ PrefabInstance:
       propertyPath: m_Name
       value: BigRock_3
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 53f8249d8fe190d458e6f795d18a091a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 53f8249d8fe190d458e6f795d18a091a, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 53f8249d8fe190d458e6f795d18a091a, type: 3}
+--- !u!1 &377946473 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 53f8249d8fe190d458e6f795d18a091a, type: 3}
+  m_PrefabInstance: {fileID: 377946472}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &377946474
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 377946473}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.0805564, y: 0.51442933, z: 0.55967146}
+  m_Center: {x: 0.05112472, y: 0.03993754, z: 0.2753303}
 --- !u!1001 &382087893
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7917,8 +8255,34 @@ PrefabInstance:
       propertyPath: m_Name
       value: BigRock_2
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 58722727fcc827f4896dff9c68765109, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 58722727fcc827f4896dff9c68765109, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 58722727fcc827f4896dff9c68765109, type: 3}
+--- !u!1 &384687785 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 58722727fcc827f4896dff9c68765109, type: 3}
+  m_PrefabInstance: {fileID: 384687784}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &384687786
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 384687785}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.1360505, y: 0.55662555, z: 0.58997154}
+  m_Center: {x: 0.030492619, y: 0.021452244, z: 0.2884399}
 --- !u!1 &387310013
 GameObject:
   m_ObjectHideFlags: 0
@@ -8617,6 +8981,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: DeadTree_1 (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 829f42d8bee879a4196e2b3a58d3baa9, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 829f42d8bee879a4196e2b3a58d3baa9, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 829f42d8bee879a4196e2b3a58d3baa9, type: 3}
 --- !u!1001 &420769179
@@ -8884,6 +9256,101 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 15c95616e5be22a4aaac9d3bd7ff1612, type: 3}
+--- !u!1 &432928383
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 432928384}
+  - component: {fileID: 432928387}
+  - component: {fileID: 432928386}
+  - component: {fileID: 432928385}
+  m_Layer: 0
+  m_Name: Cube
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &432928384
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 432928383}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.57, z: 0}
+  m_LocalScale: {x: 3, y: 3, z: 3}
+  m_Children: []
+  m_Father: {fileID: 1365774161}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &432928385
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 432928383}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!23 &432928386
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 432928383}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 73c176f402d2c2f4d929aa5da7585d17, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!33 &432928387
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 432928383}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!4 &433644159 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 15c95616e5be22a4aaac9d3bd7ff1612, type: 3}
@@ -9523,8 +9990,34 @@ PrefabInstance:
       propertyPath: m_Name
       value: BigRock_3
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 53f8249d8fe190d458e6f795d18a091a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 53f8249d8fe190d458e6f795d18a091a, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 53f8249d8fe190d458e6f795d18a091a, type: 3}
+--- !u!1 &467106160 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 53f8249d8fe190d458e6f795d18a091a, type: 3}
+  m_PrefabInstance: {fileID: 467106159}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &467106161
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 467106160}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.0805564, y: 0.51442945, z: 0.5596716}
+  m_Center: {x: 0.05112472, y: 0.039937552, z: 0.27533036}
 --- !u!1 &471327320
 GameObject:
   m_ObjectHideFlags: 0
@@ -10079,8 +10572,34 @@ PrefabInstance:
       propertyPath: m_Name
       value: BigRock_1
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 634d87550dd7539419303c264d34aa92, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 634d87550dd7539419303c264d34aa92, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 634d87550dd7539419303c264d34aa92, type: 3}
+--- !u!1 &532418909 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 634d87550dd7539419303c264d34aa92, type: 3}
+  m_PrefabInstance: {fileID: 532418908}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &532418910
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 532418909}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.1106739, y: 0.5532087, z: 0.5896044}
+  m_Center: {x: 0.033564895, y: 0.07287902, z: 0.28339037}
 --- !u!4 &533777179 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 53f8249d8fe190d458e6f795d18a091a, type: 3}
@@ -11234,8 +11753,34 @@ PrefabInstance:
       propertyPath: m_Name
       value: BigRock_1
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 634d87550dd7539419303c264d34aa92, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 634d87550dd7539419303c264d34aa92, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 634d87550dd7539419303c264d34aa92, type: 3}
+--- !u!1 &573106189 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 634d87550dd7539419303c264d34aa92, type: 3}
+  m_PrefabInstance: {fileID: 573106188}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &573106190
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 573106189}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.1106739, y: 0.5532086, z: 0.58960426}
+  m_Center: {x: 0.033565253, y: 0.07287948, z: 0.2833903}
 --- !u!4 &574571530 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 53f8249d8fe190d458e6f795d18a091a, type: 3}
@@ -12095,8 +12640,34 @@ PrefabInstance:
       propertyPath: m_Name
       value: BigRock_1
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 634d87550dd7539419303c264d34aa92, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 634d87550dd7539419303c264d34aa92, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 634d87550dd7539419303c264d34aa92, type: 3}
+--- !u!1 &603114223 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 634d87550dd7539419303c264d34aa92, type: 3}
+  m_PrefabInstance: {fileID: 603114222}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &603114224
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 603114223}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.1106739, y: 0.5532086, z: 0.58960426}
+  m_Center: {x: 0.033564657, y: 0.072879, z: 0.2833903}
 --- !u!4 &604868294 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 53f8249d8fe190d458e6f795d18a091a, type: 3}
@@ -12205,8 +12776,34 @@ PrefabInstance:
       propertyPath: m_Name
       value: BigRock_3
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 53f8249d8fe190d458e6f795d18a091a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 53f8249d8fe190d458e6f795d18a091a, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 53f8249d8fe190d458e6f795d18a091a, type: 3}
+--- !u!1 &639043193 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 53f8249d8fe190d458e6f795d18a091a, type: 3}
+  m_PrefabInstance: {fileID: 639043192}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &639043194
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 639043193}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.0805564, y: 0.51442945, z: 0.5596716}
+  m_Center: {x: 0.05112472, y: 0.039937552, z: 0.27533036}
 --- !u!1001 &639875789
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12369,6 +12966,7 @@ Transform:
   - {fileID: 274318211}
   - {fileID: 35138968}
   - {fileID: 1884499091}
+  - {fileID: 1365774161}
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -12439,8 +13037,34 @@ PrefabInstance:
       propertyPath: m_Name
       value: BigRock_2
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 58722727fcc827f4896dff9c68765109, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 58722727fcc827f4896dff9c68765109, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 58722727fcc827f4896dff9c68765109, type: 3}
+--- !u!1 &642050356 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 58722727fcc827f4896dff9c68765109, type: 3}
+  m_PrefabInstance: {fileID: 642050355}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &642050357
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 642050356}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.1360499, y: 0.55662525, z: 0.58997124}
+  m_Center: {x: 0.03049165, y: 0.021451874, z: 0.28843987}
 --- !u!1001 &643644458
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12795,8 +13419,34 @@ PrefabInstance:
       propertyPath: m_Name
       value: BigRock_1
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 634d87550dd7539419303c264d34aa92, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 634d87550dd7539419303c264d34aa92, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 634d87550dd7539419303c264d34aa92, type: 3}
+--- !u!1 &668631651 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 634d87550dd7539419303c264d34aa92, type: 3}
+  m_PrefabInstance: {fileID: 668631650}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &668631652
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 668631651}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.1106739, y: 0.5532086, z: 0.58960426}
+  m_Center: {x: 0.03356561, y: 0.07287948, z: 0.2833903}
 --- !u!1 &671182910
 GameObject:
   m_ObjectHideFlags: 0
@@ -12943,7 +13593,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &674316332
 Transform:
   m_ObjectHideFlags: 0
@@ -12998,7 +13648,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 47b2d7cb76392484685e14383ddca35c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 462d79b8274db6746b2fe40f2ec1017e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -13166,7 +13816,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &691438108
 Transform:
   m_ObjectHideFlags: 0
@@ -13444,8 +14094,34 @@ PrefabInstance:
       propertyPath: m_Name
       value: BigRock_2
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 58722727fcc827f4896dff9c68765109, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 58722727fcc827f4896dff9c68765109, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 58722727fcc827f4896dff9c68765109, type: 3}
+--- !u!1 &697579768 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 58722727fcc827f4896dff9c68765109, type: 3}
+  m_PrefabInstance: {fileID: 697579767}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &697579769
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 697579768}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.1360499, y: 0.5566252, z: 0.5899712}
+  m_Center: {x: 0.030492127, y: 0.021452185, z: 0.28843975}
 --- !u!1001 &699041981
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13570,8 +14246,34 @@ PrefabInstance:
       propertyPath: m_Name
       value: BigRock_1
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 634d87550dd7539419303c264d34aa92, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 634d87550dd7539419303c264d34aa92, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 634d87550dd7539419303c264d34aa92, type: 3}
+--- !u!1 &700261662 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 634d87550dd7539419303c264d34aa92, type: 3}
+  m_PrefabInstance: {fileID: 700261661}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &700261663
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 700261662}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.1106739, y: 0.5532085, z: 0.58960414}
+  m_Center: {x: 0.033565134, y: 0.072879344, z: 0.28339028}
 --- !u!1 &702532406
 GameObject:
   m_ObjectHideFlags: 0
@@ -13700,7 +14402,7 @@ Light:
   serializedVersion: 10
   m_Type: 1
   m_Shape: 0
-  m_Color: {r: 0.1445799, g: 0.20601052, b: 0.5377358, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Intensity: 23
   m_Range: 10
   m_SpotAngle: 30
@@ -13744,7 +14446,7 @@ Light:
   m_LightShadowCasterMode: 2
   m_AreaSize: {x: 0.5, y: 0.5}
   m_BounceIntensity: 1
-  m_ColorTemperature: 6856
+  m_ColorTemperature: 6606
   m_UseColorTemperature: 0
   m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
@@ -14348,7 +15050,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &753234793
 Transform:
   m_ObjectHideFlags: 0
@@ -14572,7 +15274,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &767238136
 Transform:
   m_ObjectHideFlags: 0
@@ -14716,6 +15418,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: tree_1 (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c6491638c0ba5ef4cbcf0e0bf7ca752e, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c6491638c0ba5ef4cbcf0e0bf7ca752e, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c6491638c0ba5ef4cbcf0e0bf7ca752e, type: 3}
 --- !u!1 &768406313
@@ -14818,8 +15528,34 @@ PrefabInstance:
       propertyPath: m_Name
       value: BigRock_2
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 58722727fcc827f4896dff9c68765109, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 58722727fcc827f4896dff9c68765109, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 58722727fcc827f4896dff9c68765109, type: 3}
+--- !u!1 &774027379 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 58722727fcc827f4896dff9c68765109, type: 3}
+  m_PrefabInstance: {fileID: 774027378}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &774027380
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 774027379}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.1360496, y: 0.55662537, z: 0.5899713}
+  m_Center: {x: 0.030492578, y: 0.021452446, z: 0.28843978}
 --- !u!4 &775136700 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 15c95616e5be22a4aaac9d3bd7ff1612, type: 3}
@@ -14993,6 +15729,14 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: c6491638c0ba5ef4cbcf0e0bf7ca752e, type: 3}
       propertyPath: m_Name
       value: tree_1 (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c6491638c0ba5ef4cbcf0e0bf7ca752e, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c6491638c0ba5ef4cbcf0e0bf7ca752e, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c6491638c0ba5ef4cbcf0e0bf7ca752e, type: 3}
@@ -15441,8 +16185,34 @@ PrefabInstance:
       propertyPath: m_Name
       value: BigRock_1
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 634d87550dd7539419303c264d34aa92, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 634d87550dd7539419303c264d34aa92, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 634d87550dd7539419303c264d34aa92, type: 3}
+--- !u!1 &835876133 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 634d87550dd7539419303c264d34aa92, type: 3}
+  m_PrefabInstance: {fileID: 835876132}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &835876134
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 835876133}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.1106739, y: 0.5532087, z: 0.5896044}
+  m_Center: {x: 0.033565134, y: 0.07287902, z: 0.28339037}
 --- !u!4 &835938974 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 15c95616e5be22a4aaac9d3bd7ff1612, type: 3}
@@ -15755,6 +16525,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: DeadTree_1 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 829f42d8bee879a4196e2b3a58d3baa9, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 829f42d8bee879a4196e2b3a58d3baa9, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 829f42d8bee879a4196e2b3a58d3baa9, type: 3}
 --- !u!1001 &862465704
@@ -15824,8 +16602,34 @@ PrefabInstance:
       propertyPath: m_Name
       value: BigRock_3
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 53f8249d8fe190d458e6f795d18a091a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 53f8249d8fe190d458e6f795d18a091a, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 53f8249d8fe190d458e6f795d18a091a, type: 3}
+--- !u!1 &862465705 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 53f8249d8fe190d458e6f795d18a091a, type: 3}
+  m_PrefabInstance: {fileID: 862465704}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &862465706
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 862465705}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.0805564, y: 0.51442933, z: 0.55967146}
+  m_Center: {x: 0.05112484, y: 0.039937064, z: 0.2753303}
 --- !u!1 &864250707
 GameObject:
   m_ObjectHideFlags: 0
@@ -16840,8 +17644,34 @@ PrefabInstance:
       propertyPath: m_Name
       value: BigRock_3
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 53f8249d8fe190d458e6f795d18a091a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 53f8249d8fe190d458e6f795d18a091a, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 53f8249d8fe190d458e6f795d18a091a, type: 3}
+--- !u!1 &883502989 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 53f8249d8fe190d458e6f795d18a091a, type: 3}
+  m_PrefabInstance: {fileID: 883502988}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &883502990
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 883502989}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.0805569, y: 0.51442957, z: 0.5596717}
+  m_Center: {x: 0.05112582, y: 0.039937247, z: 0.27533042}
 --- !u!1 &891678621 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 829f42d8bee879a4196e2b3a58d3baa9, type: 3}
@@ -18076,8 +18906,34 @@ PrefabInstance:
       propertyPath: m_Name
       value: BigRock_3
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 53f8249d8fe190d458e6f795d18a091a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 53f8249d8fe190d458e6f795d18a091a, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 53f8249d8fe190d458e6f795d18a091a, type: 3}
+--- !u!1 &980058623 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 53f8249d8fe190d458e6f795d18a091a, type: 3}
+  m_PrefabInstance: {fileID: 980058622}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &980058624
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 980058623}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.0805564, y: 0.5144293, z: 0.5596714}
+  m_Center: {x: 0.05112472, y: 0.03993755, z: 0.2753303}
 --- !u!1 &980744913
 GameObject:
   m_ObjectHideFlags: 0
@@ -19102,8 +19958,34 @@ PrefabInstance:
       propertyPath: m_Name
       value: BigRock_2
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 58722727fcc827f4896dff9c68765109, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 58722727fcc827f4896dff9c68765109, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 58722727fcc827f4896dff9c68765109, type: 3}
+--- !u!1 &1026206786 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 58722727fcc827f4896dff9c68765109, type: 3}
+  m_PrefabInstance: {fileID: 1026206785}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &1026206787
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1026206786}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.1360499, y: 0.55662525, z: 0.58997124}
+  m_Center: {x: 0.030492127, y: 0.02145232, z: 0.28843978}
 --- !u!1001 &1030879475
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -19179,7 +20061,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1036210296
 Transform:
   m_ObjectHideFlags: 0
@@ -19437,8 +20319,34 @@ PrefabInstance:
       propertyPath: m_Name
       value: BigRock_1
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 634d87550dd7539419303c264d34aa92, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 634d87550dd7539419303c264d34aa92, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 634d87550dd7539419303c264d34aa92, type: 3}
+--- !u!1 &1039990049 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 634d87550dd7539419303c264d34aa92, type: 3}
+  m_PrefabInstance: {fileID: 1039990048}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &1039990050
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1039990049}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.1106739, y: 0.5532087, z: 0.5896044}
+  m_Center: {x: 0.033565134, y: 0.07287949, z: 0.28339037}
 --- !u!1001 &1040136912
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -19880,8 +20788,34 @@ PrefabInstance:
       propertyPath: m_Name
       value: BigRock_3
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 53f8249d8fe190d458e6f795d18a091a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 53f8249d8fe190d458e6f795d18a091a, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 53f8249d8fe190d458e6f795d18a091a, type: 3}
+--- !u!1 &1063012435 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 53f8249d8fe190d458e6f795d18a091a, type: 3}
+  m_PrefabInstance: {fileID: 1063012434}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &1063012436
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1063012435}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.0805564, y: 0.51442945, z: 0.5596716}
+  m_Center: {x: 0.051124245, y: 0.039937552, z: 0.27533036}
 --- !u!4 &1067929018 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 15c95616e5be22a4aaac9d3bd7ff1612, type: 3}
@@ -20058,8 +20992,34 @@ PrefabInstance:
       propertyPath: m_Name
       value: BigRock_3
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 53f8249d8fe190d458e6f795d18a091a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 53f8249d8fe190d458e6f795d18a091a, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 53f8249d8fe190d458e6f795d18a091a, type: 3}
+--- !u!1 &1079834409 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 53f8249d8fe190d458e6f795d18a091a, type: 3}
+  m_PrefabInstance: {fileID: 1079834408}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &1079834410
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1079834409}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.0805564, y: 0.5144292, z: 0.55967134}
+  m_Center: {x: 0.051124483, y: 0.039937295, z: 0.27533036}
 --- !u!1001 &1094718897
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -20127,8 +21087,34 @@ PrefabInstance:
       propertyPath: m_Name
       value: BigRock_2
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 58722727fcc827f4896dff9c68765109, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 58722727fcc827f4896dff9c68765109, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 58722727fcc827f4896dff9c68765109, type: 3}
+--- !u!1 &1094718898 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 58722727fcc827f4896dff9c68765109, type: 3}
+  m_PrefabInstance: {fileID: 1094718897}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &1094718899
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1094718898}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.1360497, y: 0.55662525, z: 0.5899713}
+  m_Center: {x: 0.030492125, y: 0.021452785, z: 0.28843966}
 --- !u!1 &1096900155
 GameObject:
   m_ObjectHideFlags: 0
@@ -20439,6 +21425,14 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: c6491638c0ba5ef4cbcf0e0bf7ca752e, type: 3}
       propertyPath: m_Name
       value: tree_1 (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c6491638c0ba5ef4cbcf0e0bf7ca752e, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c6491638c0ba5ef4cbcf0e0bf7ca752e, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c6491638c0ba5ef4cbcf0e0bf7ca752e, type: 3}
@@ -20885,8 +21879,34 @@ PrefabInstance:
       propertyPath: m_Name
       value: BigRock_3
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 53f8249d8fe190d458e6f795d18a091a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 53f8249d8fe190d458e6f795d18a091a, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 53f8249d8fe190d458e6f795d18a091a, type: 3}
+--- !u!1 &1148929070 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 53f8249d8fe190d458e6f795d18a091a, type: 3}
+  m_PrefabInstance: {fileID: 1148929069}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &1148929071
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1148929070}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.0805564, y: 0.5144292, z: 0.55967134}
+  m_Center: {x: 0.051124483, y: 0.039937414, z: 0.27533028}
 --- !u!4 &1149723677 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 53f8249d8fe190d458e6f795d18a091a, type: 3}
@@ -22238,8 +23258,34 @@ PrefabInstance:
       propertyPath: m_Name
       value: BigRock_2
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 58722727fcc827f4896dff9c68765109, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 58722727fcc827f4896dff9c68765109, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 58722727fcc827f4896dff9c68765109, type: 3}
+--- !u!1 &1243925381 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 58722727fcc827f4896dff9c68765109, type: 3}
+  m_PrefabInstance: {fileID: 1243925380}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &1243925382
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1243925381}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.1360501, y: 0.55662555, z: 0.58997154}
+  m_Center: {x: 0.030492377, y: 0.021452008, z: 0.28844002}
 --- !u!1 &1250262270 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: c6491638c0ba5ef4cbcf0e0bf7ca752e, type: 3}
@@ -22261,8 +23307,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.6449844, y: 0.6158325, z: 1.7699016}
-  m_Center: {x: 0.0033729554, y: 0.0045657163, z: 0.88495106}
+  m_Size: {x: 0.23949897, y: 0.27104396, z: 1.7699013}
+  m_Center: {x: 0.010691453, y: -0.0046774545, z: 0.8849509}
 --- !u!1 &1252840920
 GameObject:
   m_ObjectHideFlags: 0
@@ -22563,19 +23609,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: c6491638c0ba5ef4cbcf0e0bf7ca752e, type: 3}
       propertyPath: m_LocalScale.x
-      value: 10
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: c6491638c0ba5ef4cbcf0e0bf7ca752e, type: 3}
       propertyPath: m_LocalScale.y
-      value: 10
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: c6491638c0ba5ef4cbcf0e0bf7ca752e, type: 3}
       propertyPath: m_LocalScale.z
-      value: 10
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c6491638c0ba5ef4cbcf0e0bf7ca752e, type: 3}
       propertyPath: m_Name
       value: tree_1 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c6491638c0ba5ef4cbcf0e0bf7ca752e, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c6491638c0ba5ef4cbcf0e0bf7ca752e, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c6491638c0ba5ef4cbcf0e0bf7ca752e, type: 3}
@@ -22881,8 +23935,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.61634475, y: 0.63297427, z: 1.7699013}
-  m_Center: {x: -0.001824363, y: 0.004057916, z: 0.88492393}
+  m_Size: {x: 0.24563015, y: 0.25123158, z: 1.7699013}
+  m_Center: {x: 0.010875766, y: -0.00088164036, z: 0.88490343}
 --- !u!1 &1291743320
 GameObject:
   m_ObjectHideFlags: 0
@@ -23307,8 +24361,34 @@ PrefabInstance:
       propertyPath: m_Name
       value: BigRock_2
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 58722727fcc827f4896dff9c68765109, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 58722727fcc827f4896dff9c68765109, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 58722727fcc827f4896dff9c68765109, type: 3}
+--- !u!1 &1318873909 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 58722727fcc827f4896dff9c68765109, type: 3}
+  m_PrefabInstance: {fileID: 1318873908}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &1318873910
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1318873909}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.1360499, y: 0.5566254, z: 0.5899714}
+  m_Center: {x: 0.030492127, y: 0.021452313, z: 0.28843984}
 --- !u!4 &1320643912 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 15c95616e5be22a4aaac9d3bd7ff1612, type: 3}
@@ -23678,6 +24758,597 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 15c95616e5be22a4aaac9d3bd7ff1612, type: 3}
+--- !u!1 &1365774160
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1365774161}
+  - component: {fileID: 1365774164}
+  - component: {fileID: 1365774163}
+  - component: {fileID: 1365774162}
+  m_Layer: 0
+  m_Name: Hyene (1)
+  m_TagString: Enemy
+  m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1365774161
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1365774160}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 165.3, y: 47.407543, z: -110.9}
+  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_Children:
+  - {fileID: 2057385599}
+  - {fileID: 432928384}
+  m_Father: {fileID: 641670572}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!54 &1365774162
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1365774160}
+  serializedVersion: 2
+  m_Mass: 0.0000001
+  m_Drag: 0
+  m_AngularDrag: 0
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 116
+  m_CollisionDetection: 0
+--- !u!136 &1365774163
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1365774160}
+  m_Material: {fileID: 13400000, guid: 4dd3f8ba81f439d48a7af47c0d2bc182, type: 2}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 2.2215693
+  m_Height: 4.7095013
+  m_Direction: 1
+  m_Center: {x: -0.3646338, y: 2.5647054, z: 0.372478}
+--- !u!114 &1365774164
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1365774160}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27e37ad942264e744b1beb3651b295ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  entityId: Hyena
+  entityGroup:
+  - Animal
+  - Hyenas
+  speedMax: 12
+  speed:
+    curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 0.49586877
+        outSlope: 0.49586877
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 1.0083313
+        value: 0.5
+        inSlope: 0.49586877
+        outSlope: 0.49586877
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    duration: 1
+    timer: 0
+  acceleration:
+    curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 1
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 1
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    duration: 0.5
+    timer: 0
+  frictions:
+    curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 1
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 1
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    duration: 1
+    timer: 0
+  turnAround:
+    curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 1
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 1
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    duration: 0.5
+    timer: 0
+  turn:
+    curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 1
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 1
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    duration: 1
+    timer: 0
+  turnAngleMin: 1
+  turnAngleMax: 180
+  turnDurationMin: 0.1
+  turnDurationMax: 1
+  usePathFinding: 1
+  refreshPathDuration: 1
+  destinationRadius: 5
+  rotateTowardDirection: 0
+  rotationAcceleration:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  dashTime: 1
+  dashSpeed: 50
+  dashCooldown: 5
+  hidden: 0
+  hideId: 
+  awarness: 0
+  raycastNumber: 20
+  fieldOfView: 120
+  distanceOfView: 50
+  patrolPoints:
+  - {x: 208.58224, y: -207.71231}
+  - {x: 169.95258, y: -177.4408}
+  - {x: 121.249176, y: -225.44687}
+  - {x: 85.049324, y: -193.28716}
+  - {x: 128.07635, y: -174.87177}
+  - {x: 162.99205, y: -229.61269}
+  patrolValues:
+    speedMax: 12
+    acceleration:
+      curve:
+        serializedVersion: 2
+        m_Curve:
+        - serializedVersion: 3
+          time: 0
+          value: 0
+          inSlope: 1
+          outSlope: 1
+          tangentMode: 34
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        - serializedVersion: 3
+          time: 1
+          value: 1
+          inSlope: 1
+          outSlope: 1
+          tangentMode: 34
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      duration: 1
+      timer: 0
+    frictions:
+      curve:
+        serializedVersion: 2
+        m_Curve:
+        - serializedVersion: 3
+          time: 0
+          value: 0
+          inSlope: 0
+          outSlope: 1
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        - serializedVersion: 3
+          time: 1
+          value: 1
+          inSlope: 1
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      duration: 1
+      timer: 0
+    turnAround:
+      curve:
+        serializedVersion: 2
+        m_Curve:
+        - serializedVersion: 3
+          time: 0
+          value: 0
+          inSlope: 0
+          outSlope: 1
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        - serializedVersion: 3
+          time: 1
+          value: 1
+          inSlope: 1
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      duration: 1
+      timer: 0
+    turn:
+      curve:
+        serializedVersion: 2
+        m_Curve:
+        - serializedVersion: 3
+          time: 0
+          value: 0
+          inSlope: 0
+          outSlope: 1
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        - serializedVersion: 3
+          time: 1
+          value: 1
+          inSlope: 1
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      duration: 1
+      timer: 0
+    turnAngleMin: 0
+    turnAngleMax: 0
+    turnDurationMin: 0
+    turnDurationMax: 0
+  preyId: LionCub
+  chaseValues:
+    speedMax: 25
+    acceleration:
+      curve:
+        serializedVersion: 2
+        m_Curve:
+        - serializedVersion: 3
+          time: 0
+          value: 0
+          inSlope: 1
+          outSlope: 1
+          tangentMode: 34
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        - serializedVersion: 3
+          time: 1
+          value: 1
+          inSlope: 1
+          outSlope: 1
+          tangentMode: 34
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      duration: 0.5
+      timer: 0
+    frictions:
+      curve:
+        serializedVersion: 2
+        m_Curve:
+        - serializedVersion: 3
+          time: 0
+          value: 0
+          inSlope: 0
+          outSlope: 1
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        - serializedVersion: 3
+          time: 1
+          value: 1
+          inSlope: 1
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      duration: 1
+      timer: 0
+    turnAround:
+      curve:
+        serializedVersion: 2
+        m_Curve:
+        - serializedVersion: 3
+          time: 0
+          value: 0
+          inSlope: 0
+          outSlope: 1
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        - serializedVersion: 3
+          time: 1
+          value: 1
+          inSlope: 1
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      duration: 1
+      timer: 0
+    turn:
+      curve:
+        serializedVersion: 2
+        m_Curve:
+        - serializedVersion: 3
+          time: 0
+          value: 0
+          inSlope: 0
+          outSlope: 1
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        - serializedVersion: 3
+          time: 1
+          value: 1
+          inSlope: 1
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      duration: 1
+      timer: 0
+    turnAngleMin: 0
+    turnAngleMax: 0
+    turnDurationMin: 0
+    turnDurationMax: 0
+  searchTime: 2
+  suspiciousValues:
+    speedMax: 20
+    acceleration:
+      curve:
+        serializedVersion: 2
+        m_Curve:
+        - serializedVersion: 3
+          time: 0
+          value: 0
+          inSlope: 0
+          outSlope: 1
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        - serializedVersion: 3
+          time: 1
+          value: 1
+          inSlope: 1
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      duration: 1
+      timer: 0
+    frictions:
+      curve:
+        serializedVersion: 2
+        m_Curve:
+        - serializedVersion: 3
+          time: 0
+          value: 0
+          inSlope: 0
+          outSlope: 1
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        - serializedVersion: 3
+          time: 1
+          value: 1
+          inSlope: 1
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      duration: 1
+      timer: 0
+    turnAround:
+      curve:
+        serializedVersion: 2
+        m_Curve:
+        - serializedVersion: 3
+          time: 0
+          value: 0
+          inSlope: 0
+          outSlope: 1
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        - serializedVersion: 3
+          time: 1
+          value: 1
+          inSlope: 1
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      duration: 1
+      timer: 0
+    turn:
+      curve:
+        serializedVersion: 2
+        m_Curve:
+        - serializedVersion: 3
+          time: 0
+          value: 0
+          inSlope: 0
+          outSlope: 1
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        - serializedVersion: 3
+          time: 1
+          value: 1
+          inSlope: 1
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      duration: 1
+      timer: 0
+    turnAngleMin: 0
+    turnAngleMax: 0
+    turnDurationMin: 0
+    turnDurationMax: 0
 --- !u!1 &1367273624
 GameObject:
   m_ObjectHideFlags: 0
@@ -24009,7 +25680,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1371267898
 Transform:
   m_ObjectHideFlags: 0
@@ -24064,7 +25735,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 47b2d7cb76392484685e14383ddca35c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 462d79b8274db6746b2fe40f2ec1017e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -24199,8 +25870,34 @@ PrefabInstance:
       propertyPath: m_Name
       value: BigRock_2
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 58722727fcc827f4896dff9c68765109, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 58722727fcc827f4896dff9c68765109, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 58722727fcc827f4896dff9c68765109, type: 3}
+--- !u!1 &1374564144 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 58722727fcc827f4896dff9c68765109, type: 3}
+  m_PrefabInstance: {fileID: 1374564143}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &1374564145
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1374564144}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.1360499, y: 0.5566252, z: 0.5899712}
+  m_Center: {x: 0.030492008, y: 0.021452066, z: 0.28843984}
 --- !u!4 &1375753650 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 15c95616e5be22a4aaac9d3bd7ff1612, type: 3}
@@ -24372,8 +26069,34 @@ PrefabInstance:
       propertyPath: m_Name
       value: BigRock_3
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 53f8249d8fe190d458e6f795d18a091a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 53f8249d8fe190d458e6f795d18a091a, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 53f8249d8fe190d458e6f795d18a091a, type: 3}
+--- !u!1 &1389960733 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 53f8249d8fe190d458e6f795d18a091a, type: 3}
+  m_PrefabInstance: {fileID: 1389960732}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &1389960734
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1389960733}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.0805564, y: 0.5144293, z: 0.5596714}
+  m_Center: {x: 0.05112472, y: 0.03993731, z: 0.2753304}
 --- !u!1001 &1393969923
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -24737,8 +26460,34 @@ PrefabInstance:
       propertyPath: m_Name
       value: BigRock_1
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 634d87550dd7539419303c264d34aa92, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 634d87550dd7539419303c264d34aa92, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 634d87550dd7539419303c264d34aa92, type: 3}
+--- !u!1 &1409004790 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 634d87550dd7539419303c264d34aa92, type: 3}
+  m_PrefabInstance: {fileID: 1409004789}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &1409004791
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1409004790}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.1106738, y: 0.55320853, z: 0.58960426}
+  m_Center: {x: 0.03356525, y: 0.07287947, z: 0.28339016}
 --- !u!1 &1411681155
 GameObject:
   m_ObjectHideFlags: 0
@@ -25166,8 +26915,34 @@ PrefabInstance:
       propertyPath: m_Name
       value: BigRock_2
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 58722727fcc827f4896dff9c68765109, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 58722727fcc827f4896dff9c68765109, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 58722727fcc827f4896dff9c68765109, type: 3}
+--- !u!1 &1422912743 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 58722727fcc827f4896dff9c68765109, type: 3}
+  m_PrefabInstance: {fileID: 1422912742}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &1422912744
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1422912743}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.1360499, y: 0.5566254, z: 0.5899714}
+  m_Center: {x: 0.030491889, y: 0.021452313, z: 0.28843984}
 --- !u!4 &1423232633 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 15c95616e5be22a4aaac9d3bd7ff1612, type: 3}
@@ -25245,8 +27020,34 @@ PrefabInstance:
       propertyPath: m_Name
       value: BigRock_1
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 634d87550dd7539419303c264d34aa92, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 634d87550dd7539419303c264d34aa92, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 634d87550dd7539419303c264d34aa92, type: 3}
+--- !u!1 &1432313046 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 634d87550dd7539419303c264d34aa92, type: 3}
+  m_PrefabInstance: {fileID: 1432313045}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &1432313047
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1432313046}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.1106739, y: 0.5532086, z: 0.58960426}
+  m_Center: {x: 0.033565134, y: 0.07287948, z: 0.2833903}
 --- !u!4 &1432561983 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 58722727fcc827f4896dff9c68765109, type: 3}
@@ -25328,6 +27129,14 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: c6491638c0ba5ef4cbcf0e0bf7ca752e, type: 3}
       propertyPath: m_Name
       value: tree_1 (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c6491638c0ba5ef4cbcf0e0bf7ca752e, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c6491638c0ba5ef4cbcf0e0bf7ca752e, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c6491638c0ba5ef4cbcf0e0bf7ca752e, type: 3}
@@ -25493,8 +27302,34 @@ PrefabInstance:
       propertyPath: m_Name
       value: BigRock_3
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 53f8249d8fe190d458e6f795d18a091a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 53f8249d8fe190d458e6f795d18a091a, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 53f8249d8fe190d458e6f795d18a091a, type: 3}
+--- !u!1 &1450288619 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 53f8249d8fe190d458e6f795d18a091a, type: 3}
+  m_PrefabInstance: {fileID: 1450288618}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &1450288620
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1450288619}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.0805564, y: 0.5144292, z: 0.55967134}
+  m_Center: {x: 0.051124603, y: 0.039937295, z: 0.27533036}
 --- !u!4 &1451946710 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 634d87550dd7539419303c264d34aa92, type: 3}
@@ -25723,8 +27558,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.6621346, y: 0.6341574, z: 1.7699016}
-  m_Center: {x: -0.00087013247, y: 0.010012961, z: 0.88495106}
+  m_Size: {x: 0.2114861, y: 0.22840405, z: 1.7699016}
+  m_Center: {x: 0.017444968, y: 0.008495593, z: 0.88495106}
 --- !u!4 &1483335746 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 15c95616e5be22a4aaac9d3bd7ff1612, type: 3}
@@ -25751,8 +27586,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.6509561, y: 0.63808435, z: 1.7699016}
-  m_Center: {x: -0.0006893873, y: -0.0029584412, z: 0.88495106}
+  m_Size: {x: 0.27304778, y: 0.33678108, z: 1.7699016}
+  m_Center: {x: 0.028349757, y: 0.00069679023, z: 0.88495106}
 --- !u!1 &1486304903
 GameObject:
   m_ObjectHideFlags: 0
@@ -26031,7 +27866,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1503393561
 Transform:
   m_ObjectHideFlags: 0
@@ -26086,7 +27921,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 47b2d7cb76392484685e14383ddca35c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 462d79b8274db6746b2fe40f2ec1017e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -26443,8 +28278,34 @@ PrefabInstance:
       propertyPath: m_Name
       value: BigRock_2
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 58722727fcc827f4896dff9c68765109, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 58722727fcc827f4896dff9c68765109, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 58722727fcc827f4896dff9c68765109, type: 3}
+--- !u!1 &1540540685 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 58722727fcc827f4896dff9c68765109, type: 3}
+  m_PrefabInstance: {fileID: 1540540684}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &1540540686
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1540540685}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.1360499, y: 0.5566252, z: 0.5899712}
+  m_Center: {x: 0.03049165, y: 0.021452185, z: 0.28843987}
 --- !u!4 &1546993293 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 15c95616e5be22a4aaac9d3bd7ff1612, type: 3}
@@ -26574,8 +28435,34 @@ PrefabInstance:
       propertyPath: m_Name
       value: BigRock_3
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 53f8249d8fe190d458e6f795d18a091a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 53f8249d8fe190d458e6f795d18a091a, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 53f8249d8fe190d458e6f795d18a091a, type: 3}
+--- !u!1 &1550949160 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 53f8249d8fe190d458e6f795d18a091a, type: 3}
+  m_PrefabInstance: {fileID: 1550949159}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &1550949161
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1550949160}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.0805569, y: 0.51442957, z: 0.5596717}
+  m_Center: {x: 0.05112618, y: 0.039937723, z: 0.27533045}
 --- !u!4 &1559191571 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 15c95616e5be22a4aaac9d3bd7ff1612, type: 3}
@@ -26648,8 +28535,34 @@ PrefabInstance:
       propertyPath: m_Name
       value: BigRock_1
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 634d87550dd7539419303c264d34aa92, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 634d87550dd7539419303c264d34aa92, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 634d87550dd7539419303c264d34aa92, type: 3}
+--- !u!1 &1560576032 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 634d87550dd7539419303c264d34aa92, type: 3}
+  m_PrefabInstance: {fileID: 1560576031}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &1560576033
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1560576032}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.1106739, y: 0.5532086, z: 0.58960426}
+  m_Center: {x: 0.033565134, y: 0.07287948, z: 0.2833903}
 --- !u!1001 &1561578364
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -27341,8 +29254,34 @@ PrefabInstance:
       propertyPath: m_Name
       value: BigRock_2
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 58722727fcc827f4896dff9c68765109, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 58722727fcc827f4896dff9c68765109, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 58722727fcc827f4896dff9c68765109, type: 3}
+--- !u!1 &1599438080 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 58722727fcc827f4896dff9c68765109, type: 3}
+  m_PrefabInstance: {fileID: 1599438079}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &1599438081
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1599438080}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.1360499, y: 0.5566253, z: 0.5899713}
+  m_Center: {x: 0.030491889, y: 0.02145183, z: 0.28843978}
 --- !u!4 &1603023382 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 15c95616e5be22a4aaac9d3bd7ff1612, type: 3}
@@ -27569,7 +29508,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1614926759
 Transform:
   m_ObjectHideFlags: 0
@@ -27755,7 +29694,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 8e6dbbc0d903daa42a950348cd62e1e0, type: 2}
+  - {fileID: 2100000, guid: a1494b4ebb3567e44a985c756d2b63bd, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -28054,7 +29993,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1650200643}
   m_LocalRotation: {x: 0.5, y: -0, z: -0, w: 0.8660254}
-  m_LocalPosition: {x: 2.3, y: 26.05, z: -13.44}
+  m_LocalPosition: {x: 0.9, y: 37.5, z: -20}
   m_LocalScale: {x: 0.67626286, y: 0.67626286, z: 0.67626286}
   m_Children:
   - {fileID: 963194228}
@@ -28841,8 +30780,34 @@ PrefabInstance:
       propertyPath: m_Name
       value: BigRock_1
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 634d87550dd7539419303c264d34aa92, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 634d87550dd7539419303c264d34aa92, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 634d87550dd7539419303c264d34aa92, type: 3}
+--- !u!1 &1667500809 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 634d87550dd7539419303c264d34aa92, type: 3}
+  m_PrefabInstance: {fileID: 1667500808}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &1667500810
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1667500809}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.1106739, y: 0.55320853, z: 0.5896042}
+  m_Center: {x: 0.033565164, y: 0.07287972, z: 0.28339028}
 --- !u!4 &1667727217 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 58722727fcc827f4896dff9c68765109, type: 3}
@@ -29878,8 +31843,34 @@ PrefabInstance:
       propertyPath: m_Name
       value: BigRock_3
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 53f8249d8fe190d458e6f795d18a091a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 53f8249d8fe190d458e6f795d18a091a, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 53f8249d8fe190d458e6f795d18a091a, type: 3}
+--- !u!1 &1729727525 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 53f8249d8fe190d458e6f795d18a091a, type: 3}
+  m_PrefabInstance: {fileID: 1729727524}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &1729727526
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1729727525}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.0805564, y: 0.51442945, z: 0.5596716}
+  m_Center: {x: 0.051124483, y: 0.039937552, z: 0.27533036}
 --- !u!4 &1730471872 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 15c95616e5be22a4aaac9d3bd7ff1612, type: 3}
@@ -30782,6 +32773,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: DeadTree_1
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 829f42d8bee879a4196e2b3a58d3baa9, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 829f42d8bee879a4196e2b3a58d3baa9, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 829f42d8bee879a4196e2b3a58d3baa9, type: 3}
 --- !u!4 &1787224155 stripped
@@ -30964,8 +32963,34 @@ PrefabInstance:
       propertyPath: m_Name
       value: BigRock_3
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 53f8249d8fe190d458e6f795d18a091a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 53f8249d8fe190d458e6f795d18a091a, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 53f8249d8fe190d458e6f795d18a091a, type: 3}
+--- !u!1 &1797431781 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 53f8249d8fe190d458e6f795d18a091a, type: 3}
+  m_PrefabInstance: {fileID: 1797431780}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &1797431782
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1797431781}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.0805564, y: 0.5144292, z: 0.55967134}
+  m_Center: {x: 0.05112472, y: 0.039937414, z: 0.2753304}
 --- !u!1 &1800601310
 GameObject:
   m_ObjectHideFlags: 0
@@ -31068,8 +33093,34 @@ PrefabInstance:
       propertyPath: m_Name
       value: BigRock_1
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 634d87550dd7539419303c264d34aa92, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 634d87550dd7539419303c264d34aa92, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 634d87550dd7539419303c264d34aa92, type: 3}
+--- !u!1 &1804649500 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 634d87550dd7539419303c264d34aa92, type: 3}
+  m_PrefabInstance: {fileID: 1804649499}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &1804649501
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1804649500}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.1106737, y: 0.55320865, z: 0.58960426}
+  m_Center: {x: 0.03356558, y: 0.072879545, z: 0.28339037}
 --- !u!1001 &1805474801
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -31194,8 +33245,34 @@ PrefabInstance:
       propertyPath: m_Name
       value: BigRock_3
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 53f8249d8fe190d458e6f795d18a091a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 53f8249d8fe190d458e6f795d18a091a, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 53f8249d8fe190d458e6f795d18a091a, type: 3}
+--- !u!1 &1810667590 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 53f8249d8fe190d458e6f795d18a091a, type: 3}
+  m_PrefabInstance: {fileID: 1810667589}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &1810667591
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1810667590}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.0805566, y: 0.51442957, z: 0.5596717}
+  m_Center: {x: 0.051125214, y: 0.039937012, z: 0.27533063}
 --- !u!4 &1811147593 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 15c95616e5be22a4aaac9d3bd7ff1612, type: 3}
@@ -31268,8 +33345,34 @@ PrefabInstance:
       propertyPath: m_Name
       value: BigRock_3
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 53f8249d8fe190d458e6f795d18a091a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 53f8249d8fe190d458e6f795d18a091a, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 53f8249d8fe190d458e6f795d18a091a, type: 3}
+--- !u!1 &1811353127 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 53f8249d8fe190d458e6f795d18a091a, type: 3}
+  m_PrefabInstance: {fileID: 1811353126}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &1811353128
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1811353127}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.0805563, y: 0.5144294, z: 0.5596715}
+  m_Center: {x: 0.05112427, y: 0.03993758, z: 0.27533036}
 --- !u!1001 &1818041660
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -31496,8 +33599,34 @@ PrefabInstance:
       propertyPath: m_Name
       value: BigRock_3
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 53f8249d8fe190d458e6f795d18a091a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 53f8249d8fe190d458e6f795d18a091a, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 53f8249d8fe190d458e6f795d18a091a, type: 3}
+--- !u!1 &1828056996 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 53f8249d8fe190d458e6f795d18a091a, type: 3}
+  m_PrefabInstance: {fileID: 1828056995}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &1828056997
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1828056996}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.0805564, y: 0.51442933, z: 0.55967146}
+  m_Center: {x: 0.05112496, y: 0.039937064, z: 0.2753303}
 --- !u!4 &1832579926 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 15c95616e5be22a4aaac9d3bd7ff1612, type: 3}
@@ -31708,8 +33837,34 @@ PrefabInstance:
       propertyPath: m_Name
       value: BigRock_2
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 58722727fcc827f4896dff9c68765109, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 58722727fcc827f4896dff9c68765109, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 58722727fcc827f4896dff9c68765109, type: 3}
+--- !u!1 &1838364963 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 58722727fcc827f4896dff9c68765109, type: 3}
+  m_PrefabInstance: {fileID: 1838364962}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &1838364964
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1838364963}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.1360499, y: 0.55662525, z: 0.58997124}
+  m_Center: {x: 0.030492127, y: 0.02145256, z: 0.28843975}
 --- !u!4 &1839648143 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 53f8249d8fe190d458e6f795d18a091a, type: 3}
@@ -31920,8 +34075,34 @@ PrefabInstance:
       propertyPath: m_Name
       value: BigRock_1
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 634d87550dd7539419303c264d34aa92, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 634d87550dd7539419303c264d34aa92, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 634d87550dd7539419303c264d34aa92, type: 3}
+--- !u!1 &1850385396 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 634d87550dd7539419303c264d34aa92, type: 3}
+  m_PrefabInstance: {fileID: 1850385395}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &1850385397
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1850385396}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.1106739, y: 0.55320853, z: 0.5896042}
+  m_Center: {x: 0.033564895, y: 0.07287924, z: 0.2833904}
 --- !u!1001 &1854294908
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -31989,8 +34170,34 @@ PrefabInstance:
       propertyPath: m_Name
       value: BigRock_1
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 634d87550dd7539419303c264d34aa92, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 634d87550dd7539419303c264d34aa92, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 634d87550dd7539419303c264d34aa92, type: 3}
+--- !u!1 &1854294909 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 634d87550dd7539419303c264d34aa92, type: 3}
+  m_PrefabInstance: {fileID: 1854294908}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &1854294910
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1854294909}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.1106739, y: 0.5532086, z: 0.58960426}
+  m_Center: {x: 0.033565372, y: 0.07287948, z: 0.2833903}
 --- !u!1 &1859542119
 GameObject:
   m_ObjectHideFlags: 0
@@ -32067,7 +34274,7 @@ Transform:
   m_GameObject: {fileID: 1871792507}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 17.419292, y: 47.407543, z: 163.18713}
-  m_LocalScale: {x: 1, y: 0.94138, z: 1.1519}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children:
   - {fileID: 1503393561}
   - {fileID: 1614926759}
@@ -32263,7 +34470,7 @@ MonoBehaviour:
   usePathFinding: 1
   refreshPathDuration: 1
   destinationRadius: 5
-  rotateTowardDirection: 1
+  rotateTowardDirection: 0
   rotationAcceleration:
     serializedVersion: 2
     m_Curve: []
@@ -32663,7 +34870,7 @@ Transform:
   m_GameObject: {fileID: 1884499090}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -62.18071, y: 47.407543, z: -54.11286}
-  m_LocalScale: {x: 1, y: 0.94138, z: 1.1519}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children:
   - {fileID: 1930144543}
   - {fileID: 1036210296}
@@ -32859,7 +35066,7 @@ MonoBehaviour:
   usePathFinding: 1
   refreshPathDuration: 1
   destinationRadius: 5
-  rotateTowardDirection: 1
+  rotateTowardDirection: 0
   rotationAcceleration:
     serializedVersion: 2
     m_Curve: []
@@ -32877,11 +35084,11 @@ MonoBehaviour:
   distanceOfView: 50
   patrolPoints:
   - {x: -19.537373, y: -165.19717}
-  - {x: -83.9286, y: -163.22885}
+  - {x: -83.9286, y: -167.30836}
   - {x: -111.96408, y: -182.04149}
   - {x: -132.79932, y: -206.3064}
-  - {x: -84.153656, y: -242.41743}
-  - {x: -44.6156, y: -239.91429}
+  - {x: -84.153656, y: -236.14713}
+  - {x: -44.6156, y: -234.36867}
   - {x: 1.9079399, y: -232.59259}
   patrolValues:
     speedMax: 12
@@ -33510,8 +35717,34 @@ PrefabInstance:
       propertyPath: m_Name
       value: BigRock_3
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 53f8249d8fe190d458e6f795d18a091a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 53f8249d8fe190d458e6f795d18a091a, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 53f8249d8fe190d458e6f795d18a091a, type: 3}
+--- !u!1 &1913149545 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 53f8249d8fe190d458e6f795d18a091a, type: 3}
+  m_PrefabInstance: {fileID: 1913149544}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &1913149546
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1913149545}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.0805564, y: 0.51442933, z: 0.55967146}
+  m_Center: {x: 0.05112472, y: 0.039937064, z: 0.2753303}
 --- !u!1001 &1917818363
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -33680,7 +35913,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1930144543
 Transform:
   m_ObjectHideFlags: 0
@@ -33735,7 +35968,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 47b2d7cb76392484685e14383ddca35c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 462d79b8274db6746b2fe40f2ec1017e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -34110,8 +36343,34 @@ PrefabInstance:
       propertyPath: m_Name
       value: BigRock_3
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 53f8249d8fe190d458e6f795d18a091a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 53f8249d8fe190d458e6f795d18a091a, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 53f8249d8fe190d458e6f795d18a091a, type: 3}
+--- !u!1 &1937411531 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 53f8249d8fe190d458e6f795d18a091a, type: 3}
+  m_PrefabInstance: {fileID: 1937411530}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &1937411532
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1937411531}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.0805564, y: 0.5144293, z: 0.5596714}
+  m_Center: {x: 0.05112496, y: 0.039937787, z: 0.27533028}
 --- !u!1 &1937974789
 GameObject:
   m_ObjectHideFlags: 0
@@ -34321,8 +36580,34 @@ PrefabInstance:
       propertyPath: m_Name
       value: BigRock_2
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 58722727fcc827f4896dff9c68765109, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 58722727fcc827f4896dff9c68765109, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 58722727fcc827f4896dff9c68765109, type: 3}
+--- !u!1 &1950622430 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 58722727fcc827f4896dff9c68765109, type: 3}
+  m_PrefabInstance: {fileID: 1950622429}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &1950622431
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1950622430}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.1360499, y: 0.5566254, z: 0.5899714}
+  m_Center: {x: 0.030491889, y: 0.021452313, z: 0.28843987}
 --- !u!1001 &1951204365
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -34897,8 +37182,34 @@ PrefabInstance:
       propertyPath: m_Name
       value: BigRock_3
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 53f8249d8fe190d458e6f795d18a091a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 53f8249d8fe190d458e6f795d18a091a, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 53f8249d8fe190d458e6f795d18a091a, type: 3}
+--- !u!1 &1991458674 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 53f8249d8fe190d458e6f795d18a091a, type: 3}
+  m_PrefabInstance: {fileID: 1991458673}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &1991458675
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1991458674}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.0805564, y: 0.51442933, z: 0.55967146}
+  m_Center: {x: 0.05112514, y: 0.03993754, z: 0.2753303}
 --- !u!1 &1997144849
 GameObject:
   m_ObjectHideFlags: 0
@@ -35190,8 +37501,34 @@ PrefabInstance:
       propertyPath: m_Name
       value: BigRock_2
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 58722727fcc827f4896dff9c68765109, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 58722727fcc827f4896dff9c68765109, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 58722727fcc827f4896dff9c68765109, type: 3}
+--- !u!1 &2025009905 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 58722727fcc827f4896dff9c68765109, type: 3}
+  m_PrefabInstance: {fileID: 2025009904}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &2025009906
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2025009905}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.1360499, y: 0.5566253, z: 0.5899713}
+  m_Center: {x: 0.030492008, y: 0.02145183, z: 0.28843978}
 --- !u!1 &2029266534
 GameObject:
   m_ObjectHideFlags: 0
@@ -35386,8 +37723,34 @@ PrefabInstance:
       propertyPath: m_Name
       value: BigRock_2
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 58722727fcc827f4896dff9c68765109, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 58722727fcc827f4896dff9c68765109, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 58722727fcc827f4896dff9c68765109, type: 3}
+--- !u!1 &2037058953 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 58722727fcc827f4896dff9c68765109, type: 3}
+  m_PrefabInstance: {fileID: 2037058952}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &2037058954
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2037058953}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.1360499, y: 0.5566254, z: 0.5899714}
+  m_Center: {x: 0.030491889, y: 0.021452313, z: 0.28843987}
 --- !u!4 &2038055522 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 53f8249d8fe190d458e6f795d18a091a, type: 3}
@@ -35545,13 +37908,121 @@ PrefabInstance:
       propertyPath: m_Name
       value: BigRock_3
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 53f8249d8fe190d458e6f795d18a091a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 53f8249d8fe190d458e6f795d18a091a, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 53f8249d8fe190d458e6f795d18a091a, type: 3}
+--- !u!1 &2046162895 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 53f8249d8fe190d458e6f795d18a091a, type: 3}
+  m_PrefabInstance: {fileID: 2046162894}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &2046162896
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2046162895}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.0805562, y: 0.5144294, z: 0.55967146}
+  m_Center: {x: 0.051124334, y: 0.039937858, z: 0.27533025}
 --- !u!4 &2050212861 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 15c95616e5be22a4aaac9d3bd7ff1612, type: 3}
   m_PrefabInstance: {fileID: 1678543262}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &2057385598
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2057385599}
+  - component: {fileID: 2057385600}
+  m_Layer: 0
+  m_Name: Graphic
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2057385599
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2057385598}
+  m_LocalRotation: {x: 0.5, y: 0, z: 0, w: 0.8660254}
+  m_LocalPosition: {x: 0, y: 3, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1365774161}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 60, y: 0, z: 0}
+--- !u!212 &2057385600
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2057385598}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_Sprite: {fileID: 21300000, guid: 462d79b8274db6746b2fe40f2ec1017e, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 1, y: 1}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
 --- !u!1 &2058593088
 GameObject:
   m_ObjectHideFlags: 0
@@ -35747,8 +38218,34 @@ PrefabInstance:
       propertyPath: m_Name
       value: BigRock_1
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 634d87550dd7539419303c264d34aa92, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 634d87550dd7539419303c264d34aa92, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 634d87550dd7539419303c264d34aa92, type: 3}
+--- !u!1 &2063890833 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 634d87550dd7539419303c264d34aa92, type: 3}
+  m_PrefabInstance: {fileID: 2063890832}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &2063890834
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2063890833}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.1106739, y: 0.5532087, z: 0.5896044}
+  m_Center: {x: 0.033564657, y: 0.07287949, z: 0.28339037}
 --- !u!4 &2066981005 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 53f8249d8fe190d458e6f795d18a091a, type: 3}
@@ -36234,8 +38731,34 @@ PrefabInstance:
       propertyPath: m_Name
       value: BigRock_1
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 634d87550dd7539419303c264d34aa92, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 634d87550dd7539419303c264d34aa92, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 634d87550dd7539419303c264d34aa92, type: 3}
+--- !u!1 &2084815115 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 634d87550dd7539419303c264d34aa92, type: 3}
+  m_PrefabInstance: {fileID: 2084815114}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &2084815116
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2084815115}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.1106739, y: 0.5532085, z: 0.58960414}
+  m_Center: {x: 0.03356502, y: 0.072879225, z: 0.28339037}
 --- !u!1 &2085370900 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 829f42d8bee879a4196e2b3a58d3baa9, type: 3}
@@ -36388,8 +38911,34 @@ PrefabInstance:
       propertyPath: m_Name
       value: BigRock_1
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 634d87550dd7539419303c264d34aa92, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 634d87550dd7539419303c264d34aa92, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 634d87550dd7539419303c264d34aa92, type: 3}
+--- !u!1 &2107447147 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 634d87550dd7539419303c264d34aa92, type: 3}
+  m_PrefabInstance: {fileID: 2107447146}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &2107447148
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2107447147}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.1106739, y: 0.5532085, z: 0.58960414}
+  m_Center: {x: 0.033565134, y: 0.072879225, z: 0.28339037}
 --- !u!4 &2110147691 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 634d87550dd7539419303c264d34aa92, type: 3}
@@ -36462,8 +39011,34 @@ PrefabInstance:
       propertyPath: m_Name
       value: BigRock_3
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 53f8249d8fe190d458e6f795d18a091a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 53f8249d8fe190d458e6f795d18a091a, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 53f8249d8fe190d458e6f795d18a091a, type: 3}
+--- !u!1 &2111903360 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 53f8249d8fe190d458e6f795d18a091a, type: 3}
+  m_PrefabInstance: {fileID: 2111903359}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &2111903361
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2111903360}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.0805565, y: 0.5144294, z: 0.55967146}
+  m_Center: {x: 0.05112485, y: 0.03993802, z: 0.2753303}
 --- !u!1001 &2112506928
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -36588,8 +39163,34 @@ PrefabInstance:
       propertyPath: m_Name
       value: BigRock_2
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 58722727fcc827f4896dff9c68765109, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 58722727fcc827f4896dff9c68765109, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 58722727fcc827f4896dff9c68765109, type: 3}
+--- !u!1 &2117972573 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 58722727fcc827f4896dff9c68765109, type: 3}
+  m_PrefabInstance: {fileID: 2117972572}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &2117972574
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2117972573}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.1360499, y: 0.5566253, z: 0.5899713}
+  m_Center: {x: 0.030491889, y: 0.02145183, z: 0.28843978}
 --- !u!1001 &2129563658
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -36862,8 +39463,34 @@ PrefabInstance:
       propertyPath: m_Name
       value: BigRock_1
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 634d87550dd7539419303c264d34aa92, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 634d87550dd7539419303c264d34aa92, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 634d87550dd7539419303c264d34aa92, type: 3}
+--- !u!1 &2136690959 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 634d87550dd7539419303c264d34aa92, type: 3}
+  m_PrefabInstance: {fileID: 2136690958}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &2136690960
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2136690959}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.1106741, y: 0.5532088, z: 0.5896045}
+  m_Center: {x: 0.033565383, y: 0.072879426, z: 0.2833905}
 --- !u!1001 &2137516884
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -37201,8 +39828,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.6271276, y: 0.62971646, z: 1.7699013}
-  m_Center: {x: -0.0021108787, y: 0.0011209488, z: 0.88495064}
+  m_Size: {x: 0.23685479, y: 0.29010892, z: 1.7699013}
+  m_Center: {x: -0.011142012, y: 0.0015764871, z: 0.88495064}
 --- !u!4 &2145108597 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 15c95616e5be22a4aaac9d3bd7ff1612, type: 3}
@@ -37257,7 +39884,7 @@ Transform:
   m_GameObject: {fileID: 7663066539155159025}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -111.78071, y: 47.407543, z: 95.68713}
-  m_LocalScale: {x: 1, y: 0.94138, z: 1.1519}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children:
   - {fileID: 7663066540065725210}
   - {fileID: 7663066539450416390}
@@ -37423,7 +40050,7 @@ MonoBehaviour:
   usePathFinding: 1
   refreshPathDuration: 1
   destinationRadius: 5
-  rotateTowardDirection: 1
+  rotateTowardDirection: 0
   rotationAcceleration:
     serializedVersion: 2
     m_Curve: []
@@ -37892,7 +40519,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!33 &7663066539450416395
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -37941,7 +40568,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 47b2d7cb76392484685e14383ddca35c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 462d79b8274db6746b2fe40f2ec1017e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -37982,4 +40609,4 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
