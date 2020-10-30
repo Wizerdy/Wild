@@ -45,7 +45,16 @@ public class LionCubEntity : AnimalEntity {
     }
 
     public void Respawn() {
+        Entity[] hyenas = EntitiesManager.FindEntities("Hyenas");
         MoveInstant(spawnPoint.ConvertTo3D());
+
+        if (hyenas == null) return;
+        for (int i = 0; i < hyenas.Length; i++) {
+            HyenaEntity hyena = hyenas[i].GetComponent<HyenaEntity>();
+            if (hyena != null && hyena.HasPrey) {
+                hyenas[i].GetComponent<HyenaEntity>().Patrol();
+            }
+        }
     }
 
     public void ChangeSpawnPoint(Vector3 position) {

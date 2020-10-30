@@ -55,6 +55,7 @@ public class Entity : MonoBehaviour {
     [SerializeField] protected MovementCurve acceleration = new MovementCurve();
     [SerializeField] protected MovementCurve frictions = new MovementCurve();
     [SerializeField] protected MovementCurve turnAround = new MovementCurve();
+    private float turnAroundVelocityStart = 0f;
     private bool isTurningAround = false;
 
     [Space]
@@ -315,13 +316,14 @@ public class Entity : MonoBehaviour {
         isTurningAround = true;
         turnAround.timer = 0f;
         isTurning = false;
+        turnAroundVelocityStart = velocity.magnitude;
     }
 
     private Vector2 ApplyTurnAround(Vector2 velocity) {
         turnAround.timer += Time.deltaTime;
         if(turnAround.timer < turnAround.duration) {
             float ratio = turnAround.GetRatio();
-            float speed = Mathf.Lerp(speedMax, 0f, ratio);
+            float speed = Mathf.Lerp(turnAroundVelocityStart, 0f, ratio);
             velocity = velocity.normalized * speed;
         } else {
             velocity = Vector2.zero;

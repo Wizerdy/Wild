@@ -49,6 +49,11 @@ public class HyenaEntity : AnimalEntity
     private float searchCountdown = -1f;
     private Vector2 lastPreyPos = Vector2.zero;
 
+    public bool HasPrey {
+        get { return prey != null; }
+        private set {}
+    }
+
     #region Unity callbacks
 
     protected override void Start() {
@@ -154,13 +159,14 @@ public class HyenaEntity : AnimalEntity
         return null;
     }
 
-    private void Patrol() {
+    public void Patrol() {
         CopyMovementsValues(patrolValues);
 
+        prey = null;
         awarness = Awarness.PATROLLING;
     }
 
-    private void Chase(GameObject targ) {
+    public void Chase(GameObject targ) {
         prey = targ;
         Follow(prey);
 
@@ -169,7 +175,7 @@ public class HyenaEntity : AnimalEntity
         awarness = Awarness.CHASING;
     }
 
-    private void Search(Vector2 pos) {
+    public void Search(Vector2 pos) {
         ClearFollow();
         prey = null;
         MoveToDestination(pos.ConvertTo3D());
