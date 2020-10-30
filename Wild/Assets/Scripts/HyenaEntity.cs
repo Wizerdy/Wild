@@ -9,6 +9,21 @@ public class HyenaEntity : AnimalEntity
         PATROLLING, CHASING, SUSPICIOUS
     }
 
+    [Serializable]
+    public struct MovementsValues {
+        public float speedMax;
+        //public MovementCurve speed;
+        public MovementCurve acceleration;
+        public MovementCurve frictions;
+        public MovementCurve turnAround;
+        public MovementCurve turn;
+
+        [Range(0f, 90f)] public float turnAngleMin;
+        [Range(0f, 90f)] public float turnAngleMax;
+        public float turnDurationMin;
+        public float turnDurationMax;
+    }
+
     [Header("Hyena")]
     public Awarness awarness = Awarness.PATROLLING;
 
@@ -19,17 +34,22 @@ public class HyenaEntity : AnimalEntity
 
     [Header("Patrolling")]
     public Vector2[] patrolPoints;
+    [SerializeField] private MovementsValues patrolValues = new MovementsValues();
     private int patrolPointIndex;
 
     [Header("Chase")]
     public string preyId;
-    public float chaseSpeedFactor = 1.5f;
+    //public float chaseSpeedFactor = 1.5f;
+    [SerializeField] private MovementsValues chaseValues = new MovementsValues();
     private GameObject prey;
 
     [Header("Suspicious")]
     public float searchTime = 2f;
+    [SerializeField] private MovementsValues suspiciousValues = new MovementsValues();
     private float searchCountdown = -1f;
     private Vector2 lastPreyPos = Vector2.zero;
+
+    #region Unity callbacks
 
     protected override void Start() {
         base.Start();
@@ -48,6 +68,10 @@ public class HyenaEntity : AnimalEntity
                 break;
         }
     }
+
+    #endregion
+
+    #region Movements
 
     void UpdatePatrol() {
         if(patrolPoints.Length > 0) {
@@ -82,10 +106,12 @@ public class HyenaEntity : AnimalEntity
         if(IsNearPoint(lastPreyPos, destinationRadius)) {
             searchCountdown -= Time.deltaTime;
             if(searchCountdown <= 0) {
-                patrol();
+                Patrol();
             }
         }
     }
+
+    #endregion
 
     GameObject Looking() {
         RaycastHit[] hits;
@@ -115,10 +141,10 @@ public class HyenaEntity : AnimalEntity
             if (collide.GetComponent<Entity>() != null) {
                 Entity entity = collide.GetComponent<Entity>();
                 if (collide.tag == "Hide") {
-                    if (String.Compare(entity.entityId, hideId) != 0) {
+                    if (!hideId.Equals(entity.entityId)) {
                         return null;
                     }
-                } else if (String.Compare(entity.entityId, entityId) == 0) {
+                } else if (entityId.Equals(entity.entityId)) {
                     return collide;
                 }
             } else {
@@ -128,10 +154,9 @@ public class HyenaEntity : AnimalEntity
         return null;
     }
 
-    private void patrol() {
-        if (awarness == Awarness.CHASING) {
-            MultMovements(1f / chaseSpeedFactor);
-        }
+    private void Patrol() {
+        CopyMovementsValues(patrolValues);
+
         awarness = Awarness.PATROLLING;
     }
 
@@ -139,9 +164,8 @@ public class HyenaEntity : AnimalEntity
         prey = targ;
         Follow(prey);
 
-        if(awarness != Awarness.CHASING) {
-            MultMovements(chaseSpeedFactor);
-        }
+        CopyMovementsValues(chaseValues);
+
         awarness = Awarness.CHASING;
     }
 
@@ -152,16 +176,28 @@ public class HyenaEntity : AnimalEntity
         searchCountdown = searchTime;
         lastPreyPos = pos;
 
-        if (awarness == Awarness.CHASING){
-            MultMovements(1f / chaseSpeedFactor);
-        }
+        CopyMovementsValues(suspiciousValues);
+
         awarness = Awarness.SUSPICIOUS;
     }
 
     private void MultMovements(float factor) {
         speedMax *= factor;
-        acceleration *= factor;
-        friction /= factor;
-        turnFriction /= factor;
+        //acceleration *= factor;
+        //friction /= factor;
+        //turnFriction /= factor;
+    }
+
+    public void CopyMovementsValues(MovementsValues values) {
+        speedMax = values.speedMax;
+        acceleration = values.acceleration;
+        frictions = values.frictions;
+        turn = values.turn;
+        turnAround = values.turnAround;
+
+        turnAngleMin = values.turnAngleMin;
+        turnAngleMax = values.turnAngleMax;
+        turnDurationMin = values.turnDurationMin;
+        turnDurationMax = values.turnDurationMax;
     }
 }
