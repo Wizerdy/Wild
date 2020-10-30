@@ -12,7 +12,7 @@ public class HyenaEntity : AnimalEntity
     [Serializable]
     public struct MovementsValues {
         public float speedMax;
-        public MovementCurve speed;
+        //public MovementCurve speed;
         public MovementCurve acceleration;
         public MovementCurve frictions;
         public MovementCurve turnAround;
@@ -141,7 +141,7 @@ public class HyenaEntity : AnimalEntity
             if (collide.GetComponent<Entity>() != null) {
                 Entity entity = collide.GetComponent<Entity>();
                 if (collide.tag == "Hide") {
-                    if (hideId.Equals(entity.entityId)) {
+                    if (!hideId.Equals(entity.entityId)) {
                         return null;
                     }
                 } else if (entityId.Equals(entity.entityId)) {
@@ -155,9 +155,6 @@ public class HyenaEntity : AnimalEntity
     }
 
     private void Patrol() {
-        //if (awarness == Awarness.CHASING) {
-        //    MultMovements(1f / chaseSpeedFactor);
-        //}
         CopyMovementsValues(patrolValues);
 
         awarness = Awarness.PATROLLING;
@@ -167,9 +164,6 @@ public class HyenaEntity : AnimalEntity
         prey = targ;
         Follow(prey);
 
-        //if(awarness != Awarness.CHASING) {
-        //    MultMovements(chaseSpeedFactor);
-        //}
         CopyMovementsValues(chaseValues);
 
         awarness = Awarness.CHASING;
@@ -182,9 +176,6 @@ public class HyenaEntity : AnimalEntity
         searchCountdown = searchTime;
         lastPreyPos = pos;
 
-        //if (awarness == Awarness.CHASING){
-        //    MultMovements(1f / chaseSpeedFactor);
-        //}
         CopyMovementsValues(suspiciousValues);
 
         awarness = Awarness.SUSPICIOUS;
@@ -199,7 +190,6 @@ public class HyenaEntity : AnimalEntity
 
     public void CopyMovementsValues(MovementsValues values) {
         speedMax = values.speedMax;
-        speed = values.speed;
         acceleration = values.acceleration;
         frictions = values.frictions;
         turn = values.turn;

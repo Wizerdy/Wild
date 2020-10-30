@@ -5,7 +5,7 @@ using UnityEditor;
 
 [ExecuteInEditMode]
 [CustomEditor(typeof(ActionSpawnPoint))]
-public class ActionSpawnPointEditor : ActionEditor
+public class ActionSpawnPointEditor : ActionEntityEditor
 {
     private ActionSpawnPoint script;
 

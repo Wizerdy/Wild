@@ -428,16 +428,16 @@ public class Entity : MonoBehaviour {
         }
     }
 
-    //private void LookAt(Vector2 dest) {
-    //    transform.LookAt(Position + dest.ConvertTo3D(Position.y));
-    //}
-
-    private void LookAt(Vector2 dir) {
-        float angle = Vector2.SignedAngle(Vector2.right, dir);
-        Vector3 eulerAngles = transform.localEulerAngles;
-        eulerAngles.z = angle;
-        transform.localEulerAngles = eulerAngles;
+    private void LookAt(Vector2 dest) {
+        transform.LookAt(Position + dest.ConvertTo3D(Position.y));
     }
+
+    //private void LookAt(Vector2 dir) {
+    //    float angle = Vector2.SignedAngle(Vector2.right, dir);
+    //    Vector3 eulerAngles = transform.localEulerAngles;
+    //    eulerAngles.y = angle;
+    //    transform.localEulerAngles = eulerAngles;
+    //}
 
     #endregion
 

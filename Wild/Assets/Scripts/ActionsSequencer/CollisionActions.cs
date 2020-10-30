@@ -3,6 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody))]
+[RequireComponent(typeof(BoxCollider))]
+[ExecuteInEditMode]
 public class CollisionActions : MonoBehaviour
 {
     public string entityGroup = "";
