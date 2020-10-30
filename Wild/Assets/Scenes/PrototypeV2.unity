@@ -3888,7 +3888,7 @@ MonoBehaviour:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    duration: 1
+    duration: 0
     timer: 0
   turnAround:
     curve:
@@ -19153,7 +19153,7 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.3
+  near clip plane: 8
   far clip plane: 1000
   field of view: 60
   orthographic: 0
