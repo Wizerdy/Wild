@@ -1,0 +1,24 @@
+Bonjour la Team Wild :)
+
+Voici un petit tuto pour comprendre certains termes que vous ne connaissez peut être pas!
+
+AMB = Ambiances = Sons qui servent à savoir dans quel lieu nous nous trouvons.
+
+RSFX = Random Sound FX = Des éléments ponctuels à l'intérieur des ambiances pour rajouter de la vie et du vrai.
+
+MUS = Musique
+
+NPC = Non Player Character = Les personnages qui ne sont pas jouables (Hyène, Crocodile & Serpent)
+
+SFX = Sound FX = La plupart des sons qui ne rentre pas dans les autres catégories sont dans ce dossier. 
+Ils sont plus designés et apporte une importance à la narration.
+
+FT = Footsteps = Les pas des personnages. Que ce soit le Main Character ou des NPCs, la nomenclature sera "FT_" partout.
+
+LP = Loop = En général à la fin de la nomenclature, "Loop" signife que le son peut tourner en continue sans qu'on entende de transition. 
+Les Loop sont utilisées pour des Musiques, des Ambiances et certain SFXs.
+
+Si vous avez des questions, n'hésitez pas à nous les poser!
+
+Bonne découverte des sons :)
+La Team Son.

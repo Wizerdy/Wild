@@ -10,6 +10,7 @@ public class AudioEditor : Editor
     {
         base.OnInspectorGUI();
         Sound_Manager sm = (Sound_Manager)target;
+
         if (GUILayout.Button("Add Sound"))
         {
             sm.AddSound();

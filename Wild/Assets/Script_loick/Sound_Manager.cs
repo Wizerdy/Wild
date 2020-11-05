@@ -10,7 +10,7 @@ public class Sound_Manager : MonoBehaviour
     public soundname soundclass;
     public enum soundname
     {
-        SoundEffect,Song
+        AMB,RSFX,MUS,NPC,SFX,FT,LP
     }
     public void SpawnSE()
     {
@@ -29,7 +29,7 @@ public class Sound_Manager : MonoBehaviour
         }
             if (error>0)
             {
-                Debug.LogError("Error");
+                Debug.LogError("Error you can add "+ error +" item");
             }
         else
         {
