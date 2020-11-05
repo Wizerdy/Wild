@@ -6,18 +6,29 @@ using UnityEngine;
 public class SoundExecuter
 {
     public Sound_Manager.soundname soundtype;
-    public AudioSource source;
+    public AudioClip clip;
     public void PlaySound()
-    {
-        if (soundtype == Sound_Manager.soundname.Song)
+    {AudioSource source = new AudioSource();
+        switch (soundtype)
         {
-            source.loop = true;
-            source.Play();
-        }
-        else
-        {
-            source.loop = false;
-            source.Play();
+            case Sound_Manager.soundname.AMB:
+                break;
+            case Sound_Manager.soundname.RSFX:
+                break;
+            case Sound_Manager.soundname.MUS:
+                break;
+            case Sound_Manager.soundname.NPC:
+                break;
+            case Sound_Manager.soundname.SFX:
+                break;
+            case Sound_Manager.soundname.FT:
+                break;
+            case Sound_Manager.soundname.LP:
+                source.loop = true;
+                source.Play();
+                break;
+            default:
+                break;
         }
     }
 
