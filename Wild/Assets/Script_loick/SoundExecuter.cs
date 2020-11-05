@@ -6,9 +6,9 @@ using UnityEngine;
 public class SoundExecuter
 {
     public Sound_Manager.soundname soundtype;
-    public AudioSource source;
+    public AudioClip clip;
     public void PlaySound()
-    {
+    {AudioSource source = new AudioSource();
         switch (soundtype)
         {
             case Sound_Manager.soundname.AMB:
