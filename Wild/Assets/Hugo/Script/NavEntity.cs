@@ -64,7 +64,7 @@ public class NavEntity : MonoBehaviour
         if (pathFound)
         {
             followPathIndex = 1;
-            Debug.Log("Path Found");
+
             
         }
         else

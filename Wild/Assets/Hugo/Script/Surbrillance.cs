@@ -7,9 +7,9 @@ public class Surbrillance : MonoBehaviour
     public Material surbrillance;
     public Material BaseM;
     private MeshRenderer Mesh;
-    private bool ShinyOrNot = false;
     
-    
+
+
     void Start()
     {
         Mesh = GetComponent<MeshRenderer>();
@@ -22,10 +22,9 @@ public class Surbrillance : MonoBehaviour
         
     }
 
-    public void Shine() 
+    public void Shine(bool ShinyOrNot) 
     {
-        ShinyOrNot = !ShinyOrNot;
-
+        
         if (ShinyOrNot)
         {
             Mesh.sharedMaterial = surbrillance;
