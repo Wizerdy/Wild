@@ -5,7 +5,7 @@ using UnityEngine;
 public class Surbrillance : MonoBehaviour
 {
     public Material surbrillance;
-    public Material BaseM;
+    private Material baseM;
     private MeshRenderer Mesh;
     
 
@@ -13,6 +13,7 @@ public class Surbrillance : MonoBehaviour
     void Start()
     {
         Mesh = GetComponent<MeshRenderer>();
+        baseM = GetComponent<MeshRenderer>().material; 
     }
 
     // Update is called once per frame
@@ -31,7 +32,7 @@ public class Surbrillance : MonoBehaviour
         }
         if (!ShinyOrNot)
         {
-            Mesh.sharedMaterial = BaseM;
+            Mesh.sharedMaterial = baseM;
         }
     
     
