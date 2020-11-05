@@ -84,31 +84,6 @@ public class Player : MonoBehaviour
     }
     private void _UpdateMove()
     {
-        #region
-        /*if (dir_X != 0f){
-            speed += acceleration * Time.fixedDeltaTime;
-            if (speed > speedmax)
-               {speed = speedmax;}
-            orient_X = dir_X;
-        }
-        if (dir_Y != 0f)
-        {
-            speed += acceleration * Time.fixedDeltaTime;
-            if (speed > speedmax)
-               {speed = speedmax;}
-            orient_Y = dir_Y;
-        }
-           else if(speed > 0f)
-           {
-            float frictiontoapply = friction * Time.fixedDeltaTime;
-            if (speed >= frictiontoapply)
-               {speed -= frictiontoapply; }
-            else
-            {
-             speed = 0f;
-            }
-           } */
-        #endregion //friction
         if (move_dir != Vector2.zero)
         {
             float angle = Vector2.SignedAngle(velocity, move_dir);

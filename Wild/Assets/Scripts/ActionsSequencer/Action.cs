@@ -4,18 +4,15 @@ using System.Runtime.CompilerServices;
 using UnityEngine;
 
 public abstract class Action : MonoBehaviour {
-    protected enum WaitType { NONE, TIME, ACTION_END, BOTH }
+    public enum WaitType { NONE, TIME, ACTION_END, BOTH }
 
-    protected WaitType waitType = WaitType.NONE;
+    public WaitType waitType = WaitType.NONE;
     protected bool timeWaited = false;
     protected bool actionEnded = false;
-    protected float timeToWait;
+    public float timeToWait = 0f;
 
-
-    protected void Start() {
-        if(waitType == WaitType.TIME || waitType == WaitType.BOTH) {
-            StartCoroutine("Wait", timeToWait);
-        }
+    protected virtual void Start() {
+        
     }
 
     public bool IsFinished() {
@@ -25,9 +22,9 @@ public abstract class Action : MonoBehaviour {
             case WaitType.TIME:
                 return timeWaited;
             case WaitType.ACTION_END:
-                return actionEnded;
+                return IsActionEnded();
             case WaitType.BOTH:
-                return (actionEnded && timeWaited);
+                return (IsActionEnded() && timeWaited);
             default:
                 Debug.LogError("Unknown WaitType");
                 return true;
@@ -39,5 +36,17 @@ public abstract class Action : MonoBehaviour {
         timeWaited = true;
     }
 
-    public abstract void Execute();
+    public virtual void Execute() {
+        if (waitType == WaitType.TIME || waitType == WaitType.BOTH) {
+            StartCoroutine("Wait", timeToWait);
+        }
+    }
+
+    public abstract bool IsActionEnded();
+
+    public virtual void ResetAction() {
+        actionEnded = false;
+        timeWaited = false;
+        StopAllCoroutines();
+    }
 }
