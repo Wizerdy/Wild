@@ -4,22 +4,9 @@ using UnityEngine;
 
 public abstract class ActionEntity : Action {
     [HideInInspector] public Entity entity;
+    [SerializeField] public TargetEntity targEntity;
 
-    //Editor
-    [HideInInspector] public Entity entityGo;
-    [HideInInspector] public string entityId;
-    [HideInInspector] public int entityCurrentTab;
-
-    protected override void Start() {
-        base.Start();
-
-        switch(entityCurrentTab) {
-            case 0:
-                entity = EntitiesManager.FindEntity(entityId);
-                break;
-            case 1:
-                entity = entityGo;
-                break;
-        }
+    protected override void OnStart() {
+        entity = targEntity.FindEntity();
     }
 }

@@ -7,21 +7,9 @@ using UnityEditor;
 [ExecuteInEditMode]
 [CustomEditor(typeof(ActionReset))]
 public class ActionResetEditor : ActionCameraEditor {
-    private ActionReset script;
-
-    public override void OnEnable() {
-        base.OnEnable();
-        script = (ActionReset)target;
-    }
-
-    public override void OnInspectorGUI() {
-        base.OnInspectorGUI();
-
-        serializedObject.Update();
-
-        GUILayout.Space(5);
-
-        EditorGUI.BeginChangeCheck();
+    public override void OnInspector() {
+        base.OnInspector();
+        GUILayout.Space(SPACE);
 
         EditorGUILayout.BeginVertical("box");
         GUILayout.Label("Durée et framerate");
@@ -30,20 +18,17 @@ public class ActionResetEditor : ActionCameraEditor {
         EditorGUILayout.PropertyField(transitionProperty);
 
         GUILayout.EndVertical();
-
-        if (EditorGUI.EndChangeCheck()) {
-            OnValidate();
-        }
-
-        serializedObject.ApplyModifiedProperties();
     }
 
     protected override void OnValidate() {
         base.OnValidate();
 
+        ActionReset script = target as ActionReset;
+        if (script == null) { return; }
+
         string name = "RESET";
 
-        if (String.Compare(script.name, "") != 0) {
+        if (String.IsNullOrWhiteSpace(script.name)) {
             name = " " + name;
         }
 

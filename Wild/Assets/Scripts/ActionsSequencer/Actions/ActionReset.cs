@@ -5,13 +5,11 @@ using UnityEngine;
 public class ActionReset : ActionCamera {
     public CameraTransition transition;
 
-    protected override void Start() {
-        base.Start();
+    protected override void OnStart() {
+
     }
 
-    public override void Execute() {
-        base.Execute();
-
+    protected override void OnExecute() {
         cam.RestoreDefaultProfile(transition);
     }
 

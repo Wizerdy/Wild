@@ -207,9 +207,10 @@ MonoBehaviour:
   waitType: 0
   timeToWait: 0
   entity: {fileID: 0}
-  entityGo: {fileID: 601478159}
-  entityId: 
-  entityCurrentTab: 1
+  targEntity:
+    targetType: 1
+    entityGo: {fileID: 0}
+    entityId: 
   alpha: 0
   currentAlpha: 160
 --- !u!4 &11309314 stripped
@@ -296,9 +297,10 @@ MonoBehaviour:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-  destinationCurrentTab: 0
-  goDestination: {fileID: 172313524}
-  vectorDestination: {x: 0, y: 0, z: 0}
+  targDestination:
+    targetType: 0
+    vector: {x: 0, y: 0, z: 0}
+    transform: {fileID: 0}
 --- !u!4 &16929466 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 15c95616e5be22a4aaac9d3bd7ff1612, type: 3}
@@ -654,7 +656,33 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  dashTime: 1
+  dash:
+    curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 1
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 1
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    duration: 1
+    timer: 0
   dashSpeed: 50
   dashCooldown: 5
   hidden: 0
@@ -1368,9 +1396,10 @@ MonoBehaviour:
   waitType: 0
   timeToWait: 0
   entity: {fileID: 0}
-  entityGo: {fileID: 1210892033}
-  entityId: 
-  entityCurrentTab: 1
+  targEntity:
+    targetType: 1
+    entityGo: {fileID: 0}
+    entityId: 
   alpha: 0
   currentAlpha: 255
 --- !u!1001 &70575204
@@ -1566,9 +1595,10 @@ MonoBehaviour:
   waitType: 0
   timeToWait: 0
   entity: {fileID: 0}
-  entityGo: {fileID: 724620166}
-  entityId: 
-  entityCurrentTab: 1
+  targEntity:
+    targetType: 1
+    entityGo: {fileID: 0}
+    entityId: 
   alpha: 0
   currentAlpha: 255
 --- !u!4 &79753966 stripped
@@ -1844,7 +1874,33 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  dashTime: 0
+  dash:
+    curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 1
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 1
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    duration: 1
+    timer: 0
   dashSpeed: 0
   dashCooldown: 5
 --- !u!33 &89998048
@@ -1866,7 +1922,7 @@ GameObject:
   - component: {fileID: 90010733}
   - component: {fileID: 90010734}
   m_Layer: 0
-  m_Name: Main Camera MOVE TO
+  m_Name: Main Camera Camera_1 Main Camera MOVE TO
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2142,9 +2198,10 @@ MonoBehaviour:
   waitType: 0
   timeToWait: 0
   entity: {fileID: 0}
-  entityGo: {fileID: 1651284220}
-  entityId: 
-  entityCurrentTab: 1
+  targEntity:
+    targetType: 1
+    entityGo: {fileID: 0}
+    entityId: 
   alpha: 0
   currentAlpha: 160
 --- !u!4 &99650243 stripped
@@ -2412,9 +2469,10 @@ MonoBehaviour:
   waitType: 0
   timeToWait: 0
   entity: {fileID: 0}
-  entityGo: {fileID: 724620166}
-  entityId: 
-  entityCurrentTab: 1
+  targEntity:
+    targetType: 1
+    entityGo: {fileID: 0}
+    entityId: 
   alpha: 0
   currentAlpha: 160
 --- !u!4 &116583708 stripped
@@ -2870,9 +2928,10 @@ MonoBehaviour:
   waitType: 0
   timeToWait: 0
   entity: {fileID: 0}
-  entityGo: {fileID: 601478159}
-  entityId: 
-  entityCurrentTab: 1
+  targEntity:
+    targetType: 1
+    entityGo: {fileID: 0}
+    entityId: 
   alpha: 0
   currentAlpha: 255
 --- !u!1 &145876175
@@ -3308,7 +3367,33 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  dashTime: 0
+  dash:
+    curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 1
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 1
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    duration: 1
+    timer: 0
   dashSpeed: 0
   dashCooldown: 5
 --- !u!33 &148853306
@@ -3493,9 +3578,10 @@ MonoBehaviour:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-  destinationCurrentTab: 0
-  goDestination: {fileID: 172313524}
-  vectorDestination: {x: 0, y: 0, z: 0}
+  targDestination:
+    targetType: 0
+    vector: {x: 0, y: 0, z: 0}
+    transform: {fileID: 0}
 --- !u!1 &167125342
 GameObject:
   m_ObjectHideFlags: 0
@@ -3958,9 +4044,35 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  dashTime: 0.1
+  dash:
+    curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    duration: 0.2
+    timer: 0
   dashSpeed: 100
-  dashCooldown: 5
+  dashCooldown: 1
   hidden: 0
   hideId: 
   predatorGroup: Hyenas
@@ -4444,9 +4556,10 @@ MonoBehaviour:
   waitType: 0
   timeToWait: 0
   entity: {fileID: 0}
-  entityGo: {fileID: 89998047}
-  entityId: 
-  entityCurrentTab: 1
+  targEntity:
+    targetType: 1
+    entityGo: {fileID: 0}
+    entityId: 
   alpha: 0
   currentAlpha: 160
 --- !u!4 &223930014 stripped
@@ -4595,9 +4708,10 @@ MonoBehaviour:
   waitType: 0
   timeToWait: 0
   entity: {fileID: 0}
-  entityGo: {fileID: 542504633}
-  entityId: 
-  entityCurrentTab: 1
+  targEntity:
+    targetType: 1
+    entityGo: {fileID: 0}
+    entityId: 
   alpha: 0
   currentAlpha: 160
 --- !u!4 &229143902 stripped
@@ -5071,7 +5185,33 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  dashTime: 0
+  dash:
+    curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 1
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 1
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    duration: 1
+    timer: 0
   dashSpeed: 0
   dashCooldown: 5
 --- !u!33 &246076095
@@ -5944,7 +6084,33 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  dashTime: 1
+  dash:
+    curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 1
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 1
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    duration: 1
+    timer: 0
   dashSpeed: 50
   dashCooldown: 5
   hidden: 0
@@ -6726,7 +6892,33 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  dashTime: 1
+  dash:
+    curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 1
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 1
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    duration: 1
+    timer: 0
   dashSpeed: 50
   dashCooldown: 5
   hidden: 0
@@ -7349,9 +7541,10 @@ MonoBehaviour:
   waitType: 0
   timeToWait: 0
   entity: {fileID: 0}
-  entityGo: {fileID: 551392398}
-  entityId: 
-  entityCurrentTab: 1
+  targEntity:
+    targetType: 1
+    entityGo: {fileID: 0}
+    entityId: 
   alpha: 0
   currentAlpha: 160
 --- !u!1 &334437604
@@ -7474,9 +7667,10 @@ MonoBehaviour:
   waitType: 2
   timeToWait: 0
   entity: {fileID: 0}
-  entityGo: {fileID: 0}
-  entityId: LionCub
-  entityCurrentTab: 0
+  targEntity:
+    targetType: 1
+    entityGo: {fileID: 0}
+    entityId: 
   position: {x: 153.4, y: -97.9}
 --- !u!1 &334927567
 GameObject:
@@ -8631,9 +8825,10 @@ MonoBehaviour:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-  destinationCurrentTab: 0
-  goDestination: {fileID: 172313524}
-  vectorDestination: {x: 0, y: 0, z: 0}
+  targDestination:
+    targetType: 0
+    vector: {x: 0, y: 0, z: 0}
+    transform: {fileID: 0}
 --- !u!1 &388148883
 GameObject:
   m_ObjectHideFlags: 0
@@ -8800,9 +8995,10 @@ MonoBehaviour:
   waitType: 0
   timeToWait: 0
   entity: {fileID: 0}
-  entityGo: {fileID: 1651284220}
-  entityId: 
-  entityCurrentTab: 1
+  targEntity:
+    targetType: 1
+    entityGo: {fileID: 0}
+    entityId: 
   alpha: 0
   currentAlpha: 255
 --- !u!1001 &407337960
@@ -9177,7 +9373,33 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  dashTime: 0
+  dash:
+    curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 1
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 1
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    duration: 1
+    timer: 0
   dashSpeed: 0
   dashCooldown: 5
 --- !u!33 &417080730
@@ -9681,9 +9903,10 @@ MonoBehaviour:
   waitType: 0
   timeToWait: 0
   entity: {fileID: 0}
-  entityGo: {fileID: 0}
-  entityId: LionCub
-  entityCurrentTab: 0
+  targEntity:
+    targetType: 1
+    entityGo: {fileID: 0}
+    entityId: 
   time: 0
   currentTime: 8
 --- !u!1 &446314716
@@ -10245,7 +10468,33 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  dashTime: 0
+  dash:
+    curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 1
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 1
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    duration: 1
+    timer: 0
   dashSpeed: 0
   dashCooldown: 5
 --- !u!1001 &467106159
@@ -10476,9 +10725,10 @@ MonoBehaviour:
   waitType: 0
   timeToWait: 0
   entity: {fileID: 0}
-  entityGo: {fileID: 462383563}
-  entityId: 
-  entityCurrentTab: 1
+  targEntity:
+    targetType: 1
+    entityGo: {fileID: 0}
+    entityId: 
   alpha: 0
   currentAlpha: 160
 --- !u!1 &480234224
@@ -11061,9 +11311,10 @@ MonoBehaviour:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-  destinationCurrentTab: 0
-  goDestination: {fileID: 172313524}
-  vectorDestination: {x: 0, y: 0, z: 0}
+  targDestination:
+    targetType: 0
+    vector: {x: 0, y: 0, z: 0}
+    transform: {fileID: 0}
 --- !u!1 &541929709
 GameObject:
   m_ObjectHideFlags: 0
@@ -11422,7 +11673,33 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  dashTime: 0
+  dash:
+    curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 1
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 1
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    duration: 1
+    timer: 0
   dashSpeed: 0
   dashCooldown: 5
 --- !u!33 &542504634
@@ -11686,7 +11963,33 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  dashTime: 0
+  dash:
+    curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 1
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 1
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    duration: 1
+    timer: 0
   dashSpeed: 0
   dashCooldown: 5
 --- !u!33 &551392399
@@ -12746,7 +13049,33 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  dashTime: 0
+  dash:
+    curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 1
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 1
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    duration: 1
+    timer: 0
   dashSpeed: 0
   dashCooldown: 5
 --- !u!33 &590131790
@@ -13067,7 +13396,33 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  dashTime: 0
+  dash:
+    curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 1
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 1
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    duration: 1
+    timer: 0
   dashSpeed: 0
   dashCooldown: 5
 --- !u!33 &601478160
@@ -14340,9 +14695,10 @@ MonoBehaviour:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-  destinationCurrentTab: 0
-  goDestination: {fileID: 172313524}
-  vectorDestination: {x: 0, y: 0, z: 0}
+  targDestination:
+    targetType: 0
+    vector: {x: 0, y: 0, z: 0}
+    transform: {fileID: 0}
 --- !u!1 &674316331
 GameObject:
   m_ObjectHideFlags: 0
@@ -14504,9 +14860,10 @@ MonoBehaviour:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-  destinationCurrentTab: 0
-  goDestination: {fileID: 172313524}
-  vectorDestination: {x: 0, y: 0, z: 0}
+  targDestination:
+    targetType: 0
+    vector: {x: 0, y: 0, z: 0}
+    transform: {fileID: 0}
 --- !u!1001 &690206241
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -15086,9 +15443,10 @@ MonoBehaviour:
   waitType: 0
   timeToWait: 0
   entity: {fileID: 0}
-  entityGo: {fileID: 551392398}
-  entityId: 
-  entityCurrentTab: 1
+  targEntity:
+    targetType: 1
+    entityGo: {fileID: 0}
+    entityId: 
   alpha: 0
   currentAlpha: 255
 --- !u!1 &703200223
@@ -15678,7 +16036,33 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  dashTime: 0
+  dash:
+    curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 1
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 1
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    duration: 1
+    timer: 0
   dashSpeed: 0
   dashCooldown: 5
 --- !u!33 &724620167
@@ -16373,9 +16757,10 @@ MonoBehaviour:
   waitType: 0
   timeToWait: 0
   entity: {fileID: 0}
-  entityGo: {fileID: 1935612780}
-  entityId: 
-  entityCurrentTab: 1
+  targEntity:
+    targetType: 1
+    entityGo: {fileID: 0}
+    entityId: 
   alpha: 0
   currentAlpha: 160
 --- !u!1 &784047687
@@ -16424,9 +16809,10 @@ MonoBehaviour:
   waitType: 0
   timeToWait: 0
   entity: {fileID: 0}
-  entityGo: {fileID: 1935612780}
-  entityId: 
-  entityCurrentTab: 1
+  targEntity:
+    targetType: 1
+    entityGo: {fileID: 0}
+    entityId: 
   alpha: 0
   currentAlpha: 255
 --- !u!1001 &789400124
@@ -16751,9 +17137,10 @@ MonoBehaviour:
   waitType: 0
   timeToWait: 0
   entity: {fileID: 0}
-  entityGo: {fileID: 542504633}
-  entityId: 
-  entityCurrentTab: 1
+  targEntity:
+    targetType: 1
+    entityGo: {fileID: 0}
+    entityId: 
   alpha: 0
   currentAlpha: 255
 --- !u!4 &814794177 stripped
@@ -16807,9 +17194,10 @@ MonoBehaviour:
   waitType: 0
   timeToWait: 0
   entity: {fileID: 0}
-  entityGo: {fileID: 724620166}
-  entityId: 
-  entityCurrentTab: 1
+  targEntity:
+    targetType: 1
+    entityGo: {fileID: 0}
+    entityId: 
   alpha: 0
   currentAlpha: 160
 --- !u!1001 &816651959
@@ -17209,9 +17597,10 @@ MonoBehaviour:
   waitType: 0
   timeToWait: 0
   entity: {fileID: 0}
-  entityGo: {fileID: 246076094}
-  entityId: 
-  entityCurrentTab: 1
+  targEntity:
+    targetType: 1
+    entityGo: {fileID: 0}
+    entityId: 
   alpha: 0
   currentAlpha: 255
 --- !u!4 &858650551 stripped
@@ -17682,7 +18071,33 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  dashTime: 0
+  dash:
+    curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 1
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 1
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    duration: 1
+    timer: 0
   dashSpeed: 0
   dashCooldown: 5
 --- !u!33 &866622904
@@ -17744,9 +18159,10 @@ MonoBehaviour:
   waitType: 0
   timeToWait: 0
   entity: {fileID: 0}
-  entityGo: {fileID: 1958616360}
-  entityId: 
-  entityCurrentTab: 1
+  targEntity:
+    targetType: 1
+    entityGo: {fileID: 0}
+    entityId: 
   alpha: 0
   currentAlpha: 160
 --- !u!4 &869098575 stripped
@@ -18937,9 +19353,10 @@ MonoBehaviour:
   waitType: 0
   timeToWait: 0
   entity: {fileID: 0}
-  entityGo: {fileID: 417080729}
-  entityId: 
-  entityCurrentTab: 1
+  targEntity:
+    targetType: 1
+    entityGo: {fileID: 0}
+    entityId: 
   alpha: 0
   currentAlpha: 255
 --- !u!1 &925577685
@@ -19357,7 +19774,33 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  dashTime: 0
+  dash:
+    curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 1
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 1
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    duration: 1
+    timer: 0
   dashSpeed: 0
   dashCooldown: 5
 --- !u!33 &950332519
@@ -19414,9 +19857,10 @@ MonoBehaviour:
   waitType: 0
   timeToWait: 0
   entity: {fileID: 0}
-  entityGo: {fileID: 417080729}
-  entityId: 
-  entityCurrentTab: 1
+  targEntity:
+    targetType: 1
+    entityGo: {fileID: 0}
+    entityId: 
   alpha: 0
   currentAlpha: 160
 --- !u!1 &963194225
@@ -20406,9 +20850,10 @@ MonoBehaviour:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-  destinationCurrentTab: 0
-  goDestination: {fileID: 172313524}
-  vectorDestination: {x: 0, y: 0, z: 0}
+  targDestination:
+    targetType: 0
+    vector: {x: 0, y: 0, z: 0}
+    transform: {fileID: 0}
 --- !u!4 &1001418250 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 58722727fcc827f4896dff9c68765109, type: 3}
@@ -20642,9 +21087,10 @@ MonoBehaviour:
   waitType: 0
   timeToWait: 0
   entity: {fileID: 0}
-  entityGo: {fileID: 724620166}
-  entityId: 
-  entityCurrentTab: 1
+  targEntity:
+    targetType: 1
+    entityGo: {fileID: 0}
+    entityId: 
   alpha: 0
   currentAlpha: 255
 --- !u!4 &1018941218 stripped
@@ -21300,9 +21746,10 @@ MonoBehaviour:
   waitType: 0
   timeToWait: 0
   entity: {fileID: 0}
-  entityGo: {fileID: 866622903}
-  entityId: 
-  entityCurrentTab: 1
+  targEntity:
+    targetType: 1
+    entityGo: {fileID: 0}
+    entityId: 
   alpha: 0
   currentAlpha: 255
 --- !u!1001 &1048060368
@@ -21520,9 +21967,10 @@ MonoBehaviour:
   waitType: 0
   timeToWait: 0
   entity: {fileID: 0}
-  entityGo: {fileID: 950332518}
-  entityId: 
-  entityCurrentTab: 1
+  targEntity:
+    targetType: 1
+    entityGo: {fileID: 0}
+    entityId: 
   alpha: 0
   currentAlpha: 160
 --- !u!1 &1062898642
@@ -23116,9 +23564,10 @@ MonoBehaviour:
   waitType: 0
   timeToWait: 0
   entity: {fileID: 0}
-  entityGo: {fileID: 1958616360}
-  entityId: 
-  entityCurrentTab: 1
+  targEntity:
+    targetType: 1
+    entityGo: {fileID: 0}
+    entityId: 
   alpha: 0
   currentAlpha: 255
 --- !u!1 &1180629177
@@ -23631,7 +24080,33 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  dashTime: 0
+  dash:
+    curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 1
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 1
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    duration: 1
+    timer: 0
   dashSpeed: 0
   dashCooldown: 5
 --- !u!33 &1210892034
@@ -24312,9 +24787,10 @@ MonoBehaviour:
   waitType: 0
   timeToWait: 0
   entity: {fileID: 0}
-  entityGo: {fileID: 1368657861}
-  entityId: 
-  entityCurrentTab: 1
+  targEntity:
+    targetType: 1
+    entityGo: {fileID: 0}
+    entityId: 
   alpha: 0
   currentAlpha: 160
 --- !u!1001 &1256065576
@@ -24973,9 +25449,10 @@ MonoBehaviour:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-  destinationCurrentTab: 0
-  goDestination: {fileID: 172313524}
-  vectorDestination: {x: 0, y: 0, z: 0}
+  targDestination:
+    targetType: 0
+    vector: {x: 0, y: 0, z: 0}
+    transform: {fileID: 0}
 --- !u!1 &1301589491
 GameObject:
   m_ObjectHideFlags: 0
@@ -25463,9 +25940,10 @@ MonoBehaviour:
   waitType: 0
   timeToWait: 0
   entity: {fileID: 0}
-  entityGo: {fileID: 866622903}
-  entityId: 
-  entityCurrentTab: 1
+  targEntity:
+    targetType: 1
+    entityGo: {fileID: 0}
+    entityId: 
   alpha: 0
   currentAlpha: 160
 --- !u!1001 &1347740553
@@ -25913,7 +26391,33 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  dashTime: 1
+  dash:
+    curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 1
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 1
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    duration: 1
+    timer: 0
   dashSpeed: 50
   dashCooldown: 5
   hidden: 0
@@ -26319,9 +26823,10 @@ MonoBehaviour:
   waitType: 0
   timeToWait: 0
   entity: {fileID: 0}
-  entityGo: {fileID: 1368657861}
-  entityId: 
-  entityCurrentTab: 1
+  targEntity:
+    targetType: 1
+    entityGo: {fileID: 0}
+    entityId: 
   alpha: 0
   currentAlpha: 255
 --- !u!1 &1368657857
@@ -26577,7 +27082,33 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  dashTime: 0
+  dash:
+    curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 1
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 1
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    duration: 1
+    timer: 0
   dashSpeed: 0
   dashCooldown: 5
 --- !u!33 &1368657862
@@ -27762,7 +28293,33 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  dashTime: 0
+  dash:
+    curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 1
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 1
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    duration: 1
+    timer: 0
   dashSpeed: 0
   dashCooldown: 5
 --- !u!33 &1419977698
@@ -28504,9 +29061,10 @@ MonoBehaviour:
   waitType: 0
   timeToWait: 0
   entity: {fileID: 0}
-  entityGo: {fileID: 246076094}
-  entityId: 
-  entityCurrentTab: 1
+  targEntity:
+    targetType: 1
+    entityGo: {fileID: 0}
+    entityId: 
   alpha: 0
   currentAlpha: 160
 --- !u!1 &1480291493
@@ -29082,7 +29640,7 @@ GameObject:
   - component: {fileID: 1532773035}
   - component: {fileID: 1532773036}
   m_Layer: 0
-  m_Name: Main Camera ZOOM TO Player
+  m_Name: Main CameraMain Camera ZOOM Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -29145,9 +29703,10 @@ MonoBehaviour:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-  destinationCurrentTab: 0
-  goDestination: {fileID: 172313524}
-  vectorDestination: {x: 0, y: 0, z: 0}
+  targDestination:
+    targetType: 1
+    vector: {x: 0, y: 0, z: 0}
+    transform: {fileID: 172313524}
 --- !u!4 &1533178581 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 15c95616e5be22a4aaac9d3bd7ff1612, type: 3}
@@ -29913,9 +30472,10 @@ MonoBehaviour:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-  destinationCurrentTab: 0
-  goDestination: {fileID: 172313524}
-  vectorDestination: {x: 0, y: 0, z: 0}
+  targDestination:
+    targetType: 0
+    vector: {x: 0, y: 0, z: 0}
+    transform: {fileID: 0}
 --- !u!1 &1589166656
 GameObject:
   m_ObjectHideFlags: 0
@@ -30523,9 +31083,10 @@ MonoBehaviour:
   waitType: 0
   timeToWait: 0
   entity: {fileID: 0}
-  entityGo: {fileID: 1419977697}
-  entityId: 
-  entityCurrentTab: 1
+  targEntity:
+    targetType: 1
+    entityGo: {fileID: 0}
+    entityId: 
   alpha: 0
   currentAlpha: 255
 --- !u!1 &1614926758
@@ -31539,7 +32100,33 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  dashTime: 0
+  dash:
+    curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 1
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 1
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    duration: 1
+    timer: 0
   dashSpeed: 0
   dashCooldown: 5
 --- !u!33 &1651284221
@@ -31629,9 +32216,10 @@ MonoBehaviour:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-  destinationCurrentTab: 0
-  goDestination: {fileID: 172313524}
-  vectorDestination: {x: 0, y: 0, z: 0}
+  targDestination:
+    targetType: 0
+    vector: {x: 0, y: 0, z: 0}
+    transform: {fileID: 0}
 --- !u!1001 &1657728583
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -32041,9 +32629,10 @@ MonoBehaviour:
   waitType: 0
   timeToWait: 0
   entity: {fileID: 0}
-  entityGo: {fileID: 89998047}
-  entityId: 
-  entityCurrentTab: 1
+  targEntity:
+    targetType: 1
+    entityGo: {fileID: 0}
+    entityId: 
   alpha: 0
   currentAlpha: 255
 --- !u!1001 &1691198499
@@ -32413,9 +33002,10 @@ MonoBehaviour:
   waitType: 0
   timeToWait: 0
   entity: {fileID: 0}
-  entityGo: {fileID: 1958616360}
-  entityId: 
-  entityCurrentTab: 1
+  targEntity:
+    targetType: 1
+    entityGo: {fileID: 0}
+    entityId: 
   alpha: 0
   currentAlpha: 255
 --- !u!4 &1712279091 stripped
@@ -32497,9 +33087,10 @@ MonoBehaviour:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-  destinationCurrentTab: 0
-  goDestination: {fileID: 172313524}
-  vectorDestination: {x: 0, y: 0, z: 0}
+  targDestination:
+    targetType: 0
+    vector: {x: 0, y: 0, z: 0}
+    transform: {fileID: 0}
 --- !u!1 &1716624559
 GameObject:
   m_ObjectHideFlags: 0
@@ -32758,9 +33349,10 @@ MonoBehaviour:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-  destinationCurrentTab: 0
-  goDestination: {fileID: 172313524}
-  vectorDestination: {x: 0, y: 0, z: 0}
+  targDestination:
+    targetType: 0
+    vector: {x: 0, y: 0, z: 0}
+    transform: {fileID: 0}
 --- !u!1001 &1721654705
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -33281,9 +33873,10 @@ MonoBehaviour:
   waitType: 0
   timeToWait: 0
   entity: {fileID: 0}
-  entityGo: {fileID: 590131789}
-  entityId: 
-  entityCurrentTab: 1
+  targEntity:
+    targetType: 1
+    entityGo: {fileID: 0}
+    entityId: 
   alpha: 0
   currentAlpha: 255
 --- !u!1 &1753073319
@@ -33332,9 +33925,10 @@ MonoBehaviour:
   waitType: 0
   timeToWait: 0
   entity: {fileID: 0}
-  entityGo: {fileID: 590131789}
-  entityId: 
-  entityCurrentTab: 1
+  targEntity:
+    targetType: 1
+    entityGo: {fileID: 0}
+    entityId: 
   alpha: 0
   currentAlpha: 160
 --- !u!1 &1754812139
@@ -33462,9 +34056,10 @@ MonoBehaviour:
   waitType: 0
   timeToWait: 0
   entity: {fileID: 0}
-  entityGo: {fileID: 1210892033}
-  entityId: 
-  entityCurrentTab: 1
+  targEntity:
+    targetType: 1
+    entityGo: {fileID: 0}
+    entityId: 
   alpha: 0
   currentAlpha: 160
 --- !u!1 &1759748210
@@ -33561,9 +34156,10 @@ MonoBehaviour:
   waitType: 0
   timeToWait: 0
   entity: {fileID: 0}
-  entityGo: {fileID: 2074281704}
-  entityId: 
-  entityCurrentTab: 1
+  targEntity:
+    targetType: 1
+    entityGo: {fileID: 0}
+    entityId: 
   alpha: 0
   currentAlpha: 255
 --- !u!1 &1765978302
@@ -34126,9 +34722,10 @@ MonoBehaviour:
   waitType: 0
   timeToWait: 0
   entity: {fileID: 0}
-  entityGo: {fileID: 2074281704}
-  entityId: 
-  entityCurrentTab: 1
+  targEntity:
+    targetType: 1
+    entityGo: {fileID: 0}
+    entityId: 
   alpha: 0
   currentAlpha: 160
 --- !u!1001 &1797134549
@@ -34998,9 +35595,10 @@ MonoBehaviour:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-  destinationCurrentTab: 0
-  goDestination: {fileID: 172313524}
-  vectorDestination: {x: 0, y: 0, z: 0}
+  targDestination:
+    targetType: 0
+    vector: {x: 0, y: 0, z: 0}
+    transform: {fileID: 0}
 --- !u!1 &1834366669
 GameObject:
   m_ObjectHideFlags: 0
@@ -35047,9 +35645,10 @@ MonoBehaviour:
   waitType: 0
   timeToWait: 0
   entity: {fileID: 0}
-  entityGo: {fileID: 1958616360}
-  entityId: 
-  entityCurrentTab: 1
+  targEntity:
+    targetType: 1
+    entityGo: {fileID: 0}
+    entityId: 
   alpha: 0
   currentAlpha: 160
 --- !u!4 &1837190018 stripped
@@ -35843,7 +36442,33 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  dashTime: 1
+  dash:
+    curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 1
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 1
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    duration: 1
+    timer: 0
   dashSpeed: 50
   dashCooldown: 5
   hidden: 0
@@ -36439,7 +37064,33 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  dashTime: 1
+  dash:
+    curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 1
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 1
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    duration: 1
+    timer: 0
   dashSpeed: 50
   dashCooldown: 5
   hidden: 0
@@ -37643,7 +38294,33 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  dashTime: 0
+  dash:
+    curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 1
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 1
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    duration: 1
+    timer: 0
   dashSpeed: 0
   dashCooldown: 5
 --- !u!33 &1935612781
@@ -37863,9 +38540,10 @@ MonoBehaviour:
   waitType: 0
   timeToWait: 0
   entity: {fileID: 0}
-  entityGo: {fileID: 1419977697}
-  entityId: 
-  entityCurrentTab: 1
+  targEntity:
+    targetType: 1
+    entityGo: {fileID: 0}
+    entityId: 
   alpha: 0
   currentAlpha: 160
 --- !u!1 &1948657873
@@ -37914,9 +38592,10 @@ MonoBehaviour:
   waitType: 0
   timeToWait: 0
   entity: {fileID: 0}
-  entityGo: {fileID: 0}
-  entityId: LionCub
-  entityCurrentTab: 0
+  targEntity:
+    targetType: 0
+    entityGo: {fileID: 172313523}
+    entityId: LionCub
   time: 0
   currentTime: 8
 --- !u!4 &1949141260 stripped
@@ -38329,7 +39008,33 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  dashTime: 0
+  dash:
+    curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 1
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 1
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    duration: 1
+    timer: 0
   dashSpeed: 0
   dashCooldown: 5
 --- !u!33 &1958616361
@@ -38886,9 +39591,10 @@ MonoBehaviour:
   waitType: 0
   timeToWait: 0
   entity: {fileID: 0}
-  entityGo: {fileID: 866622903}
-  entityId: 
-  entityCurrentTab: 1
+  targEntity:
+    targetType: 1
+    entityGo: {fileID: 0}
+    entityId: 
   alpha: 0
   currentAlpha: 255
 --- !u!4 &2022970942 stripped
@@ -40067,7 +40773,33 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  dashTime: 0
+  dash:
+    curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 1
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 1
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    duration: 1
+    timer: 0
   dashSpeed: 0
   dashCooldown: 5
 --- !u!1 &2075510071
@@ -40116,9 +40848,10 @@ MonoBehaviour:
   waitType: 0
   timeToWait: 0
   entity: {fileID: 0}
-  entityGo: {fileID: 462383563}
-  entityId: 
-  entityCurrentTab: 1
+  targEntity:
+    targetType: 1
+    entityGo: {fileID: 0}
+    entityId: 
   alpha: 0
   currentAlpha: 255
 --- !u!4 &2084238683 stripped
@@ -41528,7 +42261,33 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  dashTime: 1
+  dash:
+    curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 1
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 1
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    duration: 1
+    timer: 0
   dashSpeed: 50
   dashCooldown: 5
   hidden: 0

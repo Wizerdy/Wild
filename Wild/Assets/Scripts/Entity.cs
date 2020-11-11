@@ -5,6 +5,8 @@ using UnityEngine;
 using UnityEngine.AI;
 
 public class Entity : MonoBehaviour {
+    private const int MOVE_FPS = 60;
+
     [Serializable]
     public class MovementCurve {
         public AnimationCurve curve;
@@ -98,13 +100,13 @@ public class Entity : MonoBehaviour {
     public AnimationCurve rotationAcceleration;
 
     [Header("Dash")]
-    public float dashTime = 1f;
+    [SerializeField] protected MovementCurve dash = new MovementCurve();
     public float dashSpeed = 50f;
     public float dashCooldown = 5f;
     private bool canDash = true;
-    private float dashCountdown = -1f;
     private bool isDashing = false;
     private Vector3 dashDirection = Vector3.zero;
+    private float dashVelocityStart = 0f;
 
     protected Rigidbody rigidBody = null;
 
@@ -121,57 +123,53 @@ public class Entity : MonoBehaviour {
         get { return moveDirection; }
         set {
             moveDirection = value;
-            if(moveDirection != Vector2.zero)
+            if (moveDirection != Vector2.zero)
                 direction = moveDirection;
         }
     }
 
     #region Movements properties
 
-    public MovementCurve Speed
-    {
+    public MovementCurve Speed {
         get { return acceleration.Clone(); }
-        private set {}
+        private set { }
     }
 
     public MovementCurve Acceleration {
-        get { return acceleration.Clone();  }
-        private set {}
+        get { return acceleration.Clone(); }
+        private set { }
     }
 
-    public MovementCurve Frictions
-    {
+    public MovementCurve Frictions {
         get { return acceleration.Clone(); }
-        private set {}
+        private set { }
     }
 
-    public MovementCurve TurnAround
-    {
+    public MovementCurve TurnAround {
         get { return acceleration.Clone(); }
-        private set {}
+        private set { }
     }
 
-    public MovementCurve Turn
-    {
+    public MovementCurve Turn {
         get { return acceleration.Clone(); }
-        private set {}
+        private set { }
     }
 
     #endregion
 
     public bool IsDashing {
         get { return isDashing; }
-        private set {}
+        private set { }
     }
 
     public bool CanDash {
         get { return canDash; }
-        private set {}
+        private set { }
     }
 
     public bool IsMovementForced {
         get { return forcedMovements; }
-        private set {}
+        private set { }
     }
 
     #endregion
@@ -195,7 +193,8 @@ public class Entity : MonoBehaviour {
             UpdateRotation();
         }
 
-        ApplySpeed();
+        if(!IsMovementForced)
+            ApplySpeed();
     }
 
     #endregion
@@ -206,7 +205,7 @@ public class Entity : MonoBehaviour {
         if (goToFollow != null) {
             MoveToDestination(goToFollow.transform.position + followPositionDelta);
         }
-        
+
         if (goToDestination) {
             UpdateDestination();
         }
@@ -227,7 +226,7 @@ public class Entity : MonoBehaviour {
                 StartAcceleration();
             }
 
-            if(isTurningAround) {
+            if (isTurningAround) {
                 velocity = ApplyTurnAround(velocity);
             } else {
                 Vector2 velocity = ApplyAcceleration();
@@ -237,7 +236,7 @@ public class Entity : MonoBehaviour {
 
             prevMoveDirection = moveDirection;
         } else {
-            if(wasMoving) {
+            if (wasMoving) {
                 StartFrictions();
             }
 
@@ -282,7 +281,7 @@ public class Entity : MonoBehaviour {
 
     private Vector2 ApplyAcceleration() {
         acceleration.timer += Time.deltaTime;
-        if(acceleration.timer < acceleration.duration) {
+        if (acceleration.timer < acceleration.duration) {
             float ratio = acceleration.GetRatio();
             float speed = Mathf.Lerp(0f, speedMax, ratio);
 
@@ -300,7 +299,7 @@ public class Entity : MonoBehaviour {
 
     private Vector2 ApplyFrictions(Vector2 velocity) {
         frictions.timer += Time.deltaTime;
-        if(frictions.timer < frictions.duration) {
+        if (frictions.timer < frictions.duration) {
             float ratio = frictions.GetRatio();
             float speed = Mathf.Lerp(speedMax, 0f, ratio);
             velocity = velocity.normalized * speed;
@@ -321,7 +320,7 @@ public class Entity : MonoBehaviour {
 
     private Vector2 ApplyTurnAround(Vector2 velocity) {
         turnAround.timer += Time.deltaTime;
-        if(turnAround.timer < turnAround.duration) {
+        if (turnAround.timer < turnAround.duration) {
             float ratio = turnAround.GetRatio();
             float speed = Mathf.Lerp(turnAroundVelocityStart, 0f, ratio);
             velocity = velocity.normalized * speed;
@@ -343,9 +342,9 @@ public class Entity : MonoBehaviour {
     }
 
     private Vector2 ApplyTurn(Vector2 velocity) {
-        if(isTurning) {
+        if (isTurning) {
             turn.timer += Time.deltaTime;
-            if(turn.timer < turn.duration) {
+            if (turn.timer < turn.duration) {
                 float ratio = turn.GetRatio();
                 velocity = Vector2.Lerp(turnVelocityStart, velocity, ratio);
             } else {
@@ -385,7 +384,7 @@ public class Entity : MonoBehaviour {
             }
 
         } else { // Sans PathFinding
-          //if (IsNearPoint(new Vector2(destination.x, destination.z), 2f)) {
+                 //if (IsNearPoint(new Vector2(destination.x, destination.z), 2f)) {
             if (IsNearPoint(destination.ConvertTo2D(), destinationRadius)) {
                 goToDestination = false;
                 MoveDir(Vector2.zero);
@@ -415,8 +414,7 @@ public class Entity : MonoBehaviour {
         }
     }
 
-    private void RefreshPath()
-    {
+    private void RefreshPath() {
         Vector3 originPos = Position;
 
         //Vector3 destinationPos = new Vector3(destination.x, Position.y, destination.z);
@@ -464,7 +462,7 @@ public class Entity : MonoBehaviour {
     public void MoveToDestination(Vector3 dest) {
         destination = dest;
         goToDestination = true;
-        if(usePathFinding) {
+        if (usePathFinding) {
             RefreshPath();
         }
     }
@@ -477,8 +475,7 @@ public class Entity : MonoBehaviour {
         }
     }
 
-    public void FollowLock(GameObject go)
-    {
+    public void FollowLock(GameObject go) {
         goToFollow = go;
         followPositionDelta = Position - go.transform.position;
         if (usePathFinding) {
@@ -486,10 +483,10 @@ public class Entity : MonoBehaviour {
         }
     }
 
-    public void DoMoveLerp(Vector3 destination, float time, int steps) {
+    public void DoMoveLerp(Vector3 destination, float time) {
         if (forcedMovementsRoutine != null) { StopCoroutine(forcedMovementsRoutine); }
 
-        forcedMovementsRoutine = StartCoroutine(MoveLerp(destination, time, steps));
+        forcedMovementsRoutine = StartCoroutine(MoveLerp(destination, time));
         forcedMovements = true;
     }
 
@@ -498,8 +495,7 @@ public class Entity : MonoBehaviour {
         followPositionDelta = Vector3.zero;
     }
 
-    public void CopyMovementValues(Entity entity)
-    {
+    public void CopyMovementValues(Entity entity) {
         speedMax = entity.speedMax;
         speed = entity.Speed;
         acceleration = entity.Acceleration;
@@ -508,13 +504,11 @@ public class Entity : MonoBehaviour {
         turnAround = entity.TurnAround;
     }
 
-    public void ResetVelocityX()
-    {
+    public void ResetVelocityX() {
         velocity.x = 0f;
     }
 
-    public void ResetVelocityY()
-    {
+    public void ResetVelocityY() {
         velocity.y = 0f;
     }
 
@@ -523,22 +517,30 @@ public class Entity : MonoBehaviour {
     #region Dash
 
     public void Dash() {
+        if(canDash == false) { return; }
+
+        canDash = false;
         isDashing = true;
-        dashCountdown = dashTime;
         dashDirection = direction;
+
+        dashVelocityStart = velocity.magnitude;
+        float dashTimerRatio = Mathf.InverseLerp(0f, dashSpeed, dashVelocityStart);
+        dash.timer = Mathf.Lerp(0f, dash.duration, dashTimerRatio);
     }
 
     public void UpdateDash() {
-        if (dashCountdown > 0) {
-            dashCountdown -= Time.fixedDeltaTime;
+        if (dash.timer < dash.duration) {
+            dash.timer += Time.fixedDeltaTime;
+            float ratio = dash.GetRatio();
+            float speed = Mathf.Lerp(dashVelocityStart, dashSpeed, ratio);
+            velocity = dashDirection * speed;
             if (rigidBody != null) {
-                velocity = dashDirection * dashSpeed;
+                rigidBody.velocity = velocity;
             }
         } else {
             isDashing = false;
             velocity = dashDirection * speedMax;
             if (rigidBody != null) {
-                //rigidbody.velocity = new Vector3(velocity.x, 0, velocity.y);
                 rigidBody.velocity = velocity.ConvertTo3D();
             }
             StartCoroutine(DashCooldown(dashCooldown));
@@ -549,33 +551,26 @@ public class Entity : MonoBehaviour {
 
     #region AreaTriggers
 
-    public void EnterAreaTrigger(AreaTrigger trigger)
-    {
+    public void EnterAreaTrigger(AreaTrigger trigger) {
         if (areaTriggers.Contains(trigger)) { areaTriggers.Add(trigger); return; }
         areaTriggers.Add(trigger);
 
         trigger.OnAreaEnter();
     }
 
-    public void ExitAreaTrigger(AreaTrigger trigger)
-    {
+    public void ExitAreaTrigger(AreaTrigger trigger) {
         if (!areaTriggers.Contains(trigger)) { return; }
 
-        if (areaTriggers.Count > 1)
-        {
-            if (trigger.alwaysExitActions)
-            {
+        if (areaTriggers.Count > 1) {
+            if (trigger.alwaysExitActions) {
                 trigger.OnAreaExit();
             }
             areaTriggers.Remove(trigger);
 
-            if (trigger != areaTriggers[areaTriggers.Count - 1])
-            {
+            if (trigger != areaTriggers[areaTriggers.Count - 1]) {
                 areaTriggers[areaTriggers.Count - 1].OnAreaEnter();
             }
-        }
-        else
-        {
+        } else {
             trigger.OnAreaExit();
             areaTriggers.Remove(trigger);
         }
@@ -585,7 +580,7 @@ public class Entity : MonoBehaviour {
 
     protected bool IsNearPoint(Vector2 pos, float radius) {
         //if((pos - new Vector2(Position.x, Position.z)).sqrMagnitude <= radius * radius) {
-        if((pos - Position.ConvertTo2D()).sqrMagnitude <= radius * radius) {
+        if ((pos - Position.ConvertTo2D()).sqrMagnitude <= radius * radius) {
             return true;
         }
         return false;
@@ -597,13 +592,12 @@ public class Entity : MonoBehaviour {
         canDash = true;
     }
 
-    IEnumerator MoveLerp(Vector3 destination, float time, int steps)
-    {
+    IEnumerator MoveLerp(Vector3 destination, float time) {
         Vector3 pos = Position;
-        for (int i = 0; i < steps; i++)
-        {
-            yield return new WaitForSeconds(time / (float)steps);
-            MoveInstant(Vector3.Lerp(pos, destination, (float)i / (float)steps));
+        float frames = time * (float)MOVE_FPS;
+        for (int i = 0; i < frames; i++) {
+            yield return new WaitForSeconds(time / (float)frames);
+            MoveInstant(Vector3.Lerp(pos, destination, (float)i / (float)frames));
         }
         MoveInstant(destination);
         forcedMovements = false;

@@ -2,30 +2,21 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ActionChangeSpeed : ActionEntity
-{
+public class ActionChangeSpeed : ActionEntity {
     public int speed;
 
     [HideInInspector] public int currentSpeed;
 
-    protected override void Start()
-    {
-        base.Start();
-
+    protected override void OnStart() {
         speed = currentSpeed;
     }
 
-    public override void Execute()
-    {
-        base.Execute();
-
+    protected override void OnExecute() {
         Tools.ChangeSpeed(entity.gameObject, speed);
     }
 
-    public override bool IsActionEnded()
-    {
-        if (actionEnded)
-        {
+    public override bool IsActionEnded() {
+        if (actionEnded) {
             return true;
         }
         return actionEnded;

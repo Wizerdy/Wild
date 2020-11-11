@@ -2,30 +2,22 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ActionChangeSize : ActionEntity
-{
+public class ActionChangeSize : ActionEntity {
     public int size;
 
     [HideInInspector] public int currentSize;
 
-    protected override void Start()
-    {
-        base.Start();
-
+    protected override void OnStart() {
         size = currentSize;
     }
 
-    public override void Execute()
-    {
-        base.Execute();
+    protected override void OnExecute() {
 
         Tools.ChangeSize(entity.gameObject, size);
     }
 
-    public override bool IsActionEnded()
-    {
-        if (actionEnded)
-        {
+    public override bool IsActionEnded() {
+        if (actionEnded) {
             return true;
         }
         return actionEnded;

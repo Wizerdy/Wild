@@ -4,27 +4,44 @@ using UnityEngine;
 using UnityEditor;
 
 [CustomEditor(typeof(Action))]
-public class ActionEditor : Editor {
-    private Action script;
-
-    public virtual void OnEnable() {
-        script = (Action)target;
-    }
+public abstract class ActionEditor : Editor {
+    protected const float SPACE = 2f;
 
     public override void OnInspectorGUI() {
-        GUILayout.BeginVertical("box");
-        GUILayout.Label("Action system");
-        EditorGUILayout.Space(2);
-        script.waitType = (Action.WaitType)EditorGUILayout.EnumPopup("Wait type", script.waitType);
+        EditorGUI.BeginChangeCheck();
+        serializedObject.Update();
 
-        if(script.waitType == Action.WaitType.TIME || script.waitType == Action.WaitType.BOTH) {
-            script.timeToWait = EditorGUILayout.FloatField("Time to wait", script.timeToWait);
+        EditorGUILayout.BeginVertical("box");
+        GUILayout.Label("Action system");
+        EditorGUILayout.Space(SPACE);
+
+        SerializedProperty waitTypeProperty = serializedObject.FindProperty("waitType");
+        EditorGUILayout.PropertyField(waitTypeProperty);
+
+        string waitTypeString = waitTypeProperty.enumNames[waitTypeProperty.enumValueIndex];
+        if (waitTypeString.Equals(Action.WaitType.TIME.ToString()) || waitTypeString.Equals(Action.WaitType.BOTH.ToString())) {
+            SerializedProperty timeToWaitProperty = serializedObject.FindProperty("timeToWait");
+            EditorGUILayout.PropertyField(timeToWaitProperty);
         }
 
-        GUILayout.EndVertical();
+        EditorGUILayout.EndVertical();
+
+        EditorGUILayout.Space(SPACE);
+
+        OnInspector();
+
+        serializedObject.ApplyModifiedProperties();
+        if (EditorGUI.EndChangeCheck()) {
+            OnValidate();
+        }
     }
 
+    public abstract void OnInspector();
+
     protected virtual void OnValidate() {
+        Action script = target as Action;
+        if (script == null) { return; }
+
         script.name = "";
     }
 }

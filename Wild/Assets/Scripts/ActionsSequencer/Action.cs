@@ -11,9 +11,11 @@ public abstract class Action : MonoBehaviour {
     protected bool actionEnded = false;
     public float timeToWait = 0f;
 
-    protected virtual void Start() {
-        
+    private void Start() {
+        OnStart();
     }
+
+    protected abstract void OnStart();
 
     public bool IsFinished() {
         switch(waitType) {
@@ -40,7 +42,10 @@ public abstract class Action : MonoBehaviour {
         if (waitType == WaitType.TIME || waitType == WaitType.BOTH) {
             StartCoroutine("Wait", timeToWait);
         }
+        OnExecute();
     }
+
+    protected abstract void OnExecute();
 
     public abstract bool IsActionEnded();
 

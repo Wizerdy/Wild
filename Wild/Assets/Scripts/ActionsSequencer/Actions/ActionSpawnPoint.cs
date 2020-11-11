@@ -2,26 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ActionSpawnPoint : ActionEntity
-{
+public class ActionSpawnPoint : ActionEntity {
     public Vector2 position;
 
-    protected override void Start()
-    {
-        base.Start();
-    }
+    protected override void OnStart() { }
 
-    public override void Execute()
-    {
-        base.Execute();
-
+    protected override void OnExecute() {
         entity.GetComponent<LionCubEntity>().ChangeSpawnPoint(position);
     }
 
-    public override bool IsActionEnded()
-    {
-        if (actionEnded)
-        {
+    public override bool IsActionEnded() {
+        if (actionEnded) {
             return true;
         }
         return actionEnded;

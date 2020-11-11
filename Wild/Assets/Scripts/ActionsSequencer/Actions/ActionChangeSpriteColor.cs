@@ -2,30 +2,21 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ActionChangeSpriteColor : ActionEntity
-{
+public class ActionChangeSpriteColor : ActionEntity {
     public Color spriteColor;
 
     [HideInInspector] public Color currentSpriteColor;
 
-    protected override void Start()
-    {
-        base.Start();
-
+    protected override void OnStart() {
         spriteColor = currentSpriteColor;
     }
 
-    public override void Execute()
-    {
-        base.Execute();
-
+    protected override void OnExecute() {
         Tools.ChangeSpriteColor(entity.gameObject, spriteColor);
     }
 
-    public override bool IsActionEnded()
-    {
-        if (actionEnded)
-        {
+    public override bool IsActionEnded() {
+        if (actionEnded) {
             return true;
         }
         return actionEnded;
