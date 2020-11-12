@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2941425626558915433}
   - component: {fileID: 7301816847429770384}
+  - component: {fileID: 7864321601719285015}
   m_Layer: 0
   m_Name: HighGrass_idle
   m_TagString: Untagged
@@ -24,13 +25,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2565322983790229971}
-  m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 8.6804695, y: 0.09, z: -24.466114}
+  m_LocalRotation: {x: -0.5, y: 0.5, z: 0.5, w: 0.5}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -90, y: 90, z: 0}
 --- !u!137 &7301816847429770384
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 0
@@ -46,6 +47,7 @@ SkinnedMeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -82,3 +84,16 @@ SkinnedMeshRenderer:
     m_Center: {x: 0.035992384, y: -0.027032256, z: 0.23915505}
     m_Extent: {x: 0.3118154, y: 0.5437433, z: 0.265442}
   m_DirtyAABB: 0
+--- !u!65 &7864321601719285015
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2565322983790229971}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.46443748, y: 0.53055936, z: 0.53088415}
+  m_Center: {x: 0.029582024, y: -0.007281393, z: 0.23915511}

@@ -35,7 +35,7 @@ public class SurbrillanceTrigger : MonoBehaviour
         sp.enabled = true;
         for (int i = 0; i < timeToGrow * fps; i++)
         {
-            gameObject.transform.localScale = new Vector3(Mathf.Lerp(baseRange.x,range, (float)i/(timeToGrow*fps) ), 1, 1);
+            gameObject.transform.localScale = new Vector3(Mathf.Lerp(baseRange.x,range, (float)i/(timeToGrow*fps) ), 1, Mathf.Lerp(baseRange.x, range, (float)i / (timeToGrow * fps)));
             yield return new WaitForSeconds(timeToGrow / (timeToGrow* fps));
 
         }

@@ -6,14 +6,14 @@ public class Surbrillance : MonoBehaviour
 {
     public Material surbrillance;
     private Material baseM;
-    private MeshRenderer Mesh;
+    private SkinnedMeshRenderer Mesh;
     
 
 
     void Start()
     {
-        Mesh = GetComponent<MeshRenderer>();
-        baseM = GetComponent<MeshRenderer>().material; 
+        Mesh = GetComponent<SkinnedMeshRenderer>();
+        baseM = GetComponent<SkinnedMeshRenderer>().material; 
     }
 
     // Update is called once per frame
