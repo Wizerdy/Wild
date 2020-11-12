@@ -25,7 +25,7 @@ public class TargetEntityDrawer : PropertyDrawer
         position.y += EditorGUIUtility.standardVerticalSpacing;
 
         Rect buttonPosition = position;
-        buttonPosition.width /= 2;
+        buttonPosition.width /= 3;
         buttonPosition.height = EditorGUIUtility.singleLineHeight;
 
         int typeIndex = targetTypeProperty.intValue;
@@ -37,6 +37,11 @@ public class TargetEntityDrawer : PropertyDrawer
         buttonPosition.x += buttonPosition.width;
         if(GUI.Button(buttonPosition, "Entity")) {
             typeIndex = 1;
+        }
+
+        buttonPosition.x += buttonPosition.width;
+        if (GUI.Button(buttonPosition, "Target")) {
+            typeIndex = 2;
         }
 
         targetTypeProperty.intValue = typeIndex;
@@ -51,6 +56,11 @@ public class TargetEntityDrawer : PropertyDrawer
             case TargetEntity.ENTITY_TARGET_TYPE.ENTITY_ID:
                 position.y += EditorGUIUtility.singleLineHeight + EditorGUIUtility.standardVerticalSpacing;
                 EditorGUI.PropertyField(position, property.FindPropertyRelative("entityId"));
+                break;
+
+            case TargetEntity.ENTITY_TARGET_TYPE.TARGET:
+                position.y += EditorGUIUtility.singleLineHeight + EditorGUIUtility.standardVerticalSpacing;
+                GUI.Label(position, "Using the entity that trigger the Action sequencer");
                 break;
         }
     }

@@ -11,7 +11,7 @@ public abstract class Action : MonoBehaviour {
     protected bool actionEnded = false;
     public float timeToWait = 0f;
 
-    private void Start() {
+    public virtual void Start() {
         OnStart();
     }
 

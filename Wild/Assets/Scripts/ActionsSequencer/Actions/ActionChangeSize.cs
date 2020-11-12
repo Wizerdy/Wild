@@ -12,7 +12,6 @@ public class ActionChangeSize : ActionEntity {
     }
 
     protected override void OnExecute() {
-
         Tools.ChangeSize(entity.gameObject, size);
     }
 

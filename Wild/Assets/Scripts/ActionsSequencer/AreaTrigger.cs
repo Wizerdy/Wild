@@ -48,12 +48,12 @@ public class AreaTrigger : MonoBehaviour {
         if (gameObject.name.Equals("GameObject")) { gameObject.name = "AreaTrigger"; }
     }
 
-    public void OnAreaEnter() {
-        enterActions.Launch();
+    public void OnAreaEnter(Entity entity = null) {
+        enterActions.Launch(entity);
     }
 
-    public void OnAreaExit() {
-        exitActions.Launch();
+    public void OnAreaExit(Entity entity = null) {
+        exitActions.Launch(entity);
     }
 
     private void OnTriggerEnter(Collider other) {

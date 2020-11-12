@@ -5,11 +5,7 @@ using UnityEngine;
 public class ActionPause : ActionEntity {
     public float time;
 
-    [HideInInspector] public float currentTime;
-
-    protected override void OnStart() {
-        time = currentTime;
-    }
+    protected override void OnStart() { }
 
     protected override void OnExecute() {
         entity.DoMoveLerp(entity.transform.position, time);

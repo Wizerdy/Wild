@@ -555,7 +555,7 @@ public class Entity : MonoBehaviour {
         if (areaTriggers.Contains(trigger)) { areaTriggers.Add(trigger); return; }
         areaTriggers.Add(trigger);
 
-        trigger.OnAreaEnter();
+        trigger.OnAreaEnter(this);
     }
 
     public void ExitAreaTrigger(AreaTrigger trigger) {
@@ -563,15 +563,15 @@ public class Entity : MonoBehaviour {
 
         if (areaTriggers.Count > 1) {
             if (trigger.alwaysExitActions) {
-                trigger.OnAreaExit();
+                trigger.OnAreaExit(this);
             }
             areaTriggers.Remove(trigger);
 
             if (trigger != areaTriggers[areaTriggers.Count - 1]) {
-                areaTriggers[areaTriggers.Count - 1].OnAreaEnter();
+                areaTriggers[areaTriggers.Count - 1].OnAreaEnter(this);
             }
         } else {
-            trigger.OnAreaExit();
+            trigger.OnAreaExit(this);
             areaTriggers.Remove(trigger);
         }
     }

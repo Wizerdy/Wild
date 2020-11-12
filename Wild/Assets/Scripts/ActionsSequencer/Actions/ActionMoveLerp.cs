@@ -7,10 +7,6 @@ public class ActionMoveLerp : ActionEntity {
     public float time = 0f;
 
     public TargetDestination targDestination;
-    // Editor
-    //[HideInInspector] public int destinationCurrentTab;
-    //[HideInInspector] public Transform goDestination;
-    //[HideInInspector] public Vector3 vectorDestination;
 
     protected override void OnStart() { }
 

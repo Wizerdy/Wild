@@ -5,6 +5,7 @@ public class TargetEntity {
     public enum ENTITY_TARGET_TYPE {
         ENTITY_ID = 0,
         ENTITY,
+        TARGET
     }
 
     public ENTITY_TARGET_TYPE targetType = ENTITY_TARGET_TYPE.ENTITY;
@@ -27,7 +28,21 @@ public class TargetEntity {
     public string EntityName() {
         string name = "";
 
-        if (targetType == ENTITY_TARGET_TYPE.ENTITY_ID && String.Compare(entityId, "") != 0) { name = entityId; } else if (targetType == ENTITY_TARGET_TYPE.ENTITY && entityGo != null) { name = entityGo.name; }
+        switch (targetType) {
+            case ENTITY_TARGET_TYPE.ENTITY_ID:
+                if (!String.IsNullOrWhiteSpace(entityId)) {
+                    name = entityId;
+                }
+                break;
+            case ENTITY_TARGET_TYPE.ENTITY:
+                if (entityGo != null) {
+                    name = entityGo.name;
+                }
+                break;
+            case ENTITY_TARGET_TYPE.TARGET:
+                name = "TARGET";
+                break;
+        }
 
         return name;
     }

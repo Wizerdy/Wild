@@ -13,7 +13,7 @@ public class ActionPauseEditor : ActionEntityEditor {
         GUILayout.BeginVertical("Box");
         GUILayout.Label("Pause");
 
-        serializedObject.FindProperty("currentTime").PropertyField();
+        serializedObject.FindProperty("time").PropertyField();
 
         GUILayout.EndVertical();
     }
@@ -26,11 +26,11 @@ public class ActionPauseEditor : ActionEntityEditor {
 
         string name = "PAUSE";
 
-        if (string.Compare(script.name, "") != 0) {
+        if (!string.IsNullOrWhiteSpace(script.name)) {
             name = " " + name;
         }
 
-        name += " DURING " + script.currentTime;
+        name += " DURING " + script.time;
 
         script.name += name + "s";
     }
