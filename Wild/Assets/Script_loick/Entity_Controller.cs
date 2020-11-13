@@ -5,14 +5,12 @@ using Rewired;
 
 public class Entity_Controller : MonoBehaviour {
     public Entity player;
-    private string _rewiredPlayerName = "Player0";
+    public string _rewiredPlayerName = "Player0";
     private Rewired.Player _rewiredPlayer = null;
-    public float joyaxeX;
-    public float joyaxeY;
-    public bool test;
-    public float run;
-    public float walk;
-
+    private Vector2 dirMove;
+    private float runSpeed;
+    private float walkSpeed;
+    private float crouchSpeed;
     private Animator animator;
 
     private void Awake() {
@@ -20,34 +18,32 @@ public class Entity_Controller : MonoBehaviour {
     }
 
     private void Start() {
-        run = player.speedMax;
-        walk = player.speedMax / 2;
+        runSpeed = player.speedMax;
+        walkSpeed = player.speedMax / 2;
+        crouchSpeed = player.speedMax / 3;
         _rewiredPlayer = ReInput.players.GetPlayer(_rewiredPlayerName);
     }
 
     void Update() {
-        joyaxeX = _rewiredPlayer.GetAxis("Horizontal");
-        joyaxeY = _rewiredPlayer.GetAxis("Vertical");
+        dirMove.x = _rewiredPlayer.GetAxis("Horizontal");
+        dirMove.y = _rewiredPlayer.GetAxis("Vertical");
 
-        Vector2 dir_Move = Vector2.zero;
-        if (joyaxeX == Mathf.Clamp(joyaxeX, -0.9f, 0.9f) && joyaxeY == Mathf.Clamp(joyaxeY, -0.9f, 0.9f)) {
-            test = true;
-            dir_Move.x = joyaxeX;
-            dir_Move.y = joyaxeY;
-            player.speedMax = walk;
-        } else {
-            test = false;
-            dir_Move.x = joyaxeX;
-            dir_Move.y = joyaxeY;
-            player.speedMax = run;
+        if (dirMove.x == Mathf.Clamp(dirMove.x, -0.3f, 0.3f) && dirMove.y == Mathf.Clamp(dirMove.y, -0.3f, 0.3f)) {
+            player.speedMax = crouchSpeed;
+        }
+        else if (dirMove.x == Mathf.Clamp(dirMove.x, -0.6f, 0.6f) && dirMove.y == Mathf.Clamp(dirMove.y, -0.6f, 0.6f)) {
+            player.speedMax = walkSpeed;
+        }
+        else {
+            player.speedMax = runSpeed;
         }
 
         if (Input.GetKeyDown(KeyCode.Space)) {
             player.Dash();
         }
 
-        if (animator != null) { animator.SetFloat("MoveX", -dir_Move.x); animator.SetFloat("MoveY", dir_Move.y); animator.SetBool("Moving", dir_Move != Vector2.zero); }
+        if (animator != null) { animator.SetFloat("MoveX", -dirMove.x); animator.SetFloat("MoveY", dirMove.y); animator.SetBool("Moving", dirMove != Vector2.zero); }
 
-        player.MoveDir(dir_Move);
+        player.MoveDir(dirMove);
     }
 }

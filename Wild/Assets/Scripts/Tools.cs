@@ -47,9 +47,9 @@ public static class Tools
     public static void ChangeAlphaMaterial(GameObject obj, byte alpha) {
         if (obj.GetComponent<Renderer>() != null) {
             Renderer renderer = obj.GetComponent<Renderer>();
-            Color32 col = renderer.material.GetColor("_BaseColor");
+            Color32 col = renderer.material.GetColor("_Color");
             col.a = alpha;
-            renderer.material.SetColor("_BaseColor", col);
+            renderer.material.SetColor("_Color", col);
         }
     }
 

@@ -188,7 +188,7 @@ public class Entity : MonoBehaviour {
     protected virtual void FixedUpdate() {
         if (isDashing) {
             UpdateDash();
-        } else {
+        } else if (!IsMovementForced) {
             UpdateMove();
             UpdateRotation();
         }
@@ -488,6 +488,11 @@ public class Entity : MonoBehaviour {
 
         forcedMovementsRoutine = StartCoroutine(MoveLerp(destination, time));
         forcedMovements = true;
+    }
+
+    public void StopMove(float time)
+    {
+        DoMoveLerp(transform.position, time);
     }
 
     public void ClearFollow() {
