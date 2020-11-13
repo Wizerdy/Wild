@@ -38,7 +38,7 @@ public class Entity_Controller : MonoBehaviour {
             player.speedMax = runSpeed;
         }
 
-        if (Input.GetKeyDown(KeyCode.Space)) {
+        if (_rewiredPlayer.GetButtonDown("Dash")) {
             player.Dash();
         }
 
