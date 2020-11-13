@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class ActionSpawnPoint : ActionEntity {
-    public Vector2 position;
+    public Vector3 position;
 
     protected override void OnStart() { }
 

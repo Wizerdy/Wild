@@ -6,6 +6,8 @@ using UnityEditor;
 [ExecuteInEditMode]
 [CustomEditor(typeof(ActionSpawnPoint))]
 public class ActionSpawnPointEditor : ActionEntityEditor {
+    private ActionSpawnPoint script;
+
     public override void OnInspector() {
         base.OnInspector();
         GUILayout.Space(SPACE);
@@ -33,5 +35,16 @@ public class ActionSpawnPointEditor : ActionEntityEditor {
         name += " TO " + script.position;
 
         script.name += name;
+    }
+
+    private void OnEnable()
+    {
+        script = (ActionSpawnPoint)target;
+    }
+
+    private void OnSceneGUI()
+    {
+        Handles.DrawGizmos(Camera.main);
+        script.position = Handles.PositionHandle(script.position, Quaternion.identity);
     }
 }

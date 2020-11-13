@@ -46,4 +46,13 @@ public class Entity_Controller : MonoBehaviour {
 
         player.MoveDir(dirMove);
     }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.gameObject.tag == "HidingSpot" && _rewiredPlayer.GetButtonDown("Hide"))
+        {
+            player.GetComponent<LionCubEntity>().Hide(other.GetComponent<HideZone>());
+            Debug.Log(other.GetComponent<HideZone>().exitPoint);
+        }
+    }
 }

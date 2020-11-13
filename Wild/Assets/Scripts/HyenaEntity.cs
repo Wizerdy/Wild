@@ -145,7 +145,7 @@ public class HyenaEntity : AnimalEntity
 
             GameObject found = FindTarget(hits, preyId);
             for (int j = 0; j < hits.Length; j++) {
-                if (debug) { Debug.Log(j + "- " + hits[j].collider); }
+                //if (debug) { Debug.Log(j + "- " + hits[j].collider); }
             }
 
             if (found != null) {
