@@ -6,6 +6,7 @@ public class ActionSequencer : MonoBehaviour
 {
     [HideInInspector] public Action[] actions;
     public bool launch = false;
+    public bool oneTimeUse = false;
 
     private int actionIndex = -1;
     private bool running = false;
@@ -55,6 +56,9 @@ public class ActionSequencer : MonoBehaviour
 
         if (actions[actions.Length - 1].IsFinished()) {
             ResetActions();
+            if(oneTimeUse) {
+                gameObject.SetActive(false);
+            }
         }
     }
 

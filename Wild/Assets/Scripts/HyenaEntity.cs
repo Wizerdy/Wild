@@ -6,7 +6,7 @@ using UnityEngine;
 public class HyenaEntity : AnimalEntity
 {
     public enum Awarness {
-        SLEEPING = 0, STANDING, PATROLLING, CHASING, SUSPICIOUS
+        PATROLLING = 0, SLEEPING, STANDING, CHASING, SUSPICIOUS
     }
 
     [Serializable]
@@ -26,6 +26,8 @@ public class HyenaEntity : AnimalEntity
 
     [Header("Hyena")]
     public Awarness awarness = Awarness.PATROLLING;
+
+    public bool debug = false;
 
     [Header("Field of view")]
     public int raycastNumber = 2;
@@ -142,6 +144,10 @@ public class HyenaEntity : AnimalEntity
             angle += fieldOfView / (float)(raycastNumber - 1);
 
             GameObject found = FindTarget(hits, preyId);
+            for (int j = 0; j < hits.Length; j++) {
+                if (debug) { Debug.Log(j + "- " + hits[j].collider); }
+            }
+
             if (found != null) {
                 return found;
             }
@@ -151,6 +157,30 @@ public class HyenaEntity : AnimalEntity
     }
 
     private GameObject FindTarget(RaycastHit[] hits, string entityId) {
+        if(hits.Length <= 0) { return null; }
+
+        //List<RaycastHit> obj = new List<RaycastHit>();
+        //obj.Add(hits[0]);
+        //float nearest = obj[0].distance;
+        //for (int i = 0; i < hits.Length; i++) {
+        //    if(nearest > obj[i].distance) {
+        //        obj.Insert(0, );
+        //    }
+        //}
+
+        bool swapped = true;
+        while (swapped) {
+            swapped = false;
+            for (int i = 0; i < hits.Length - 1; i++) {
+                if (hits[i].distance > hits[i + 1].distance) {
+                    RaycastHit hit = hits[i];
+                    hits[i] = hits[i + 1];
+                    hits[i + 1] = hit;
+                    swapped = true;
+                }
+            }
+        }
+
         for (int i = 0; i < hits.Length; i++) {
             GameObject collide = hits[i].collider.gameObject;
             if (collide.GetComponent<Entity>() != null) {

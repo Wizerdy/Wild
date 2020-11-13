@@ -66,4 +66,16 @@ public class LionCubEntity : AnimalEntity {
     public void ChangeSpawnPoint(Vector2 position) {
         spawnPoint = position;
     }
+
+    public void Hide(HideZone zone) {
+        if (hidden == false || hideCoat > 0) {
+            hidden = true;
+            hideId = "Hole";
+            Position = zone.transform.position.Overwrite(Position.y, Tools.IgnoreMode.Y);
+        } else {
+            hidden = false;
+            hideId = "";
+            Position = zone.exitPoint;
+        }
+    }
 }
