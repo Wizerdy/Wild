@@ -38,7 +38,7 @@ public class Entity_Controller : MonoBehaviour {
             player.speedMax = runSpeed;
         }
 
-        if (Input.GetKeyDown(KeyCode.Space)) {
+        if (_rewiredPlayer.GetButtonDown("Dash")) {
             player.Dash();
         }
 
@@ -49,10 +49,10 @@ public class Entity_Controller : MonoBehaviour {
 
     private void OnTriggerStay(Collider other)
     {
-        if (other.gameObject.tag == "HidingSpot" && _rewiredPlayer.GetButtonDown("Hide"))
+        if (!(null == other.GetComponent<HideZone>()) && _rewiredPlayer.GetButtonDown("Hide"))
         {
             player.GetComponent<LionCubEntity>().Hide(other.GetComponent<HideZone>());
-            Debug.Log(other.GetComponent<HideZone>().exitPoint);
+            Debug.Log(player.GetComponent<LionCubEntity>().hidden);
         }
     }
 }

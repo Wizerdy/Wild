@@ -68,7 +68,7 @@ public class LionCubEntity : AnimalEntity {
     }
 
     public void Hide(HideZone zone) {
-        if (hidden == false || hideCoat > 0) {
+        if (hidden == false) {
             hidden = true;
             hideId = "Hole";
             Position = zone.transform.position.Overwrite(Position.y, Tools.IgnoreMode.Y);
