@@ -7,13 +7,22 @@ public class Surbrillance : MonoBehaviour
     public Material surbrillance;
     private Material baseM;
     private SkinnedMeshRenderer Mesh;
-    
+    private Material baseM2;
+    private MeshRenderer Mesh2;
 
 
     void Start()
     {
-        Mesh = GetComponent<SkinnedMeshRenderer>();
-        baseM = GetComponent<SkinnedMeshRenderer>().material; 
+        if (!(null == GetComponent<SkinnedMeshRenderer>()))
+        {
+            Mesh = GetComponent<SkinnedMeshRenderer>();
+            baseM = GetComponent<SkinnedMeshRenderer>().material;
+        }
+        if (!(null == GetComponent<MeshRenderer>()))
+        {
+            Mesh2 = GetComponent<MeshRenderer>();
+            baseM2 = GetComponent<MeshRenderer>().material;
+        }
     }
 
     // Update is called once per frame
@@ -25,16 +34,27 @@ public class Surbrillance : MonoBehaviour
 
     public void Shine(bool ShinyOrNot) 
     {
-        
-        if (ShinyOrNot)
+        if (!(null == Mesh))
         {
-            Mesh.sharedMaterial = surbrillance;
+            if (ShinyOrNot)
+            {
+                Mesh.sharedMaterial = surbrillance;
+            }
+            if (!ShinyOrNot)
+            {
+                Mesh.sharedMaterial = baseM;
+            }
         }
-        if (!ShinyOrNot)
+        if (!(null == Mesh2))
         {
-            Mesh.sharedMaterial = baseM;
+            if (ShinyOrNot)
+            {
+                Mesh2.sharedMaterial = surbrillance;
+            }
+            if (!ShinyOrNot)
+            {
+                Mesh2.sharedMaterial = baseM2;
+            }
         }
-    
-    
     }
 }
