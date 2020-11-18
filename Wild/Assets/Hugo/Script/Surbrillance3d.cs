@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Surbrillance : MonoBehaviour
+public class Surbrillance3d : MonoBehaviour
 {
     public Material surbrillance;
     private Material baseM;
