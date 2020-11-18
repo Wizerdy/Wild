@@ -50,9 +50,16 @@ public class SurbrillanceTrigger : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         
-        if (other.gameObject.GetComponent<Surbrillance>() != null)        {
+        if (other.gameObject.GetComponent<Surbrillance3d>() != null)       
+        {
             
-            other.gameObject.GetComponent<Surbrillance>().Shine(true);
+            other.gameObject.GetComponent<Surbrillance3d>().Shine(true);
+        }
+        
+        if (other.gameObject.GetComponent<Surbrillance2d>() != null)    
+        {
+            
+            other.gameObject.GetComponent<Surbrillance2d>().Shine(true);
         }
     }
 
@@ -61,9 +68,13 @@ public class SurbrillanceTrigger : MonoBehaviour
     private void OnTriggerExit(Collider other)
     {
         
-        if (other.gameObject.GetComponent<Surbrillance>() != null)
+        if (other.gameObject.GetComponent<Surbrillance3d>() != null)
         {
-            other.gameObject.GetComponent<Surbrillance>().Shine(false);
+            other.gameObject.GetComponent<Surbrillance3d>().Shine(false);
+        }
+        if (other.gameObject.GetComponent<Surbrillance2d>() != null)
+        {
+            other.gameObject.GetComponent<Surbrillance2d>().Shine(false);
         }
     }
 }
