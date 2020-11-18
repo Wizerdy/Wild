@@ -1,54 +1,58 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Rewired;
 
-public class Entity_Controller : MonoBehaviour
-{
-    public Entity entity;
+public class Entity_Controller : MonoBehaviour {
+    public Entity player;
+    public string _rewiredPlayerName = "Player0";
+    private Rewired.Player _rewiredPlayer = null;
+    private Vector2 dirMove;
+    private float runSpeed;
+    private float walkSpeed;
+    private float crouchSpeed;
+    private Animator animator;
 
-    void Update()
+    private void Awake() {
+        animator = GetComponent<Animator>();
+    }
+
+    private void Start() {
+        runSpeed = player.speedMax;
+        walkSpeed = player.speedMax / 2;
+        crouchSpeed = player.speedMax / 3;
+        _rewiredPlayer = ReInput.players.GetPlayer(_rewiredPlayerName);
+    }
+
+    void Update() {
+        dirMove.x = _rewiredPlayer.GetAxis("Horizontal");
+        dirMove.y = _rewiredPlayer.GetAxis("Vertical");
+
+        if (dirMove.x == Mathf.Clamp(dirMove.x, -0.3f, 0.3f) && dirMove.y == Mathf.Clamp(dirMove.y, -0.3f, 0.3f)) {
+            player.speedMax = crouchSpeed;
+        }
+        else if (dirMove.x == Mathf.Clamp(dirMove.x, -0.6f, 0.6f) && dirMove.y == Mathf.Clamp(dirMove.y, -0.6f, 0.6f)) {
+            player.speedMax = walkSpeed;
+        }
+        else {
+            player.speedMax = runSpeed;
+        }
+
+        if (_rewiredPlayer.GetButtonDown("Dash")) {
+            player.Dash();
+        }
+
+        if (animator != null) { animator.SetFloat("MoveX", -dirMove.x); animator.SetFloat("MoveY", dirMove.y); animator.SetBool("Moving", dirMove != Vector2.zero); }
+
+        player.MoveDir(dirMove);
+    }
+
+    private void OnTriggerStay(Collider other)
     {
-        Vector2 dir_Move = Vector2.zero;
-
-        if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.Q)) {
-            dir_Move += Vector2.left;
+        if (!(null == other.GetComponent<HideZone>()) && _rewiredPlayer.GetButtonDown("Hide"))
+        {
+            player.GetComponent<LionCubEntity>().Hide(other.GetComponent<HideZone>());
+            Debug.Log(player.GetComponent<LionCubEntity>().hidden);
         }
-        else if(Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D)) {
-            dir_Move += Vector2.right;
-        }
-
-        if (Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.Z)) {
-            dir_Move += Vector2.up;
-        }
-        else if (Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.S)) {
-            dir_Move += Vector2.down;
-        }
-
-        if (Input.GetKeyDown(KeyCode.Space) && entity.CanDash) {
-            entity.Dash();
-        }
-
-        entity.MoveDir(dir_Move);
-    }
-
-    protected void OnCollisionEnter(Collision collide) {
-        if (collide.gameObject.tag == "Enemy") {
-            Lose();
-        }
-    }
-
-    protected void OnTriggerEnter(Collider collide) {
-        if(collide.gameObject.tag == "End") {
-            Debug.Log("Fin");
-            NextLevel();
-        }
-    }
-
-    protected void Lose() {
-        Tools.LoadScene(0);
-    }
-
-    protected void NextLevel() {
-        Application.Quit();
     }
 }

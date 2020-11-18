@@ -11,6 +11,8 @@ TagManager:
   - Hide
   - Enemy
   - End
+  - surbrillancetrigger
+  - HidingSpot
   layers:
   - Default
   - TransparentFX

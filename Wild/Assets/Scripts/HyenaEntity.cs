@@ -6,11 +6,28 @@ using UnityEngine;
 public class HyenaEntity : AnimalEntity
 {
     public enum Awarness {
-        PATROLLING, CHASING, SUSPICIOUS
+        PATROLLING = 0, SLEEPING, STANDING, CHASING, SUSPICIOUS
+    }
+
+    [Serializable]
+    public struct MovementsValues {
+        public float speedMax;
+        //public MovementCurve speed;
+        public MovementCurve acceleration;
+        public MovementCurve frictions;
+        public MovementCurve turnAround;
+        public MovementCurve turn;
+
+        [Range(0f, 90f)] public float turnAngleMin;
+        [Range(0f, 90f)] public float turnAngleMax;
+        public float turnDurationMin;
+        public float turnDurationMax;
     }
 
     [Header("Hyena")]
     public Awarness awarness = Awarness.PATROLLING;
+
+    public bool debug = false;
 
     [Header("Field of view")]
     public int raycastNumber = 2;
@@ -19,20 +36,37 @@ public class HyenaEntity : AnimalEntity
 
     [Header("Patrolling")]
     public Vector2[] patrolPoints;
+    [SerializeField] private MovementsValues patrolValues = new MovementsValues();
     private int patrolPointIndex;
 
     [Header("Chase")]
     public string preyId;
-    public float chaseSpeedFactor = 1.5f;
+    //public float chaseSpeedFactor = 1.5f;
+    [SerializeField] private MovementsValues chaseValues = new MovementsValues();
     private GameObject prey;
 
     [Header("Suspicious")]
     public float searchTime = 2f;
+    public float timeBeforeChase = 2f;
+    [SerializeField] private MovementsValues suspiciousValues = new MovementsValues();
     private float searchCountdown = -1f;
+    private float beforeChaseCountdown = -1f;
     private Vector2 lastPreyPos = Vector2.zero;
+
+    #region Properties
+
+    public bool HasPrey {
+        get { return prey != null; }
+        private set {}
+    }
+
+    #endregion
+
+    #region Unity callbacks
 
     protected override void Start() {
         base.Start();
+        beforeChaseCountdown = timeBeforeChase;
     }
 
     void Update() {
@@ -48,6 +82,10 @@ public class HyenaEntity : AnimalEntity
                 break;
         }
     }
+
+    #endregion
+
+    #region Movements
 
     void UpdatePatrol() {
         if(patrolPoints.Length > 0) {
@@ -74,18 +112,23 @@ public class HyenaEntity : AnimalEntity
 
     void UpdateSearch() {
         GameObject targ = Looking();
-        if (targ != null) {
-            Chase(targ);
-            return;
-        }
 
-        if(IsNearPoint(lastPreyPos, destinationRadius)) {
+        if (targ != null) {
+            if (beforeChaseCountdown > 0f) {
+                beforeChaseCountdown -= Time.deltaTime;
+            } else {
+                Chase(targ);
+                return;
+            }
+        } else {
             searchCountdown -= Time.deltaTime;
-            if(searchCountdown <= 0) {
-                patrol();
+            if (searchCountdown <= 0) {
+                Patrol();
             }
         }
     }
+
+    #endregion
 
     GameObject Looking() {
         RaycastHit[] hits;
@@ -101,6 +144,10 @@ public class HyenaEntity : AnimalEntity
             angle += fieldOfView / (float)(raycastNumber - 1);
 
             GameObject found = FindTarget(hits, preyId);
+            for (int j = 0; j < hits.Length; j++) {
+                //if (debug) { Debug.Log(j + "- " + hits[j].collider); }
+            }
+
             if (found != null) {
                 return found;
             }
@@ -110,15 +157,39 @@ public class HyenaEntity : AnimalEntity
     }
 
     private GameObject FindTarget(RaycastHit[] hits, string entityId) {
+        if(hits.Length <= 0) { return null; }
+
+        //List<RaycastHit> obj = new List<RaycastHit>();
+        //obj.Add(hits[0]);
+        //float nearest = obj[0].distance;
+        //for (int i = 0; i < hits.Length; i++) {
+        //    if(nearest > obj[i].distance) {
+        //        obj.Insert(0, );
+        //    }
+        //}
+
+        bool swapped = true;
+        while (swapped) {
+            swapped = false;
+            for (int i = 0; i < hits.Length - 1; i++) {
+                if (hits[i].distance > hits[i + 1].distance) {
+                    RaycastHit hit = hits[i];
+                    hits[i] = hits[i + 1];
+                    hits[i + 1] = hit;
+                    swapped = true;
+                }
+            }
+        }
+
         for (int i = 0; i < hits.Length; i++) {
             GameObject collide = hits[i].collider.gameObject;
             if (collide.GetComponent<Entity>() != null) {
                 Entity entity = collide.GetComponent<Entity>();
                 if (collide.tag == "Hide") {
-                    if (String.Compare(entity.entityId, hideId) != 0) {
+                    if (!hideId.Equals(entity.entityId)) {
                         return null;
                     }
-                } else if (String.Compare(entity.entityId, entityId) == 0) {
+                } else if (entityId.Equals(entity.entityId)) {
                     return collide;
                 }
             } else {
@@ -128,40 +199,44 @@ public class HyenaEntity : AnimalEntity
         return null;
     }
 
-    private void patrol() {
-        if (awarness == Awarness.CHASING) {
-            MultMovements(1f / chaseSpeedFactor);
-        }
+    public void Patrol() {
+        CopyMovementsValues(patrolValues);
+
+        prey = null;
         awarness = Awarness.PATROLLING;
     }
 
-    private void Chase(GameObject targ) {
+    public void Chase(GameObject targ) {
         prey = targ;
         Follow(prey);
 
-        if(awarness != Awarness.CHASING) {
-            MultMovements(chaseSpeedFactor);
-        }
+        CopyMovementsValues(chaseValues);
+
         awarness = Awarness.CHASING;
     }
 
-    private void Search(Vector2 pos) {
+    public void Search(Vector2 pos) {
         ClearFollow();
         prey = null;
         MoveToDestination(pos.ConvertTo3D());
         searchCountdown = searchTime;
         lastPreyPos = pos;
 
-        if (awarness == Awarness.CHASING){
-            MultMovements(1f / chaseSpeedFactor);
-        }
+        CopyMovementsValues(suspiciousValues);
+
         awarness = Awarness.SUSPICIOUS;
     }
 
-    private void MultMovements(float factor) {
-        speedMax *= factor;
-        acceleration *= factor;
-        friction /= factor;
-        turnFriction /= factor;
+    public void CopyMovementsValues(MovementsValues values) {
+        speedMax = values.speedMax;
+        acceleration = values.acceleration;
+        frictions = values.frictions;
+        turn = values.turn;
+        turnAround = values.turnAround;
+
+        turnAngleMin = values.turnAngleMin;
+        turnAngleMax = values.turnAngleMax;
+        turnDurationMin = values.turnDurationMin;
+        turnDurationMax = values.turnDurationMax;
     }
 }
