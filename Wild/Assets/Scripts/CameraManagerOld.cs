@@ -105,16 +105,16 @@ public class CameraManagerOld : MonoBehaviour
         gameZoneSize = arrayOfCamera[index].gameZoneSize;
     }
 
-    public void Zoom(Vector3 destination, float time, int steps, float percentage)
+    public void Zoom(Vector3 destination, float time, float percentage)
     {
-        cameraEntity.DoMoveLerp(Vector3.Lerp(cam.transform.position, destination, percentage), time, steps);
+        cameraEntity.DoMoveLerp(Vector3.Lerp(cam.transform.position, destination, percentage), time);
         this.percentage = percentage;
     }
 
     public void ResetCameraToBase(float time, int steps)
     {
         Entity entity = EntitiesManager.FindEntity(entityToFollow);
-        cameraEntity.DoMoveLerp(followDelta - entity.transform.position, time, steps);
+        cameraEntity.DoMoveLerp(followDelta - entity.transform.position, time);
         cam.transform.rotation = baseRotation;
     }
 }

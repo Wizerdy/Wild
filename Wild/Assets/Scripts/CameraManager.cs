@@ -205,7 +205,11 @@ public class CameraManager : MonoBehaviour {
     //}
 
     public void Zoom(Vector3 destination, float percentage, CameraTransition transition = null) {
-        destination = Vector3.Lerp(transform.position, destination, percentage);
+        if (percentage < 0) {
+            destination = Vector3.Lerp(transform.position, transform.position - (destination - transform.position), Mathf.Abs(percentage));
+        } else {
+            destination = Vector3.Lerp(transform.position, destination, percentage);
+        }
         MoveTo(destination, PROFILE_MODE.OVERRIDE, transition);
     }
 }

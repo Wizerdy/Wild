@@ -52,7 +52,7 @@ public class CollisionActions : MonoBehaviour
         if (null == otherEntity) return;
         if (!string.IsNullOrWhiteSpace(entityGroup) && Array.IndexOf(otherEntity.entityGroup, entityGroup) < 0) return;
 
-        enterActions.Launch();
+        enterActions.Launch(otherEntity);
     }
 
     private void OnTriggerExit(Collider other) {
@@ -60,7 +60,7 @@ public class CollisionActions : MonoBehaviour
         if (null == otherEntity) return;
         if (!string.IsNullOrWhiteSpace(entityGroup) && Array.IndexOf(otherEntity.entityGroup, entityGroup) < 0) return;
 
-        exitActions.Launch();
+        exitActions.Launch(otherEntity);
     }
 
     private void OnDrawGizmos() {

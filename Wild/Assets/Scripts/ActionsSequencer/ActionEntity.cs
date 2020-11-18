@@ -4,22 +4,20 @@ using UnityEngine;
 
 public abstract class ActionEntity : Action {
     [HideInInspector] public Entity entity;
+    [HideInInspector] public Entity entityTriggering;
+    [SerializeField] public TargetEntity targEntity;
 
-    //Editor
-    [HideInInspector] public Entity entityGo;
-    [HideInInspector] public string entityId;
-    [HideInInspector] public int entityCurrentTab;
-
-    protected override void Start() {
+    public override void Start() {
         base.Start();
+        entity = targEntity.FindEntity();
+    }
 
-        switch(entityCurrentTab) {
-            case 0:
-                entity = EntitiesManager.FindEntity(entityId);
-                break;
-            case 1:
-                entity = entityGo;
-                break;
+    public void Execute(Entity target) {
+        entityTriggering = target;
+        if (targEntity.targetType == TargetEntity.ENTITY_TARGET_TYPE.TARGET) {
+            entity = entityTriggering;
         }
+
+        base.Execute();
     }
 }

@@ -6,7 +6,7 @@ using UnityEngine;
 public class HyenaEntity : AnimalEntity
 {
     public enum Awarness {
-        PATROLLING, CHASING, SUSPICIOUS
+        SLEEPING = 0, STANDING, PATROLLING, CHASING, SUSPICIOUS
     }
 
     [Serializable]
@@ -45,19 +45,26 @@ public class HyenaEntity : AnimalEntity
 
     [Header("Suspicious")]
     public float searchTime = 2f;
+    public float timeBeforeChase = 2f;
     [SerializeField] private MovementsValues suspiciousValues = new MovementsValues();
     private float searchCountdown = -1f;
+    private float beforeChaseCountdown = -1f;
     private Vector2 lastPreyPos = Vector2.zero;
+
+    #region Properties
 
     public bool HasPrey {
         get { return prey != null; }
         private set {}
     }
 
+    #endregion
+
     #region Unity callbacks
 
     protected override void Start() {
         base.Start();
+        beforeChaseCountdown = timeBeforeChase;
     }
 
     void Update() {
@@ -103,17 +110,20 @@ public class HyenaEntity : AnimalEntity
 
     void UpdateSearch() {
         GameObject targ = Looking();
-        if (targ != null) {
-            Chase(targ);
-            return;
-        }
 
-        //if(IsNearPoint(lastPreyPos, destinationRadius)) {
+        if (targ != null) {
+            if (beforeChaseCountdown > 0f) {
+                beforeChaseCountdown -= Time.deltaTime;
+            } else {
+                Chase(targ);
+                return;
+            }
+        } else {
             searchCountdown -= Time.deltaTime;
-            if(searchCountdown <= 0) {
+            if (searchCountdown <= 0) {
                 Patrol();
             }
-        //}
+        }
     }
 
     #endregion
@@ -185,13 +195,6 @@ public class HyenaEntity : AnimalEntity
         CopyMovementsValues(suspiciousValues);
 
         awarness = Awarness.SUSPICIOUS;
-    }
-
-    private void MultMovements(float factor) {
-        speedMax *= factor;
-        //acceleration *= factor;
-        //friction /= factor;
-        //turnFriction /= factor;
     }
 
     public void CopyMovementsValues(MovementsValues values) {
