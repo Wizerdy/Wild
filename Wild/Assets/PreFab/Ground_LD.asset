@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c509dbaa7b6f416409e3195321a2187e, type: 3}
+  m_Name: Ground_LD
+  m_EditorClassIdentifier: 
+  PaletteLayers:
+  - {fileID: 8574412962073106934, guid: 4323323604247b0499110d22d718adfe, type: 2}
+  - {fileID: 8574412962073106934, guid: f0e11481bcdde1943bd103d666376bc6, type: 2}
+  - {fileID: 8574412962073106934, guid: 250d9d90e0434ce4492d3e128cfe0ec0, type: 2}
+  - {fileID: 8574412962073106934, guid: 61bdb38cdb5c196418303c2ae7fea304, type: 2}
+  - {fileID: 8574412962073106934, guid: c6297a4a0f6131e46bd970be55bd18b3, type: 2}
+  - {fileID: 8574412962073106934, guid: 0342bc3437816c542a43c8f463e5814c, type: 2}
+  - {fileID: 8574412962073106934, guid: 82172ebe12b0a4c4e93ae0030944f154, type: 2}
+  - {fileID: 8574412962073106934, guid: 77220f9aaa7f6e44292a1577425fe193, type: 2}
+  - {fileID: 8574412962073106934, guid: ca05defe63864404cbb97a1381c9a25c, type: 2}
