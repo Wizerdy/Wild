@@ -24,6 +24,7 @@ public class Entity_Controller : MonoBehaviour {
         _rewiredPlayer = ReInput.players.GetPlayer(_rewiredPlayerName);
     }
 
+
     void Update() {
         dirMove.x = _rewiredPlayer.GetAxis("Horizontal");
         dirMove.y = _rewiredPlayer.GetAxis("Vertical");

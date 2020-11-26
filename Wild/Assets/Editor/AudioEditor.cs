@@ -15,5 +15,9 @@ public class AudioEditor : Editor
         {
             sm.AddSound();
         }
+        if (GUILayout.Button("Spawn sound"))
+        {
+            sm.SpawnSE();
+        }
     }
 }

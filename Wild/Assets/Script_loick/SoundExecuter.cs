@@ -1,27 +1,52 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 [Serializable]
-public class SoundExecuter
+public class SoundExecuter : ScriptableObject
 {
-    public Sound_Manager.soundname soundtype;
+    public Sound_Manager.soundname soundname;
+    public Sound_Manager.soundtype soundtype;
     public AudioClip clip;
-    public void PlaySound()
-    {AudioSource source = new AudioSource();
-        switch (soundtype)
+    public float soundvolume;
+    public AudioSource source;
+    private Sound_Manager SE;
+    private SpriteRenderer SpriteRenderer;
+
+    public SoundExecuter(Sound_Manager sound_Manager)
+    {
+        SE = sound_Manager;
+    }
+
+    public void PlaySound(AudioSource audiosource, CircleCollider2D sphereCollider,Sound_Manager sound_Manager)
+    {
+        source = audiosource;
+        source.volume = soundvolume;
+        source.clip = clip;
+        switch (soundname)
         {
             case Sound_Manager.soundname.AMB:
+                source.Play();
                 break;
             case Sound_Manager.soundname.RSFX:
+                source.Play();
                 break;
             case Sound_Manager.soundname.MUS:
+                source.loop = true;
+                source.Play();
                 break;
             case Sound_Manager.soundname.NPC:
+                source.Play();
                 break;
             case Sound_Manager.soundname.SFX:
+                source.Play();
                 break;
             case Sound_Manager.soundname.FT:
+                
+                source.Play();
+                sphereCollider.radius = 10f;
                 break;
             case Sound_Manager.soundname.LP:
                 source.loop = true;
@@ -30,6 +55,10 @@ public class SoundExecuter
             default:
                 break;
         }
+
+        
     }
+
+
 
 }
