@@ -12,6 +12,7 @@ public class Sound_Manager : MonoBehaviour
     public float volume_sfx;
     public float volume_mus;
     private float duration;
+    public float ambCooldown;
     //les différents type de son
     public enum soundname
     {
@@ -121,7 +122,8 @@ public class Sound_Manager : MonoBehaviour
        SO.SE = soundData[ran];
        obj.name = SO.SE.name;
    var Source = obj.AddComponent<AudioSource>();
-       SO.SE.PlaySound(Source, SC,this);
+        duration = SO.SE.clip.length;
+        SO.SE.PlaySound(Source, SC,this);
         Debug.Log("Done");
     }
     public void GenerateSound(soundname soundtype, Vector3 vector)
@@ -158,12 +160,13 @@ public class Sound_Manager : MonoBehaviour
         }
         var SO = obj.GetComponent<Sound>();
         SO.SE = soundData[ran];
-        duration = SO.SE.clip.length;
         obj.name = SO.SE.name;
         var Source = obj.AddComponent<AudioSource>();
         SO.SE.PlaySound(Source, SC, this);
+        CancelInvoke();
+        InvokeRepeating("SpawnSE", 0f, duration + ambCooldown);
         Debug.Log("Done");
-       
+
     }
 
 
@@ -174,7 +177,7 @@ public class Sound_Manager : MonoBehaviour
 
     private void Awake()
     {
-        InvokeRepeating("SpawnSE", 0f, 30f);
+        InvokeRepeating("SpawnSE", 0f, duration +ambCooldown);
     }
 
     private void Update()

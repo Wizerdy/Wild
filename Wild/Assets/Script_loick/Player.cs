@@ -30,7 +30,7 @@ public class Player : MonoBehaviour
 
     //Soundmanage
     private Sound_Manager s_Manager;
-    private float cooldownFootStep = 0.5f;
+    private float cooldownFootStep = 0.25f;
     private float nextstep;
 
     public void Dash()
