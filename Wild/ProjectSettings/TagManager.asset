@@ -9,6 +9,7 @@ TagManager:
   - Grass
   - Target
   - Hide
+  - Sound
   layers:
   - Default
   - TransparentFX

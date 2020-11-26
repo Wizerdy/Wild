@@ -11,6 +11,7 @@ public class Sound_Manager : MonoBehaviour
     public float volume_all;
     public float volume_sfx;
     public float volume_mus;
+    private float duration;
     //les différents type de son
     public enum soundname
     {
@@ -22,24 +23,25 @@ public class Sound_Manager : MonoBehaviour
     }
     //fait apparaitre un effet sonore dans la scene
     public void SpawnSE()
-    { 
+    {
+        
         if (soundclass == soundname.AMB ||soundclass == soundname.RSFX)
         {
-           StartCoroutine(GenerateSound(soundname.AMB));
+          GenerateSound(soundname.AMB);
         }
         else if (soundclass == soundname.FT)
         {
-            StartCoroutine(GenerateSound(soundclass)); 
+          GenerateSound(soundclass); 
         }
         else if (soundclass == soundname.LP||soundclass == soundname.MUS)
         {
-            StartCoroutine(GenerateSound(soundclass)); 
+          GenerateSound(soundclass); 
         }
         else if (soundclass == soundname.NPC)
         {
-            StartCoroutine(GenerateSound(soundclass)); 
+          GenerateSound(soundclass); 
         }
-
+        
     }
     //ajoute un son à la base de données sonores
     public void AddSound()
@@ -68,10 +70,6 @@ public class Sound_Manager : MonoBehaviour
     }
     //Controle due niveau sonores
 
-
-
-
-
     public void ManageSound(float sn,soundtype soundtype)
     {
         for (int i = 0; i < soundData.Count; i++)
@@ -83,12 +81,20 @@ public class Sound_Manager : MonoBehaviour
         }
     }
 
-    //Cooldown avant destruction du son
 
-
-    public IEnumerator GenerateSound(soundname soundtype)
+    public void GenerateSound(soundname soundtype)
     {
+       
         int ran;
+        GameObject[] soundlist = GameObject.FindGameObjectsWithTag("Sound");
+        for (int i = 0; i < soundlist.Length; i++)
+        {
+            var source = soundlist[i].GetComponent<AudioSource>();
+            if (source.isPlaying == false)
+            {
+                DestroyImmediate(soundlist[i]);
+            }
+        }
         ran = Random.Range(0, soundData.Count);
         while (true)
         {
@@ -100,9 +106,10 @@ public class Sound_Manager : MonoBehaviour
         }
 
         var obj = new GameObject();
+        obj.tag = "Sound";
         obj.AddComponent<Sound>();
-        obj.AddComponent<SphereCollider>();
-        var SC = obj.GetComponent<SphereCollider>();
+        obj.AddComponent<CircleCollider2D>();
+        var SC = obj.GetComponent<CircleCollider2D>();
 
         if (soundtype != soundname.FT)
         {
@@ -115,14 +122,22 @@ public class Sound_Manager : MonoBehaviour
        obj.name = SO.SE.name;
    var Source = obj.AddComponent<AudioSource>();
        SO.SE.PlaySound(Source, SC,this);
-       yield return new WaitForSeconds(SO.SE.clip.length);
-        DestroyImmediate(obj);
         Debug.Log("Done");
     }
-    public IEnumerator GenerateSound(soundname soundtype, Vector3 vector)
+    public void GenerateSound(soundname soundtype, Vector3 vector)
     {
         int ran;
         ran = Random.Range(0, soundData.Count);
+        GameObject[] soundlist = GameObject.FindGameObjectsWithTag("Sound");
+        for (int i = 0; i < soundlist.Length; i++)
+        {
+            var source = soundlist[i].GetComponent<AudioSource>();
+            if (source.isPlaying == false)
+            {
+                DestroyImmediate(soundlist[i]);
+            }
+        }
+
         while (true)
         {
             ran = Random.Range(0, soundData.Count);
@@ -132,9 +147,10 @@ public class Sound_Manager : MonoBehaviour
             }
         }
         var obj = new GameObject();
+        obj.tag = "Sound";
         obj.AddComponent<Sound>();
-        obj.AddComponent<SphereCollider>();
-        var SC = obj.GetComponent<SphereCollider>();
+        obj.AddComponent<CircleCollider2D>();
+        var SC = obj.GetComponent<CircleCollider2D>();
         obj.transform.position = vector;
         if (soundtype != soundname.FT)
         {
@@ -142,11 +158,10 @@ public class Sound_Manager : MonoBehaviour
         }
         var SO = obj.GetComponent<Sound>();
         SO.SE = soundData[ran];
+        duration = SO.SE.clip.length;
         obj.name = SO.SE.name;
         var Source = obj.AddComponent<AudioSource>();
         SO.SE.PlaySound(Source, SC, this);
-        yield return new WaitForSeconds(SO.SE.clip.length);
-        DestroyImmediate(obj);
         Debug.Log("Done");
        
     }
@@ -157,20 +172,17 @@ public class Sound_Manager : MonoBehaviour
     public void Changevolume_Mus(float volume) {volume_mus = volume;}
 
 
+    private void Awake()
+    {
+        InvokeRepeating("SpawnSE", 0f, 30f);
+    }
+
     private void Update()
     {
-        ManageSound(volume_all, soundtype.ALL); ManageSound(volume_sfx, soundtype.SFX);ManageSound(volume_mus, soundtype.MUS);
-    }
-    private void Start()
-    {
-        SpawnSE();
-    }
+        ManageSound(volume_all, soundtype.ALL);
+        ManageSound(volume_sfx, soundtype.SFX);
+        ManageSound(volume_mus, soundtype.MUS);
 
-
-    public IEnumerator wait(float time)
-    {
-        yield return new WaitForSeconds(time);
-        Debug.Log("wait sucessfully");
     }
 
 }

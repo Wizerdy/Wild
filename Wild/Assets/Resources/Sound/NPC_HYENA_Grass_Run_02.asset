@@ -15,5 +15,5 @@ MonoBehaviour:
   soundname: 3
   soundtype: 0
   clip: {fileID: 8300000, guid: c66d091bde3c54d4f9940e11011dfebd, type: 3}
-  soundlevel: 0
+  soundvolume: 0
   source: {fileID: 0}

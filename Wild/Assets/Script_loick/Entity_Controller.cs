@@ -10,7 +10,6 @@ public class Entity_Controller : MonoBehaviour
     private Rewired.Player _rewiredPlayer = null;
     public float joyaxeX;
     public float joyaxeY;
-    public bool test;
     public float run;
     public float walk;
     private void Start()
@@ -27,14 +26,13 @@ public class Entity_Controller : MonoBehaviour
         Vector2 dir_Move = Vector2.zero;
         if (joyaxeX == Mathf.Clamp(joyaxeX,-0.9f,0.9f) && joyaxeY == Mathf.Clamp(joyaxeY, -0.9f, 0.9f))
         {
-            test = true;
             dir_Move.x =joyaxeX;
             dir_Move.y =joyaxeY;
             player.speedMax = walk;
         }
         else 
         {
-            test = false;
+
             dir_Move.x = joyaxeX;
             dir_Move.y = joyaxeY;
             player.speedMax = run;

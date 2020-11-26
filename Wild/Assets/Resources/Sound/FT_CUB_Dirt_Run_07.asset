@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2eae84ee061c33b458f6b5e9c6898322, type: 3}
   m_Name: FT_CUB_Dirt_Run_07
   m_EditorClassIdentifier: 
-  soundname: 0
+  soundname: 5
   soundtype: 0
   clip: {fileID: 8300000, guid: 839d3573756ae4a43a1b4f37d99bed6f, type: 3}
-  soundlevel: 1
+  soundvolume: 1
   source: {fileID: 0}

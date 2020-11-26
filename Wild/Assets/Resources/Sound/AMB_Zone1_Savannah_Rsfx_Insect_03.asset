@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2eae84ee061c33b458f6b5e9c6898322, type: 3}
-  m_Name: NPC_HYENA_Dirt_Run_01
+  m_Name: AMB_Zone1_Savannah_Rsfx_Insect_03
   m_EditorClassIdentifier: 
-  soundname: 3
+  soundname: 0
   soundtype: 0
-  clip: {fileID: 8300000, guid: 96aee2e95d02a3e46b83e300d69abfed, type: 3}
-  soundlevel: 0
+  clip: {fileID: 8300000, guid: ed5329bf98a8c5042829c0d48b22de48, type: 3}
+  soundvolume: 0
   source: {fileID: 0}
