@@ -13,6 +13,7 @@ TagManager:
   - End
   - surbrillancetrigger
   - HidingSpot
+  - Sound
   layers:
   - Default
   - TransparentFX

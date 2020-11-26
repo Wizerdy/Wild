@@ -7,7 +7,7 @@ public class Player : MonoBehaviour
     //speed
     [Header("Speed")]
     public float speedMax;
-    public float acceleration; 
+    public float acceleration;
 
     //force 
     [Header("Force")]
@@ -28,6 +28,10 @@ public class Player : MonoBehaviour
     public bool cooldown;
     private Vector2 dash_dir = Vector2.zero;
 
+    //Soundmanage
+    private Sound_Manager s_Manager;
+    private float cooldownFootStep = 0.25f;
+    private float nextstep;
 
     public void Dash()
     {
@@ -52,6 +56,7 @@ public class Player : MonoBehaviour
     public void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        s_Manager = GameObject.Find("SoundManager").GetComponent<Sound_Manager>();
     }
     public void Move(Vector2 dir)
     {
@@ -68,6 +73,23 @@ public class Player : MonoBehaviour
         _ApplySpeed();
     }
 
+    private void Update()
+    {
+        if (rb.velocity != Vector2.zero && gameObject.tag == "Player")
+        {
+            s_Manager.soundclass = Sound_Manager.soundname.FT;
+            if (Time.time> nextstep)
+            {
+            s_Manager.GenerateSound(s_Manager.soundclass,gameObject.transform.localPosition);
+                nextstep = Time.time + cooldownFootStep;
+            }
+
+        }
+        else
+        {
+            s_Manager.soundclass = Sound_Manager.soundname.AMB;
+        }
+    }
     private void _ApplySpeed()
     {
         if (null !=rb)
