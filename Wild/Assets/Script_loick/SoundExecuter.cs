@@ -20,7 +20,7 @@ public class SoundExecuter : ScriptableObject
         SE = sound_Manager;
     }
 
-    public void PlaySound(AudioSource audiosource, CircleCollider2D sphereCollider,Sound_Manager sound_Manager)
+    public void PlaySound(AudioSource audiosource,Sound_Manager sound_Manager)
     {
         source = audiosource;
         source.volume = soundvolume;
@@ -46,7 +46,6 @@ public class SoundExecuter : ScriptableObject
             case Sound_Manager.soundname.FT:
                 
                 source.Play();
-                sphereCollider.radius = 10f;
                 break;
             case Sound_Manager.soundname.LP:
                 source.loop = true;

@@ -192,8 +192,7 @@ public class Entity : MonoBehaviour {
             UpdateMove();
             UpdateRotation();
         }
-
-        if(!IsMovementForced)
+        if (!IsMovementForced)
             ApplySpeed();
     }
 
