@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEditor;
 
-public static class Tools
-{
+public static class Tools {
     public enum IgnoreMode { X, Y, Z }
 
     public static Vector3 ConvertTo3D(this Vector2 vector) {
@@ -20,7 +20,7 @@ public static class Tools
     }
 
     public static Vector3 Overwrite(this Vector3 vector, float value, IgnoreMode ignore) {
-        switch(ignore) {
+        switch (ignore) {
             case IgnoreMode.X:
                 return new Vector3(value, vector.y, vector.z);
             case IgnoreMode.Y:
@@ -30,6 +30,24 @@ public static class Tools
         }
 
         return vector;
+    }
+
+    //public static T Last<T>(this List<T> list) {
+    //    return list[list.Count - 1];
+    //}
+
+    public static T[] FindAssets<T>(string[] path = null) where T : ScriptableObject {
+        string[] assetsGuids = AssetDatabase.FindAssets("t:" + typeof(T), (path != null ? path : new string[] { "" }));
+
+        if (assetsGuids.Length > 0) {
+            List<T> assets = new List<T>();
+            for (int i = 0; i < assetsGuids.Length; i++) {
+                assets.Add(AssetDatabase.LoadAssetAtPath<T>(assetsGuids[i]));
+            }
+            return assets.ToArray();
+        }
+
+        return null;
     }
 
     public static void LoadScene(int num) {
@@ -48,37 +66,29 @@ public static class Tools
         }
     }
 
-    public static void ChangeSpeed(GameObject obj, int speed)
-    {
-        if (obj.GetComponent<Entity>() != null)
-        {
+    public static void ChangeSpeed(GameObject obj, int speed) {
+        if (obj.GetComponent<Entity>() != null) {
             obj.GetComponent<Entity>().speedMax = speed;
         }
     }
 
-    public static void ChangeSize(GameObject obj, int size)
-    {
+    public static void ChangeSize(GameObject obj, int size) {
         obj.transform.localScale = new Vector3(size, size, size);
     }
 
-    public static void ChangeSpriteColor(GameObject obj, Color c)
-    {
-        if (obj.GetComponent<SpriteRenderer>() != null)
-        {
+    public static void ChangeSpriteColor(GameObject obj, Color c) {
+        if (obj.GetComponent<SpriteRenderer>() != null) {
             obj.GetComponent<SpriteRenderer>().color = c;
         }
     }
 
-    public static void ChangeMaterialColor(GameObject obj, Color c)
-    {
-        if (obj.GetComponent<Material>() != null)
-        {
+    public static void ChangeMaterialColor(GameObject obj, Color c) {
+        if (obj.GetComponent<Material>() != null) {
             obj.GetComponent<Material>().color = c;
         }
     }
 
-    public static void ChangeAnim(GameObject obj, Animation anim)
-    {
+    public static void ChangeAnim(GameObject obj, Animation anim) {
         obj.GetComponent<Animation>().clip = anim.clip;
     }
 
