@@ -335,7 +335,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1984452072
 GameObject:
@@ -370,8 +370,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de1f1582b6795a347a2f8bc1b45a8f97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lion: {fileID: 0}
+  alpha: 0
   range: 3
-  SkilCooldown: 1
+  SkillCooldown: 0
   timeToGrow: 2
   Skilltime: 3
 --- !u!135 &1984452074
@@ -448,7 +450,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &1984452078
 Rigidbody:
@@ -560,5 +562,62 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &8256879149210552728
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 8438877826145543183, guid: 6197faccdb1bf9945aefb30f1efbc523, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 22.93
+      objectReference: {fileID: 0}
+    - target: {fileID: 8438877826145543183, guid: 6197faccdb1bf9945aefb30f1efbc523, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.5012306
+      objectReference: {fileID: 0}
+    - target: {fileID: 8438877826145543183, guid: 6197faccdb1bf9945aefb30f1efbc523, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -3.141739
+      objectReference: {fileID: 0}
+    - target: {fileID: 8438877826145543183, guid: 6197faccdb1bf9945aefb30f1efbc523, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8438877826145543183, guid: 6197faccdb1bf9945aefb30f1efbc523, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8438877826145543183, guid: 6197faccdb1bf9945aefb30f1efbc523, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8438877826145543183, guid: 6197faccdb1bf9945aefb30f1efbc523, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8438877826145543183, guid: 6197faccdb1bf9945aefb30f1efbc523, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8438877826145543183, guid: 6197faccdb1bf9945aefb30f1efbc523, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 8438877826145543183, guid: 6197faccdb1bf9945aefb30f1efbc523, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 8438877826145543183, guid: 6197faccdb1bf9945aefb30f1efbc523, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9103808975117434549, guid: 6197faccdb1bf9945aefb30f1efbc523, type: 3}
+      propertyPath: m_Name
+      value: HighGrass_Animated
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 6197faccdb1bf9945aefb30f1efbc523, type: 3}
