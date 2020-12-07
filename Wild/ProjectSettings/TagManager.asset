@@ -15,6 +15,7 @@ TagManager:
   - HidingSpot
   - Sound
   - Lion
+  - Cloud
   layers:
   - Default
   - TransparentFX
