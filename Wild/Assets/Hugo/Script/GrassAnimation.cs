@@ -11,7 +11,7 @@ public class GrassAnimation : MonoBehaviour
         anim = gameObject.GetComponent<Animator>();
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider collision)
     {
         if (collision.gameObject.tag == "Lion")
         {
@@ -21,7 +21,7 @@ public class GrassAnimation : MonoBehaviour
         
     }
 
-    private void OnCollisionExit(Collision collision)
+    private void OnTriggerExit(Collider collision)
     {
         if (collision.gameObject.tag == "Lion")
         {
