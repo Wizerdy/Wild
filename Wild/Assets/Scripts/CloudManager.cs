@@ -8,6 +8,7 @@ public class CloudManager : MonoBehaviour
     public GameObject cloudPrefab;
     public Transform depart; 
     public Transform arrivé;
+    public int rotationX;
     
 
     [Header("SpawnConfig")]
@@ -49,6 +50,7 @@ public class CloudManager : MonoBehaviour
         for (int i = 0; i < nbSpawn; i++)
         {
             Transform cloud = Instantiate(cloudPrefab, arrivé.position, Quaternion.identity).transform;
+            cloud.eulerAngles = new Vector3(rotationX,0,0);
             posList.Add(0f);
             cloudTransform.Add(cloud);
             yield return new WaitForSeconds(spawnInterval);
