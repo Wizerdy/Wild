@@ -10,9 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 3698045161824464502}
   - component: {fileID: 3733363921532041693}
+  - component: {fileID: 8723699670839576864}
   m_Layer: 0
   m_Name: Cloud
-  m_TagString: Cloud
+  m_TagString: Hide
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -24,13 +25,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1918440299303583143}
-  m_LocalRotation: {x: -0.6079084, y: -0, z: -0, w: 0.7940072}
+  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 21.711958, y: 21.711958, z: 21.711958}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: -74.877, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!212 &3733363921532041693
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -82,3 +83,17 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!136 &8723699670839576864
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1918440299303583143}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 1.2380549
+  m_Height: 2.4761097
+  m_Direction: 1
+  m_Center: {x: -0.0049615586, y: 0.038256854, z: 0.32801083}
