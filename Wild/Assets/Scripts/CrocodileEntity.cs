@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class CrocodileEntity : AnimalEntity
 {
-    public enum AlertState
+    public enum Awarness
     {
-        NONE, ALERT, HUNT
+        NONE, SUSPICIOUS, HUNT
     }
 
     [Header("Field of view")]
@@ -14,44 +14,107 @@ public class CrocodileEntity : AnimalEntity
     public float fieldOfView = 90f;
     public float distanceOfView = 10f;
 
+    public float presenceRadius = 2f;
+
     [Header("Chase")]
-    public AlertState alertState;
+    public float timeBeforeChase = 2f;
+    public Awarness awarnessState;
     public string preyGroupId;
     //private GameObject prey;
 
-    private void EnterCollision(Vector3 center, float radius)
-    {
-        Collider[] hitColliders = Physics.OverlapSphere(center, radius);
-        foreach (var hitCollider in hitColliders)
-        {
-            for (int i = 0; i < hitCollider.GetComponent<Entity>().entityGroup.Length; i++)
-            {
-                if (hitCollider.GetComponent<Entity>().entityGroup[i] == preyGroupId)
-                {
+    #region Properties
 
+    public bool Suspicious
+    {
+        get { return (suspiciousFactor >= 1f ? true : false); }
+        private set { }
+    }
+
+    #endregion
+
+    private float suspiciousFactor = 0f;
+    private bool isSuspicious = false;
+
+    private GameObject FeelPresence(string preyId)
+    {
+        Collider[] colliders = Physics.OverlapSphere(transform.position, presenceRadius);
+        for (int i = 0; i < colliders.Length; i++)
+        {
+            Entity entity = colliders[i].gameObject.GetComponent<Entity>();
+            for (int index = 0; index < entity.entityGroup.Length; i++)
+            {
+                if (entity != null && entity.entityGroup[index] == preyId)
+                {
+                    return entity.gameObject;
                 }
             }
         }
+        return null;
     }
 
-    private void ChangeAlert()
+    private void BeSuspicious()
     {
-        if (alertState < AlertState.HUNT)
+        isSuspicious = true;
+    }
+
+    private void UpdateSuspicious()
+    {
+        if (timeBeforeChase == 0f) { return; }
+
+        if (isSuspicious)
         {
-            alertState += 1;
-        } else {
-            alertState = AlertState.NONE;
+            if (suspiciousFactor < 1f)
+            {
+                suspiciousFactor += Time.deltaTime / timeBeforeChase;
+            }
         }
+        else if (suspiciousFactor > 0f)
+        {
+            suspiciousFactor -= Time.deltaTime / timeBeforeChase;
+        }
+
+        isSuspicious = false;
     }
 
-    // Start is called before the first frame update
-    void Start()
+    void Hunting(string preyId)
     {
+        if (null != FeelPresence(preyId).GetComponent<LionCubEntity>())
+        {
+            FeelPresence(preyId).GetComponent<LionCubEntity>().Respawn();
+        }
+        else
+        {
+            Destroy(FeelPresence(preyId));
+        }
+        awarnessState = Awarness.SUSPICIOUS;
     }
 
-    // Update is called once per frame
     void Update()
     {
+        if (null != FeelPresence(preyGroupId))
+        {
+            if (awarnessState == Awarness.NONE)
+            {
+                awarnessState = Awarness.SUSPICIOUS;
+            }
+            switch (awarnessState)
+            {
+                case Awarness.SUSPICIOUS:
+                    BeSuspicious();
+                    if (Suspicious)
+                    {
+                        awarnessState = Awarness.HUNT;
+                    }
+                    break;
+                case Awarness.HUNT:
+                    Hunting(preyGroupId);
+                    break;
+            }
+        }
 
+        UpdateSuspicious();
+
+        if (suspiciousFactor <= 0f)
+            awarnessState = Awarness.NONE;
     }
 }
