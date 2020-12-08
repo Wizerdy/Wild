@@ -13,6 +13,7 @@ public class Sound_Manager : MonoBehaviour
     public float volume_mus;
     private float duration;
     public float ambCooldown;
+    public string Songname;
     //les différents type de son
     public enum soundname
     {
@@ -109,21 +110,12 @@ public class Sound_Manager : MonoBehaviour
         var obj = new GameObject();
         obj.tag = "Sound";
         obj.AddComponent<Sound>();
-        obj.AddComponent<CircleCollider2D>();
-        var SC = obj.GetComponent<CircleCollider2D>();
-
-        if (soundtype != soundname.FT)
-        {
-            DestroyImmediate(SC);
-        }
-
- 
    var SO = obj.GetComponent<Sound>();
        SO.SE = soundData[ran];
        obj.name = SO.SE.name;
    var Source = obj.AddComponent<AudioSource>();
         duration = SO.SE.clip.length;
-        SO.SE.PlaySound(Source, SC,this);
+        SO.SE.PlaySound(Source,this);
         Debug.Log("Done");
     }
     public void GenerateSound(soundname soundtype, Vector3 vector)
@@ -151,24 +143,40 @@ public class Sound_Manager : MonoBehaviour
         var obj = new GameObject();
         obj.tag = "Sound";
         obj.AddComponent<Sound>();
-        obj.AddComponent<CircleCollider2D>();
-        var SC = obj.GetComponent<CircleCollider2D>();
         obj.transform.position = vector;
-        if (soundtype != soundname.FT)
-        {
-            DestroyImmediate(SC);
-        }
         var SO = obj.GetComponent<Sound>();
         SO.SE = soundData[ran];
         obj.name = SO.SE.name;
         var Source = obj.AddComponent<AudioSource>();
-        SO.SE.PlaySound(Source, SC, this);
+        SO.SE.PlaySound(Source, this);
         CancelInvoke();
         InvokeRepeating("SpawnSE", 0f, duration + ambCooldown);
         Debug.Log("Done");
 
     }
+    public void GenerateSound(string name)
+    {
+    var obj = new GameObject();
+        obj.tag = "Sound";
+        obj.AddComponent<Sound>();
 
+    var SO = obj.GetComponent<Sound>();
+        SO.SE = Resources.Load<SoundExecuter>("Sound/" + name );
+
+
+        if (SO.SE != null)
+        {
+        obj.name = SO.SE.name;
+        var Source = obj.AddComponent<AudioSource>();
+        SO.SE.PlaySound(Source, this);
+        Debug.Log("Done");
+        }
+
+        else
+        {
+        Debug.LogError("Fichier introuvable");
+        }
+    }
 
     public void Changevolume_All(float volume) {volume_all = volume;}
     public void Changevolume_Sfx(float volume) {volume_sfx = volume;}

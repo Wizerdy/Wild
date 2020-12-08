@@ -19,5 +19,10 @@ public class AudioEditor : Editor
         {
             sm.SpawnSE();
         }
+        if (GUILayout.Button("Spawn sound by name"))
+        {
+            sm.GenerateSound(sm.Songname);
+        }
+
     }
 }

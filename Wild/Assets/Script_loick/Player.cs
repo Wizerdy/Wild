@@ -77,17 +77,13 @@ public class Player : MonoBehaviour
     {
         if (rb.velocity != Vector2.zero && gameObject.tag == "Player")
         {
-            s_Manager.soundclass = Sound_Manager.soundname.FT;
+
             if (Time.time> nextstep)
             {
-            s_Manager.GenerateSound(s_Manager.soundclass,gameObject.transform.localPosition);
+            s_Manager.GenerateSound(Sound_Manager.soundname.FT,gameObject.transform.localPosition);
                 nextstep = Time.time + cooldownFootStep;
             }
 
-        }
-        else
-        {
-            s_Manager.soundclass = Sound_Manager.soundname.AMB;
         }
     }
     private void _ApplySpeed()
