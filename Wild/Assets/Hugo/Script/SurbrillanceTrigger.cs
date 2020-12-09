@@ -31,6 +31,19 @@ public class SurbrillanceTrigger : MonoBehaviour
         }
     }
 
+    public void ActiveInstinctMode()
+    {
+        cooldown -= Time.deltaTime;
+        if (cooldown < 0 && null == isPlaying)
+        {
+            lion.StopMove(timeToGrow + Skilltime);
+            Tools.ChangeAlphaMaterial(gameObject, alpha);
+            transform.position = lion.transform.position;
+            isPlaying = StartCoroutine(trigger());
+            cooldown = SkillCooldown;
+        }
+    }
+
     IEnumerator trigger() {
         float fps = 60f;
         Vector3 baseRange = gameObject.transform.localScale;

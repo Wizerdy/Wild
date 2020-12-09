@@ -92,11 +92,20 @@ public class HyenaEntity : AnimalEntity
     void UpdatePatrol() {
         if(patrolPoints.Length > 0) {
             //MoveToDestination(new Vector3(patrolPoints[patrolPointIndex].x, 0, patrolPoints[patrolPointIndex].y));
-            animator.SetBool("Running", false);
-            animator.SetBool("Walking", true);
+            if (patrolPoints.Length > 1 || !IsNearPoint(patrolPoints[patrolPointIndex], destinationRadius))
+            {
+                animator.SetBool("Running", false);
+                animator.SetBool("Walking", true);
+                animator.SetFloat("MoveX", -(transform.position.ConvertTo2D() - patrolPoints[patrolPointIndex]).normalized.x);
+                animator.SetFloat("MoveY", -(transform.position.ConvertTo2D() - patrolPoints[patrolPointIndex]).normalized.y);
+            } else
+            {
+                animator.SetBool("Running", false);
+                animator.SetBool("Walking", false);
+                animator.SetFloat("MoveX", -(transform.position.ConvertTo2D() - patrolPoints[patrolPointIndex]).normalized.x);
+                animator.SetFloat("MoveY", -(transform.position.ConvertTo2D() - patrolPoints[patrolPointIndex]).normalized.y);
+            }
             MoveToDestination(patrolPoints[patrolPointIndex].ConvertTo3D());
-            animator.SetFloat("MoveX", -(transform.position.ConvertTo2D() - patrolPoints[patrolPointIndex]).normalized.x);
-            animator.SetFloat("MoveY", -(transform.position.ConvertTo2D() - patrolPoints[patrolPointIndex]).normalized.y);
             if (IsNearPoint(patrolPoints[patrolPointIndex], destinationRadius)) {
                 patrolPointIndex = (patrolPointIndex + 1) % patrolPoints.Length;
             }
