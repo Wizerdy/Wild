@@ -46,6 +46,7 @@ public class Sound_Manager : MonoBehaviour
         
     }
     //ajoute un son à la base de données sonores
+
     public void AddSound()
     {
         int error = 0;
@@ -67,7 +68,9 @@ public class Sound_Manager : MonoBehaviour
         soundadded.clip = soundtoadd;
         soundadded.soundname = soundclass;
         soundData.Add(soundadded);
-       AssetDatabase.CreateAsset(soundadded,"Assets/Resources/Sound/"+soundadded.clip.name+".asset");
+#if UNITY_EDITOR
+            AssetDatabase.CreateAsset(soundadded,"Assets/Resources/Sound/"+soundadded.clip.name+".asset");
+#endif
         }
     }
     //Controle due niveau sonores

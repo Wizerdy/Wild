@@ -37,11 +37,12 @@ public static class Tools
         EntitiesManager.ClearEntities();
         SceneManager.LoadScene(num);
     }
-
+#if UNITY_EDITOR
     public static void PropertyField(this SerializedProperty prop) {
         EditorGUILayout.PropertyField(prop);
     }
 
+#endif
     #region Actions
 
     public static void ChangeAlphaMaterial(GameObject obj, byte alpha) {
