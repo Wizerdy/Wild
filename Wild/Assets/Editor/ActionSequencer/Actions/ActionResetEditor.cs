@@ -6,6 +6,7 @@ using UnityEditor;
 
 [ExecuteInEditMode]
 [CustomEditor(typeof(ActionReset))]
+[CanEditMultipleObjects]
 public class ActionResetEditor : ActionCameraEditor {
     public override void OnInspector() {
         base.OnInspector();
