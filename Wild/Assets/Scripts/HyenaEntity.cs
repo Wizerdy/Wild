@@ -119,14 +119,17 @@ public class HyenaEntity : AnimalEntity
 
     void UpdateChase() {
         GameObject targ = Looking();
-        animator.SetBool("Running", true);
-        animator.SetBool("Walking", false);
 
-        animator.SetFloat("MoveX", -(transform.position.ConvertTo2D() - Looking().transform.position.ConvertTo2D()).normalized.x);
-        animator.SetFloat("MoveY", -(transform.position.ConvertTo2D() - Looking().transform.position.ConvertTo2D()).normalized.y);
         if (targ == null) {
             //Search(new Vector3(prey.transform.position.x, prey.transform.position.z));
             Search(prey.transform.position.ConvertTo2D());
+        } else
+        {
+            animator.SetBool("Running", true);
+            animator.SetBool("Walking", false);
+
+            animator.SetFloat("MoveX", -(transform.position.ConvertTo2D() - targ.transform.position.ConvertTo2D()).normalized.x);
+            animator.SetFloat("MoveY", -(transform.position.ConvertTo2D() - targ.transform.position.ConvertTo2D()).normalized.y);
         }
     }
 
