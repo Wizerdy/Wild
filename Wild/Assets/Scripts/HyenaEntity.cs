@@ -115,7 +115,7 @@ public class HyenaEntity : AnimalEntity
 
         animator.SetFloat("MoveX", -(transform.position.ConvertTo2D() - Looking().transform.position.ConvertTo2D()).normalized.x);
         animator.SetFloat("MoveY", -(transform.position.ConvertTo2D() - Looking().transform.position.ConvertTo2D()).normalized.y);
-        if (null == targ) {
+        if (targ == null) {
             //Search(new Vector3(prey.transform.position.x, prey.transform.position.z));
             Search(prey.transform.position.ConvertTo2D());
         }
