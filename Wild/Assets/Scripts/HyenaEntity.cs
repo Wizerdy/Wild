@@ -95,6 +95,15 @@ public class HyenaEntity : AnimalEntity
     [Header("Animation")]
     private float _animWalkSpeedMin = 0.1f;
 
+    private int _lastOrientStep = 0;
+
+    private bool _smoothOrientEnabled = false;
+    private float _smoothOrientDir = 1f;
+    private float _smoothOrientAngleEnd = 1f;
+    private float _smoothOrientDuration = 1f;
+    private float _smoothOrientSpeed = 5f;
+    private float _smoothOrientAngle = 0f;
+
     void UpdateAnims()
     {
         switch (awarness) {
@@ -118,8 +127,37 @@ public class HyenaEntity : AnimalEntity
 
         animator.SetBool("Sleeping", awarness == Awarness.SLEEPING);
 
-        animator.SetFloat("MoveX", OrientDir.x);
-        animator.SetFloat("MoveY", OrientDir.y);
+        float orientAngle = Mathf.Atan2(OrientDir.y, OrientDir.x);
+        int orientStep = Mathf.FloorToInt(orientAngle / (Mathf.PI / 16f));
+        if (_lastOrientStep != orientStep) {
+            int stepDelta = (orientStep - _lastOrientStep);
+            if (Mathf.Abs(stepDelta) <= 8) {
+                _smoothOrientEnabled = true;
+                _smoothOrientAngleEnd = (orientStep - _lastOrientStep) * (Mathf.PI / 16f);
+                _smoothOrientAngleEnd %= Mathf.PI;
+            }
+            _lastOrientStep = orientStep;
+        }
+
+        if (_smoothOrientEnabled) {
+            _smoothOrientAngle = Mathf.Lerp(_smoothOrientAngle, _smoothOrientAngleEnd,
+                Time.deltaTime * _smoothOrientSpeed);
+
+            Vector3 localEulerAngles = animator.transform.localEulerAngles;
+            localEulerAngles.z = _smoothOrientAngle * Mathf.Rad2Deg;
+            animator.transform.localEulerAngles = localEulerAngles;
+
+
+            if (Mathf.Abs(_smoothOrientAngle - _smoothOrientAngleEnd) <= 0.1f) {
+                _smoothOrientEnabled = false;
+            }
+        } else {
+            Vector3 localEulerAngles = animator.transform.localEulerAngles;
+            localEulerAngles.z = 0f;
+            animator.transform.localEulerAngles = localEulerAngles;
+            animator.SetFloat("MoveX", OrientDir.x);
+            animator.SetFloat("MoveY", OrientDir.y);
+        }
     }
 
     void UpdatePatrol()
@@ -173,12 +211,12 @@ public class HyenaEntity : AnimalEntity
         RaycastHit[] hits;
         Vector3 pos = new Vector3(Position.x, 1f, Position.z);
         //Debug.DrawLine(pos, pos + new Vector3(direction.x, 1f, direction.y).normalized * distanceOfView, Color.red);
-        Debug.DrawLine(pos, pos + direction.ConvertTo3D().normalized * distanceOfView, Color.red);
+        //Debug.DrawLine(pos, pos + direction.ConvertTo3D().normalized * distanceOfView, Color.red);
 
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - fieldOfView / 2f;
         for (int i = 0; i < raycastNumber; i++) {
             Vector3 cartAngle = new Vector3(Mathf.Cos(angle * Mathf.Deg2Rad), 0f, Mathf.Sin(angle * Mathf.Deg2Rad));
-            Debug.DrawLine(pos, pos + cartAngle * distanceOfView, Color.green);
+            //Debug.DrawLine(pos, pos + cartAngle * distanceOfView, Color.green);
             hits = Physics.RaycastAll(pos, cartAngle, distanceOfView);
             angle += fieldOfView / (float)(raycastNumber - 1);
 
