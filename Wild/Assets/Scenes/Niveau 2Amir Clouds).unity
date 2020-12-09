@@ -3553,6 +3553,10 @@ PrefabInstance:
       propertyPath: _userData.joystickMaps.Array.data[0].actionElementMaps.Array.data[2]._actionId
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 1670093389504121588, guid: 306b3499a61591646a18185ef96b2db1, type: 3}
+      propertyPath: _userData.joystickMaps.Array.data[0].actionElementMaps.Array.data[0]._actionId
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1670093389504121589, guid: 306b3499a61591646a18185ef96b2db1, type: 3}
       propertyPath: m_Name
       value: Rewired Input Manager 1
