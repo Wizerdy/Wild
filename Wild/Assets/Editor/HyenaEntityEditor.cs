@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEditor;
 
 [CustomEditor(typeof(HyenaEntity))]
+[CanEditMultipleObjects]
 public class HyenaEntityEditor : Editor {
     private HyenaEntity script;
 

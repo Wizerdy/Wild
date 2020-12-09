@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEditor;
 using UnityEngine.SceneManagement;
 
 public static class Tools
@@ -38,9 +37,13 @@ public static class Tools
         SceneManager.LoadScene(num);
     }
 
-    public static void PropertyField(this SerializedProperty prop) {
-        EditorGUILayout.PropertyField(prop);
+#if UNITY_EDITOR
+
+    public static void PropertyField(this UnityEditor.SerializedProperty prop) {
+        UnityEditor.EditorGUILayout.PropertyField(prop);
     }
+
+#endif
 
     #region Actions
 

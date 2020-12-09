@@ -1,16 +1,16 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class HyenaEntity : AnimalEntity
 {
-    public enum Awarness {
+    public enum Awarness
+    {
         PATROLLING = 0, SLEEPING, STANDING, CHASING, SUSPICIOUS
     }
 
     [Serializable]
-    public struct MovementsValues {
+    public struct MovementsValues
+    {
         public float speedMax;
         //public MovementCurve speed;
         public MovementCurve acceleration;
@@ -58,20 +58,23 @@ public class HyenaEntity : AnimalEntity
 
     public bool HasPrey {
         get { return prey != null; }
-        private set {}
+        private set { }
     }
 
     #endregion
 
     #region Unity callbacks
 
-    protected override void Start() {
+    protected override void Start()
+    {
         base.Start();
         beforeChaseCountdown = timeBeforeChase;
         animator = GetComponentInChildren<Animator>();
     }
 
-    void Update() {
+    void Update()
+    {
+        UpdateAnims();
         switch (awarness) {
             case Awarness.PATROLLING:
                 UpdatePatrol();
@@ -89,22 +92,39 @@ public class HyenaEntity : AnimalEntity
 
     #region Movements
 
-    void UpdatePatrol() {
-        if(patrolPoints.Length > 0) {
-            //MoveToDestination(new Vector3(patrolPoints[patrolPointIndex].x, 0, patrolPoints[patrolPointIndex].y));
-            if (patrolPoints.Length > 1 || !IsNearPoint(patrolPoints[patrolPointIndex], destinationRadius))
-            {
-                animator.SetBool("Running", false);
-                animator.SetBool("Walking", true);
-                animator.SetFloat("MoveX", -(transform.position.ConvertTo2D() - patrolPoints[patrolPointIndex]).normalized.x);
-                animator.SetFloat("MoveY", -(transform.position.ConvertTo2D() - patrolPoints[patrolPointIndex]).normalized.y);
-            } else
-            {
-                animator.SetBool("Running", false);
+    [Header("Animation")]
+    private float _animWalkSpeedMin = 0.1f;
+
+    void UpdateAnims()
+    {
+        switch (awarness) {
+            case Awarness.PATROLLING:
+            case Awarness.STANDING:
+            case Awarness.SUSPICIOUS:
+                if (velocity.magnitude > _animWalkSpeedMin) {
+                    animator.SetBool("Running", false);
+                    animator.SetBool("Walking", true);
+                } else {
+                    animator.SetBool("Running", false);
+                    animator.SetBool("Walking", false);
+                }
+                break;
+
+            case Awarness.CHASING:
+                animator.SetBool("Running", true);
                 animator.SetBool("Walking", false);
-                animator.SetFloat("MoveX", -(transform.position.ConvertTo2D() - patrolPoints[patrolPointIndex]).normalized.x);
-                animator.SetFloat("MoveY", -(transform.position.ConvertTo2D() - patrolPoints[patrolPointIndex]).normalized.y);
-            }
+                break;
+        }
+
+        animator.SetBool("Sleeping", awarness == Awarness.SLEEPING);
+
+        animator.SetFloat("MoveX", OrientDir.x);
+        animator.SetFloat("MoveY", OrientDir.y);
+    }
+
+    void UpdatePatrol()
+    {
+        if (patrolPoints.Length > 0) {
             MoveToDestination(patrolPoints[patrolPointIndex].ConvertTo3D());
             if (IsNearPoint(patrolPoints[patrolPointIndex], destinationRadius)) {
                 patrolPointIndex = (patrolPointIndex + 1) % patrolPoints.Length;
@@ -117,23 +137,18 @@ public class HyenaEntity : AnimalEntity
         }
     }
 
-    void UpdateChase() {
+    void UpdateChase()
+    {
         GameObject targ = Looking();
 
         if (targ == null) {
             //Search(new Vector3(prey.transform.position.x, prey.transform.position.z));
             Search(prey.transform.position.ConvertTo2D());
-        } else
-        {
-            animator.SetBool("Running", true);
-            animator.SetBool("Walking", false);
-
-            animator.SetFloat("MoveX", -(transform.position.ConvertTo2D() - targ.transform.position.ConvertTo2D()).normalized.x);
-            animator.SetFloat("MoveY", -(transform.position.ConvertTo2D() - targ.transform.position.ConvertTo2D()).normalized.y);
         }
     }
 
-    void UpdateSearch() {
+    void UpdateSearch()
+    {
         GameObject targ = Looking();
 
         if (targ != null) {
@@ -153,7 +168,8 @@ public class HyenaEntity : AnimalEntity
 
     #endregion
 
-    GameObject Looking() {
+    GameObject Looking()
+    {
         RaycastHit[] hits;
         Vector3 pos = new Vector3(Position.x, 1f, Position.z);
         //Debug.DrawLine(pos, pos + new Vector3(direction.x, 1f, direction.y).normalized * distanceOfView, Color.red);
@@ -179,8 +195,9 @@ public class HyenaEntity : AnimalEntity
         return null;
     }
 
-    private GameObject FindTarget(RaycastHit[] hits, string entityId) {
-        if(hits.Length <= 0) { return null; }
+    private GameObject FindTarget(RaycastHit[] hits, string entityId)
+    {
+        if (hits.Length <= 0) { return null; }
 
         //List<RaycastHit> obj = new List<RaycastHit>();
         //obj.Add(hits[0]);
@@ -222,14 +239,16 @@ public class HyenaEntity : AnimalEntity
         return null;
     }
 
-    public void Patrol() {
+    public void Patrol()
+    {
         CopyMovementsValues(patrolValues);
 
         prey = null;
         awarness = Awarness.PATROLLING;
     }
 
-    public void Chase(GameObject targ) {
+    public void Chase(GameObject targ)
+    {
         prey = targ;
         Follow(prey);
 
@@ -238,7 +257,8 @@ public class HyenaEntity : AnimalEntity
         awarness = Awarness.CHASING;
     }
 
-    public void Search(Vector2 pos) {
+    public void Search(Vector2 pos)
+    {
         ClearFollow();
         prey = null;
         MoveToDestination(pos.ConvertTo3D());
@@ -250,7 +270,8 @@ public class HyenaEntity : AnimalEntity
         awarness = Awarness.SUSPICIOUS;
     }
 
-    public void CopyMovementsValues(MovementsValues values) {
+    public void CopyMovementsValues(MovementsValues values)
+    {
         speedMax = values.speedMax;
         acceleration = values.acceleration;
         frictions = values.frictions;

@@ -51,8 +51,8 @@ public class Entity_Controller : MonoBehaviour {
         {
             animator.SetBool("Running", true);
             animator.SetBool("Walking", false);
-            animator.SetFloat("MoveX", -dirMove.x);
-            animator.SetFloat("MoveY", dirMove.y);
+            animator.SetFloat("MoveX", -player.OrientDir.x);
+            animator.SetFloat("MoveY", player.OrientDir.y);
             if (dirMove != Vector2.zero)
             {
                 lateDirMove.x = -dirMove.x;
@@ -63,8 +63,8 @@ public class Entity_Controller : MonoBehaviour {
         {
             animator.SetBool("Walking", true);
             animator.SetBool("Running", false);
-            animator.SetFloat("MoveX", -dirMove.x);
-            animator.SetFloat("MoveY", dirMove.y);
+            animator.SetFloat("MoveX", -player.OrientDir.x);
+            animator.SetFloat("MoveY", player.OrientDir.y);
             if (dirMove != Vector2.zero)
             {
                 lateDirMove.x = -dirMove.x;
@@ -76,8 +76,8 @@ public class Entity_Controller : MonoBehaviour {
         {
             animator.SetBool("Walking", false);
             animator.SetBool("Running", false);
-            animator.SetFloat("MoveX", lateDirMove.x);
-            animator.SetFloat("MoveY", lateDirMove.y);
+            animator.SetFloat("MoveX", -player.OrientDir.x);
+            animator.SetFloat("MoveY", player.OrientDir.y);
         }
 
         player.MoveDir(dirMove);
