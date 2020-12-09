@@ -318,7 +318,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3013256}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!20 &3013260
 Camera:
   m_ObjectHideFlags: 0
@@ -17922,6 +17922,7 @@ GameObject:
   m_Component:
   - component: {fileID: 523944981}
   - component: {fileID: 523944982}
+  - component: {fileID: 523944983}
   m_Layer: 0
   m_Name: Graphic
   m_TagString: Untagged
@@ -17983,7 +17984,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 100
-  m_Sprite: {fileID: 21300000, guid: 47b2d7cb76392484685e14383ddca35c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 5808a80aa25062944b22310b8c30aa2e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 1
   m_FlipY: 0
@@ -17994,6 +17995,25 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &523944983
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 523944980}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 89c0e3b262ca9534592d9c1bd54bffd8, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1001 &524365298
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -27209,7 +27229,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 759290524}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!20 &759290528
 Camera:
   m_ObjectHideFlags: 0
@@ -38940,7 +38960,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1096575848}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!20 &1096575852
 Camera:
   m_ObjectHideFlags: 0
@@ -57965,7 +57985,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1544331389}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!20 &1544331393
 Camera:
   m_ObjectHideFlags: 0
@@ -62160,7 +62180,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1684345209}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!20 &1684345213
 Camera:
   m_ObjectHideFlags: 0
@@ -74838,7 +74858,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2047329216}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!20 &2047329220
 Camera:
   m_ObjectHideFlags: 0
