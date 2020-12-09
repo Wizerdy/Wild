@@ -26,6 +26,7 @@ public class HyenaEntity : AnimalEntity
 
     [Header("Hyena")]
     public Awarness awarness = Awarness.PATROLLING;
+    private Animator animator;
 
     public bool debug = false;
 
@@ -67,6 +68,7 @@ public class HyenaEntity : AnimalEntity
     protected override void Start() {
         base.Start();
         beforeChaseCountdown = timeBeforeChase;
+        animator = GetComponentInChildren<Animator>();
     }
 
     void Update() {
@@ -90,7 +92,11 @@ public class HyenaEntity : AnimalEntity
     void UpdatePatrol() {
         if(patrolPoints.Length > 0) {
             //MoveToDestination(new Vector3(patrolPoints[patrolPointIndex].x, 0, patrolPoints[patrolPointIndex].y));
+            animator.SetBool("Running", false);
+            animator.SetBool("Walking", true);
             MoveToDestination(patrolPoints[patrolPointIndex].ConvertTo3D());
+            animator.SetFloat("MoveX", -(transform.position.ConvertTo2D() - patrolPoints[patrolPointIndex]).normalized.x);
+            animator.SetFloat("MoveY", -(transform.position.ConvertTo2D() - patrolPoints[patrolPointIndex]).normalized.y);
             if (IsNearPoint(patrolPoints[patrolPointIndex], destinationRadius)) {
                 patrolPointIndex = (patrolPointIndex + 1) % patrolPoints.Length;
             }
@@ -104,7 +110,12 @@ public class HyenaEntity : AnimalEntity
 
     void UpdateChase() {
         GameObject targ = Looking();
-        if (targ == null) {
+        animator.SetBool("Running", true);
+        animator.SetBool("Walking", false);
+
+        animator.SetFloat("MoveX", -(transform.position.ConvertTo2D() - Looking().transform.position.ConvertTo2D()).normalized.x);
+        animator.SetFloat("MoveY", -(transform.position.ConvertTo2D() - Looking().transform.position.ConvertTo2D()).normalized.y);
+        if (null == targ) {
             //Search(new Vector3(prey.transform.position.x, prey.transform.position.z));
             Search(prey.transform.position.ConvertTo2D());
         }
