@@ -251,11 +251,11 @@ public class Entity : MonoBehaviour
                 Vector2 velocity = ApplyAcceleration();
                 this.velocity = ApplyTurn(velocity);
                 direction = this.velocity.normalized;
+                orientDir = velocity.normalized;
             }
 
             prevMoveDirection = moveDirection;
 
-            orientDir = velocity.normalized;
         } else {
             if (wasMoving) {
                 StartFrictions();

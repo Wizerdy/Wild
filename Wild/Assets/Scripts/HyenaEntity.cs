@@ -70,7 +70,13 @@ public class HyenaEntity : AnimalEntity
         base.Start();
         beforeChaseCountdown = timeBeforeChase;
         animator = GetComponentInChildren<Animator>();
+
+        float orientAngle = Mathf.Atan2(OrientDir.y, OrientDir.x);
+        orientAngle = Mathf.Sign(orientAngle) * (Mathf.Abs(orientAngle) % (Mathf.PI * 2f));
+        _lastSmoothOrientDir = orientDir;
     }
+
+    private float _orientTimer = 0f;
 
     void Update()
     {
@@ -95,14 +101,16 @@ public class HyenaEntity : AnimalEntity
     [Header("Animation")]
     private float _animWalkSpeedMin = 0.1f;
 
-    private int _lastOrientStep = 0;
+    //Smooth orient
+    //(!) You can increase or decrease orient duration to slowdown entity anim smooth turns
+    private float ANIM_SMOOTH_ORIENT_DURATION = 0.075f;
 
+    public const float ANIM_ANGLE_STEP = Mathf.PI / 8f;
     private bool _smoothOrientEnabled = false;
-    private float _smoothOrientDir = 1f;
-    private float _smoothOrientAngleEnd = 1f;
-    private float _smoothOrientDuration = 1f;
-    private float _smoothOrientSpeed = 5f;
-    private float _smoothOrientAngle = 0f;
+    private int _smoothOrientStepDelta = 0;
+    private float _smoothOrientTimer = 0f;
+
+    private Vector2 _lastSmoothOrientDir = Vector2.zero;
 
     void UpdateAnims()
     {
@@ -127,37 +135,66 @@ public class HyenaEntity : AnimalEntity
 
         animator.SetBool("Sleeping", awarness == Awarness.SLEEPING);
 
-        float orientAngle = Mathf.Atan2(OrientDir.y, OrientDir.x);
-        int orientStep = Mathf.FloorToInt(orientAngle / (Mathf.PI / 16f));
-        if (_lastOrientStep != orientStep) {
-            int stepDelta = (orientStep - _lastOrientStep);
-            if (Mathf.Abs(stepDelta) <= 8) {
+        //Calculate difference between orientDir and last smooth orient dir
+        float orientAngleDiff = Vector2.SignedAngle(_lastSmoothOrientDir, orientDir) * Mathf.Deg2Rad;
+        //Normalize difference using ANIM_ANGLE STEP (Here there are 8 orient per anim) so we need to divide by PI / 8
+        int orientStepDiff = (int)Mathf.Sign(orientAngleDiff) * Mathf.FloorToInt(Mathf.Abs(orientAngleDiff) / ANIM_ANGLE_STEP);
+        if (orientStepDiff != 0) {
+            //Increment a step delta (will be used later) and enable smooth orientation system
+            _smoothOrientStepDelta += orientStepDiff;
+            if (_smoothOrientStepDelta != 0) {
+                if (!_smoothOrientEnabled) {
+                    _smoothOrientTimer = 0f;
+                }
                 _smoothOrientEnabled = true;
-                _smoothOrientAngleEnd = (orientStep - _lastOrientStep) * (Mathf.PI / 16f);
-                _smoothOrientAngleEnd %= Mathf.PI;
             }
-            _lastOrientStep = orientStep;
+            _lastSmoothOrientDir = orientDir;
         }
 
         if (_smoothOrientEnabled) {
-            _smoothOrientAngle = Mathf.Lerp(_smoothOrientAngle, _smoothOrientAngleEnd,
-                Time.deltaTime * _smoothOrientSpeed);
+            //For each step available :
+            //Interpolate between 0f and PI/8 (multiplied by factor to orient angle)
+            //Using a small duration to manage interpolate (better if < 0.1f)
+            _smoothOrientTimer += Time.deltaTime;
+            float ratio = _smoothOrientTimer / ANIM_SMOOTH_ORIENT_DURATION;
+            float smoothOrientAngleEnd = Mathf.Sign(_smoothOrientStepDelta) * ANIM_ANGLE_STEP;
+            float smoothOrientAngle = Mathf.Lerp(
+                0f,
+                smoothOrientAngleEnd,
+                ratio
+            );
 
-            Vector3 localEulerAngles = animator.transform.localEulerAngles;
-            localEulerAngles.z = _smoothOrientAngle * Mathf.Rad2Deg;
-            animator.transform.localEulerAngles = localEulerAngles;
+            if (_smoothOrientTimer >= ANIM_SMOOTH_ORIENT_DURATION) {
+                //If interpolation is finished => move to next step
+                _smoothOrientTimer -= ANIM_SMOOTH_ORIENT_DURATION;
+                _smoothOrientStepDelta -= (int)Mathf.Sign(_smoothOrientStepDelta);
 
+                if (_smoothOrientStepDelta != 0) {
+                    //Update animation orientation using orientDir and step delta
+                    float orientAngle = Mathf.Atan2(orientDir.y, orientDir.x);
+                    float intermediateOrientAngle = orientAngle + (_smoothOrientStepDelta) * ANIM_ANGLE_STEP;
+                    animator.SetFloat("MoveX", Mathf.Cos(intermediateOrientAngle));
+                    animator.SetFloat("MoveY", Mathf.Sin(intermediateOrientAngle));
 
-            if (Mathf.Abs(_smoothOrientAngle - _smoothOrientAngleEnd) <= 0.1f) {
-                _smoothOrientEnabled = false;
+                    //Reset smooth orient angle
+                    smoothOrientAngle = 0f;
+                } else {
+                    //If there is no step => entity will be oriented using orient dir directly
+                    animator.SetFloat("MoveX", OrientDir.x);
+                    animator.SetFloat("MoveY", OrientDir.y);
+                    smoothOrientAngle = 0f;
+
+                    //disable smooth orientation system
+                    _smoothOrientEnabled = false;
+                }
             }
-        } else {
+
             Vector3 localEulerAngles = animator.transform.localEulerAngles;
-            localEulerAngles.z = 0f;
+            localEulerAngles.z = -smoothOrientAngle * Mathf.Rad2Deg;
             animator.transform.localEulerAngles = localEulerAngles;
-            animator.SetFloat("MoveX", OrientDir.x);
-            animator.SetFloat("MoveY", OrientDir.y);
+
         }
+
     }
 
     void UpdatePatrol()
