@@ -6,9 +6,14 @@ public class SnakeEntity : AnimalEntity
 {
     public float presenceRadius = 2f;
     public string preyGroupId;
+    public Vector3 lionTp;
+
+    public Color circleColor;
+    //public Vector3 radiusPoint;
 
     [Header("SnakeEffect")]
     public int reducedSpeedMax;
+    public float stunDuration;
     public float effectTime;
 
     private GameObject FeelPresence(string preyId)
@@ -33,6 +38,8 @@ public class SnakeEntity : AnimalEntity
             entity.StartDashCooldown(time);
             entity.StartSpeedReducedForSeconds(reducedSpeedMax, time);
             entity.underEffect = true;
+            entity.MoveInstant(lionTp);
+            entity.StopMove(stunDuration);
             Debug.Log("Attacked " + entity.speedMax);
             gameObject.SetActive(false);
         }
