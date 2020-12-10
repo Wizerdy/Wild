@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class LionCubEntity : AnimalEntity {
     public string predatorGroup = "Hyenas";
-
     public Vector2 spawnPoint;
 
     //protected override void OnTriggerEnter(Collider collide) {
