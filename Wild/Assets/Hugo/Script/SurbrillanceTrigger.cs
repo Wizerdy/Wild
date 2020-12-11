@@ -69,6 +69,10 @@ public class SurbrillanceTrigger : MonoBehaviour
         
         if (other.gameObject.GetComponent<Surbrillance3d>() != null) {
             other.gameObject.GetComponent<Surbrillance3d>().Shine(true);
+        } 
+        
+        if (other.gameObject.GetComponent<SurbrillanceSkinnedMesh>() != null) {
+            other.gameObject.GetComponent<SurbrillanceSkinnedMesh>().Shine(true);
         }
     }
 
@@ -78,6 +82,10 @@ public class SurbrillanceTrigger : MonoBehaviour
         }
         if (other.gameObject.GetComponent<Surbrillance3d>() != null) {
             other.gameObject.GetComponent<Surbrillance3d>().Shine(false);
+        } 
+        
+        if (other.gameObject.GetComponent<SurbrillanceSkinnedMesh>() != null) {
+            other.gameObject.GetComponent<SurbrillanceSkinnedMesh>().Shine(false);
         }
     }
 }
