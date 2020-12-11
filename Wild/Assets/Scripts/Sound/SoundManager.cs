@@ -30,6 +30,9 @@ namespace SoundManager {
         public MusicSoundObject[] musics;
         public int level = 0;
 
+        private Coroutine playDelay = null;
+        private Coroutine stopDelay = null;
+
         #region Unity callbacks
 
         void Awake() {
@@ -85,10 +88,11 @@ namespace SoundManager {
         }
 
         public AudioSource PlayWithDelay(Sound sound, float time) {
-            StopAllCoroutines();
+            if(playDelay != null) { StopCoroutine(playDelay); }
+
             AudioSource source = GetSource(sound);
             SetSource(ref source, sound);
-            StartCoroutine(PlayDelay(source, time));
+            playDelay = StartCoroutine(PlayDelay(source, time));
             return source;
         }
 
@@ -139,8 +143,9 @@ namespace SoundManager {
         }
 
         public void StopWithDelay(AudioSource source, float time) {
-            StopAllCoroutines();
-            StartCoroutine(StopDelay(source, time));
+            if (stopDelay != null) { StopCoroutine(stopDelay); }
+
+            stopDelay = StartCoroutine(StopDelay(source, time));
         }
 
         private IEnumerator StopDelay(AudioSource source, float time) {
