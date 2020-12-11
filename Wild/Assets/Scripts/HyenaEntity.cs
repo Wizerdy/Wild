@@ -119,6 +119,9 @@ public class HyenaEntity : AnimalEntity {
             case Awarness.SUSPICIOUS:
                 UpdateSearch();
                 break;
+            case Awarness.STANDING:
+                UpdateStanding();
+                break;
         }
 
         UpdateSuspicious();
@@ -127,6 +130,22 @@ public class HyenaEntity : AnimalEntity {
     #endregion
 
     #region Updates
+
+    void UpdateStanding() {
+        GameObject targ = Looking();
+        if (targ != null) {
+            Chase(targ);
+        } else {
+            targ = PeripheralLooking();
+
+            if (targ != null) {
+                BeSuspicious();
+                if (Suspicious) {
+                    Chase(targ);
+                }
+            }
+        }
+    }
 
     void UpdatePatrol() {
         if (patrolPoints.Length > 0) {
