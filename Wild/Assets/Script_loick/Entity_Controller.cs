@@ -44,8 +44,7 @@ public class Entity_Controller : MonoBehaviour {
 
         if (_rewiredPlayer.GetButtonDown("Instinct"))
         {
-            FindObjectOfType<SurbrillanceTrigger>().ActiveInstinctMode();
-            //player.GetComponent<SurbrillanceTrigger>().ActiveInstinctMode();
+            player.GetComponent<SurbrillanceTrigger>().ActiveInstinctMode();
         }
 
         if (animator != null && isWalking)
