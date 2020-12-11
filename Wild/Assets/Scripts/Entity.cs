@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using SoundManager;
 
 public class Entity : MonoBehaviour {
     private const int MOVE_FPS = 60;
@@ -114,6 +115,9 @@ public class Entity : MonoBehaviour {
     protected Rigidbody rigidBody = null;
 
     private List<AreaTrigger> areaTriggers = new List<AreaTrigger>();
+
+    [Header("Sound")]
+    [SerializeField] protected SoundObject stepSound = null;
 
     #region Properties
 
@@ -653,6 +657,10 @@ public class Entity : MonoBehaviour {
         }
         MoveInstant(destination);
         forcedMovements = false;
+    }
+
+    public void PlayStepSound() {
+        stepSound.Play();
     }
 
     ~Entity() {
