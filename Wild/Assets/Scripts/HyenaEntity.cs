@@ -130,7 +130,6 @@ public class HyenaEntity : AnimalEntity {
     #endregion
 
     #region Updates
-
     void UpdateStanding() {
         GameObject targ = Looking();
         if (targ != null) {
@@ -368,6 +367,8 @@ public class HyenaEntity : AnimalEntity {
         awarness = Awarness.CHASING;
 
         Laugh((int)awarness);
+
+        SoundManager.SoundManager.instance.PlayMusic(1);
     }
 
     public void Search(Vector2 pos) {
@@ -380,6 +381,8 @@ public class HyenaEntity : AnimalEntity {
         CopyMovementsValues(suspiciousValues);
 
         awarness = Awarness.SUSPICIOUS;
+
+        SoundManager.SoundManager.instance.PlayMusic(2);
 
         Laugh((int)awarness);
     }

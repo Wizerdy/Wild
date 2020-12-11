@@ -11,6 +11,7 @@ namespace SoundManager {
         public AudioClip clip;
         [Range(0f, 1f)] public float volume = 1f;
         [Range(0f, 1f)] public float pitch = 1f;
+        public bool loop = false;
 
         public string name {
             get { return clip.name; }
@@ -27,11 +28,16 @@ namespace SoundManager {
         private Dictionary<string, List<AudioSource>> sources = new Dictionary<string, List<AudioSource>>();
 
         public MusicSoundObject[] musics;
+        public int level = 0;
 
         #region Unity callbacks
 
         void Awake() {
             instance = this;
+
+            if(musics.Length > 0) {
+                PlayMusic(0);
+            }
 
             #region Editor
             //soundsObject = Tools.FindAssets<SoundObject>(); // Load all useful sounds
@@ -79,6 +85,7 @@ namespace SoundManager {
         }
 
         public AudioSource PlayWithDelay(Sound sound, float time) {
+            StopAllCoroutines();
             AudioSource source = GetSource(sound);
             SetSource(ref source, sound);
             StartCoroutine(PlayDelay(source, time));
@@ -132,6 +139,7 @@ namespace SoundManager {
         }
 
         public void StopWithDelay(AudioSource source, float time) {
+            StopAllCoroutines();
             StartCoroutine(StopDelay(source, time));
         }
 
@@ -191,8 +199,17 @@ namespace SoundManager {
         public void SetSource(ref AudioSource source, Sound sound) {
             source.pitch = sound.pitch;
             source.volume = sound.volume;
+            source.loop = sound.loop;
         }
 
         #endregion
+
+        public void ChangeLevel(int index) {
+            level = index;
+        }
+
+        public void PlayMusic(int index) {
+            musics[level].Play(index);
+        }
     }
 }

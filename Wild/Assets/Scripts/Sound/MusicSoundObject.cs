@@ -40,6 +40,12 @@ namespace SoundManager {
             Play(sounds[0].name);
         }
 
+        public void Play(int index) {
+            if (sounds.Length == 0) { Debug.LogWarning("Sound object is empty : " + name); return; }
+
+            Play(sounds[index].name);
+        }
+
         public void Play(string name, bool inRythm = true) {
             if (sounds.Length == 0) { Debug.LogWarning("Sound object is empty : " + this.name); return; }
 
