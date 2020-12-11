@@ -6,6 +6,15 @@ public class SnakeEntity : AnimalEntity
 {
     public float presenceRadius = 2f;
     public string preyGroupId;
+    public Vector3 lionTp;
+
+    public Color circleColor;
+    //public Vector3 radiusPoint;
+
+    [Header("SnakeEffect")]
+    public int reducedSpeedMax;
+    public float stunDuration;
+    public float effectTime;
 
     private GameObject FeelPresence(string preyId)
     {
@@ -13,35 +22,32 @@ public class SnakeEntity : AnimalEntity
         for (int i = 0; i < colliders.Length; i++)
         {
             Entity entity = colliders[i].gameObject.GetComponent<Entity>();
-            for (int index = 0; index < entity.entityGroup.Length; i++)
+            if (entity != null && entity.IsEntityId(preyId))
             {
-                if (entity != null && entity.entityGroup[index] == preyId && entity.GetComponent<AnimalEntity>().hidden == true)
-                {
-                    return entity.gameObject;
-                }
+                return entity.gameObject;
             }
         }
         return null;
     }
 
-    public void Attack()
+    public void AttackLion(GameObject obj, float time)
     {
-        
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
+        if (obj != null)
+        {
+            Entity entity = obj.GetComponent<Entity>();
+            entity.StartDashCooldown(time);
+            entity.StartSpeedReducedForSeconds(reducedSpeedMax, time);
+            entity.underEffect = true;
+            entity.MoveInstant(lionTp);
+            entity.StopMove(stunDuration);
+            Debug.Log("Attacked " + entity.speedMax);
+            gameObject.SetActive(false);
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (null != FeelPresence(preyGroupId))
-        {
-            GameObject obj = FeelPresence(preyGroupId);
-            Attack();
-        }
+        AttackLion(FeelPresence(preyGroupId), effectTime);
     }
 }

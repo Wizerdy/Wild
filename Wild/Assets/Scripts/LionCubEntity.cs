@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class LionCubEntity : AnimalEntity {
     public string predatorGroup = "Hyenas";
-
     public Vector2 spawnPoint;
 
     //protected override void OnTriggerEnter(Collider collide) {
@@ -53,7 +52,7 @@ public class LionCubEntity : AnimalEntity {
         for (int i = 0; i < hyenas.Length; i++) {
             HyenaEntity hyena = hyenas[i].gameObject.GetComponent<HyenaEntity>();
             //if (hyena != null && (hyena.awarness == HyenaEntity.Awarness.SUSPICIOUS || hyena.awarness == HyenaEntity.Awarness.CHASING)) {
-                hyenas[i].GetComponent<HyenaEntity>().Patrol();
+                hyenas[i].GetComponent<HyenaEntity>().ResetToStart();
                 //Debug.Log("Patrol " + hyenas[i].name);
             //}
         }

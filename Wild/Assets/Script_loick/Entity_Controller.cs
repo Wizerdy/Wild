@@ -18,33 +18,48 @@ public class Entity_Controller : MonoBehaviour {
         animator = GetComponentInChildren<Animator>();
     }
 
-    private void Start() {
-        runSpeed = player.speedMax;
-        walkSpeed = player.speedMax / 2;
+    private void Start()
+    {
+        runSpeed = player.speedMaxGlobal;
+        walkSpeed = player.speedMaxGlobal / 2;
         _rewiredPlayer = ReInput.players.GetPlayer(_rewiredPlayerName);
     }
 
-
-    void Update() {
+    void Update()
+    {
         dirMove.x = _rewiredPlayer.GetAxis("Horizontal");
         dirMove.y = _rewiredPlayer.GetAxis("Vertical");
 
-        if (dirMove.x == Mathf.Clamp(dirMove.x, -0.9f, 0.9f) && dirMove.y == Mathf.Clamp(dirMove.y, -0.9f, 0.9f)) {
+        if (player.underEffect)
+        {
+            runSpeed = player.speedMaxGlobal;
+            walkSpeed = player.speedMaxGlobal / 2;
+        } else
+        {
+            runSpeed = player.defaultSpeedMax;
+            walkSpeed = player.defaultSpeedMax / 2;
+        }
+
+        if (dirMove.x == Mathf.Clamp(dirMove.x, -0.9f, 0.9f) && dirMove.y == Mathf.Clamp(dirMove.y, -0.9f, 0.9f))
+        {
             player.speedMax = walkSpeed;
             isWalking = true;
         }
-        else {
+        else
+        {
             player.speedMax = runSpeed;
             isWalking = false;
         }
 
-        if (_rewiredPlayer.GetButtonDown("Dash")) {
+        if (_rewiredPlayer.GetButtonDown("Dash"))
+        {
             player.Dash();
         }
 
         if (_rewiredPlayer.GetButtonDown("Instinct"))
         {
-            player.GetComponent<SurbrillanceTrigger>().ActiveInstinctMode();
+            FindObjectOfType<SurbrillanceTrigger>().ActiveInstinctMode();
+            //player.GetComponentInChildren<SurbrillanceTrigger>().ActiveInstinctMode();
         }
 
         if (animator != null && isWalking)
@@ -59,7 +74,8 @@ public class Entity_Controller : MonoBehaviour {
                 lateDirMove.y = dirMove.y;
             }
             //animator.SetBool("Moving", dirMove != Vector2.zero);
-        } else
+        }
+        else
         {
             animator.SetBool("Walking", true);
             animator.SetBool("Running", false);
@@ -70,7 +86,7 @@ public class Entity_Controller : MonoBehaviour {
                 lateDirMove.x = -dirMove.x;
                 lateDirMove.y = dirMove.y;
             }
-        } 
+        }
 
         if (null != animator && dirMove == Vector2.zero)
         {

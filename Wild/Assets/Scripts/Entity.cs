@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using SoundManager;
 
 public class Entity : MonoBehaviour {
     private const int MOVE_FPS = 60;
@@ -44,6 +45,8 @@ public class Entity : MonoBehaviour {
 
     [Header("Movements")]
     public float speedMax = 10f;
+    [HideInInspector] public float defaultSpeedMax;
+    [HideInInspector] public float speedMaxGlobal;
 
     private Vector2 moveDirection = Vector2.zero;
     private Vector2 prevMoveDirection = Vector2.zero;
@@ -77,11 +80,12 @@ public class Entity : MonoBehaviour {
     //public float turnFriction = 20f;
     public bool usePathFinding;
 
+    public bool underEffect;
     private GameObject goToFollow = null;
     private Vector3 followPositionDelta = Vector3.zero;
     private Vector3 destination = Vector3.zero;
     private bool goToDestination = false;
-
+    protected Coroutine startDashCooldown;
 
     public float refreshPathDuration = 2f;
     private float refreshPathCountdown = -1f;
@@ -111,6 +115,9 @@ public class Entity : MonoBehaviour {
     protected Rigidbody rigidBody = null;
 
     private List<AreaTrigger> areaTriggers = new List<AreaTrigger>();
+
+    [Header("Sound")]
+    [SerializeField] protected SoundObject stepSound = null;
 
     #region Properties
 
@@ -164,7 +171,7 @@ public class Entity : MonoBehaviour {
 
     public bool CanDash {
         get { return canDash; }
-        private set { }
+        set { }
     }
 
     public bool IsMovementForced {
@@ -183,6 +190,8 @@ public class Entity : MonoBehaviour {
     protected virtual void Start() {
         rigidBody = GetComponent<Rigidbody>();
         navPath = new NavMeshPath();
+        defaultSpeedMax = speedMax;
+        speedMaxGlobal = speedMax;
     }
 
     protected virtual void FixedUpdate() {
@@ -547,7 +556,8 @@ public class Entity : MonoBehaviour {
             if (rigidBody != null) {
                 rigidBody.velocity = velocity.ConvertTo3D();
             }
-            StartCoroutine(DashCooldown(dashCooldown));
+            StartDashCooldown(dashCooldown);
+            //StartCoroutine(DashCooldown(dashCooldown));
         }
     }
 
@@ -590,10 +600,52 @@ public class Entity : MonoBehaviour {
         return false;
     }
 
-    IEnumerator DashCooldown(float time) {
+    IEnumerator DashCooldown(float time)
+    {
         canDash = false;
         yield return new WaitForSeconds(time);
         canDash = true;
+    }
+
+    public void StartDashCooldown(float time)
+    {
+        if (null != startDashCooldown)
+        {
+            StopCoroutine(startDashCooldown);
+        }
+        else
+        {
+            startDashCooldown = StartCoroutine(DashCooldown(time));
+        }
+    }
+
+    public IEnumerator SpeedReducedForSeconds(float speed, float time)
+    {
+        float tempSpeed = speedMaxGlobal;
+        speedMaxGlobal = speed;
+        yield return new WaitForSeconds(time);
+        underEffect = false;
+        speedMaxGlobal = tempSpeed;
+    }
+
+    public void StartSpeedReducedForSeconds(float speed, float time)
+    {
+        StartCoroutine(SpeedReducedForSeconds(speed, time));
+    }
+
+    public void SetSpeed(float runSpeed, float walkSpeed)
+    {
+        runSpeed = speedMax;
+        walkSpeed = speedMax / 2;
+    }
+
+    public bool IsEntityId(string id)
+    {
+        if (entityId.Equals(id))
+        {
+            return true;
+        }
+        return false;
     }
 
     IEnumerator MoveLerp(Vector3 destination, float time) {
@@ -605,6 +657,10 @@ public class Entity : MonoBehaviour {
         }
         MoveInstant(destination);
         forcedMovements = false;
+    }
+
+    public void PlayStepSound() {
+        stepSound.Play();
     }
 
     ~Entity() {
