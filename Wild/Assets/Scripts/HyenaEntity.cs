@@ -26,6 +26,11 @@ public class HyenaEntity : AnimalEntity {
 
     [Header("Hyena")]
     public Awarness awarness = Awarness.PATROLLING;
+
+    private Awarness startAwarness = Awarness.PATROLLING;
+    private Vector3 startPosition = Vector3.zero;
+    private Quaternion startRotation = Quaternion.identity;
+
     private Animator animator;
 
     public bool debug = false;
@@ -86,6 +91,10 @@ public class HyenaEntity : AnimalEntity {
         base.Start();
         beforeChaseCountdown = timeBeforeChase;
         animator = GetComponentInChildren<Animator>();
+
+        startAwarness = awarness;
+        startPosition = transform.position;
+        startRotation = transform.rotation;
 
         FindVisionPoints();
     }
@@ -398,5 +407,11 @@ public class HyenaEntity : AnimalEntity {
         }
 
         suspiciousSpeedFactor = 0f;
+    }
+
+    public void ResetToStart() {
+        transform.position = startPosition;
+        transform.rotation = startRotation;
+        awarness = startAwarness;
     }
 }
