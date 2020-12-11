@@ -13,7 +13,7 @@ public class SurbrillanceSkinnedMesh : MonoBehaviour
     void Start()
     {
         Sp = GetComponent<SkinnedMeshRenderer>();
-        baseM = GetComponent<SpriteRenderer>().material;
+        baseM = GetComponent<SkinnedMeshRenderer>().material;
     }
 
 
