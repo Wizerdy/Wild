@@ -18,4 +18,9 @@ public class Scenemanager : MonoBehaviour
     {
         Application.Quit();
     }
+
+    public void ReloadScene() 
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
 }
