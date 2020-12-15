@@ -2,10 +2,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class LionCubEntity : AnimalEntity {
     public string predatorGroup = "Hyenas";
     public Vector2 spawnPoint;
+    public bool isDying = false;
+    public bool changingcolor = false;
+    public GameObject MachoirAnim;
+    public GameObject Gameover;
+    public GameObject fondu;
+   
 
     //protected override void OnTriggerEnter(Collider collide) {
     //    base.OnTriggerEnter(collide);
@@ -38,12 +45,18 @@ public class LionCubEntity : AnimalEntity {
         Entity entity = collision.gameObject.GetComponent<Entity>();
         if (entity == null) return;
 
-        if(Array.IndexOf(entity.entityGroup, predatorGroup) >= 0) {
-            Respawn();
+        if(Array.IndexOf(entity.entityGroup, predatorGroup) >= 0 && !isDying) {
+            isDying = true;
+            StartCoroutine(gameOver());
+           
         }
     }
 
+   
+
     public void Respawn() {
+        Gameover.SetActive(false);
+        isDying = false;
         Entity[] hyenas = EntitiesManager.FindEntities("Hyenas");
         MoveInstant(spawnPoint.ConvertTo3D());
 
@@ -52,10 +65,23 @@ public class LionCubEntity : AnimalEntity {
         for (int i = 0; i < hyenas.Length; i++) {
             HyenaEntity hyena = hyenas[i].gameObject.GetComponent<HyenaEntity>();
             //if (hyena != null && (hyena.awarness == HyenaEntity.Awarness.SUSPICIOUS || hyena.awarness == HyenaEntity.Awarness.CHASING)) {
-                hyenas[i].GetComponent<HyenaEntity>().Patrol();
+                hyenas[i].GetComponent<HyenaEntity>().ResetToStart();
                 //Debug.Log("Patrol " + hyenas[i].name);
             //}
         }
+    }
+    
+    public IEnumerator gameOver() 
+    {
+        fondu.SetActive(true);
+        fondu.GetComponentInChildren<Animation>().Play();
+        yield return new WaitForSeconds(1);
+        MachoirAnim.SetActive(true);
+        MachoirAnim.GetComponentInChildren<Animation>().Play();
+        yield return new WaitForSeconds(2.5f);
+        MachoirAnim.GetComponentInChildren<Animation>().Stop();
+        MachoirAnim.SetActive(false);
+        Gameover.SetActive(true);
     }
 
     public void ChangeSpawnPoint(Vector3 position) {

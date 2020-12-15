@@ -22,13 +22,13 @@ public class SurbrillanceTrigger : MonoBehaviour
 
     private void Update() {
         cooldown -= Time.deltaTime;
-        if (Input.GetKeyDown(KeyCode.A) && cooldown < 0 && null == isPlaying) {
+        /*if (Input.GetKeyDown(KeyCode.A) && cooldown < 0 && null == isPlaying) {
             lion.StopMove(timeToGrow + Skilltime);
             Tools.ChangeAlphaMaterial(gameObject, alpha);
             transform.position = lion.transform.position;
             isPlaying = StartCoroutine(trigger());
             cooldown = SkillCooldown;
-        }
+        }*/
     }
 
     public void ActiveInstinctMode()
@@ -53,7 +53,7 @@ public class SurbrillanceTrigger : MonoBehaviour
             yield return new WaitForSeconds(timeToGrow / (timeToGrow* fps));
         }
         yield return new WaitForSeconds(Skilltime);
-
+        lion.StopMove(0.01f);
         Tools.ChangeAlphaMaterial(gameObject, 0);
         gameObject.transform.localScale = baseRange;
         yield return new WaitForSeconds(0.2f);
@@ -69,6 +69,10 @@ public class SurbrillanceTrigger : MonoBehaviour
         
         if (other.gameObject.GetComponent<Surbrillance3d>() != null) {
             other.gameObject.GetComponent<Surbrillance3d>().Shine(true);
+        } 
+        
+        if (other.gameObject.GetComponent<SurbrillanceSkinnedMesh>() != null) {
+            other.gameObject.GetComponent<SurbrillanceSkinnedMesh>().Shine(true);
         }
     }
 
@@ -78,6 +82,10 @@ public class SurbrillanceTrigger : MonoBehaviour
         }
         if (other.gameObject.GetComponent<Surbrillance3d>() != null) {
             other.gameObject.GetComponent<Surbrillance3d>().Shine(false);
+        } 
+        
+        if (other.gameObject.GetComponent<SurbrillanceSkinnedMesh>() != null) {
+            other.gameObject.GetComponent<SurbrillanceSkinnedMesh>().Shine(false);
         }
     }
 }

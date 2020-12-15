@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 800cf1f6bca15604b8ad8a392c65315b, type: 3}
+  m_Name: Music_Level2
+  m_EditorClassIdentifier: 
+  bpm: 110
+  sounds:
+  - name: Theme
+    sound:
+      clip: {fileID: 8300000, guid: 085389be314b7364c9e8d35bf7bf599b, type: 3}
+      volume: 1
+      pitch: 1
+      loop: 1
+  - name: Chase
+    sound:
+      clip: {fileID: 8300000, guid: 66b89dfac4c0df74a84a6935af8d7b8b, type: 3}
+      volume: 1
+      pitch: 1
+      loop: 1
+  - name: Loop
+    sound:
+      clip: {fileID: 8300000, guid: a77b8498bfd0b4e44ae09a9f88b69919, type: 3}
+      volume: 1
+      pitch: 1
+      loop: 1

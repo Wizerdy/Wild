@@ -43,6 +43,11 @@ public static class Tools
     }
 
 #endif
+
+    public static Vector3 Rotate(this Vector3 vector, float angle) {
+        return vector = Quaternion.AngleAxis(angle, Vector3.up) * vector;
+    }
+
     #region Actions
 
     public static void ChangeAlphaMaterial(GameObject obj, byte alpha) {

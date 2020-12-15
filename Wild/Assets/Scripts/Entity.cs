@@ -3,7 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using SoundManager;
 
+[SelectionBase]
 public class Entity : MonoBehaviour {
     private const int MOVE_FPS = 60;
 
@@ -49,6 +51,7 @@ public class Entity : MonoBehaviour {
 
     private Vector2 moveDirection = Vector2.zero;
     private Vector2 prevMoveDirection = Vector2.zero;
+    protected Vector2 orientDir = Vector2.up;
     protected Vector2 direction = Vector2.up;
     private bool wasMoving = false;
 
@@ -115,6 +118,9 @@ public class Entity : MonoBehaviour {
 
     private List<AreaTrigger> areaTriggers = new List<AreaTrigger>();
 
+    [Header("Sound")]
+    [SerializeField] protected SoundObject stepSound = null;
+
     #region Properties
 
     public Vector3 Position {
@@ -129,6 +135,11 @@ public class Entity : MonoBehaviour {
             if (moveDirection != Vector2.zero)
                 direction = moveDirection;
         }
+    }
+
+    public Vector2 OrientDir
+    {
+        get { return orientDir; }
     }
 
     #region Movements properties
@@ -236,6 +247,10 @@ public class Entity : MonoBehaviour {
                 Vector2 velocity = ApplyAcceleration();
                 this.velocity = ApplyTurn(velocity);
                 direction = this.velocity.normalized;
+            }
+
+            if (velocity != Vector2.zero) {
+                orientDir = velocity.normalized;
             }
 
             prevMoveDirection = moveDirection;
@@ -653,6 +668,10 @@ public class Entity : MonoBehaviour {
         }
         MoveInstant(destination);
         forcedMovements = false;
+    }
+
+    public void PlayStepSound() {
+        stepSound.Play();
     }
 
     ~Entity() {
