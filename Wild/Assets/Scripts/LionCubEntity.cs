@@ -6,6 +6,9 @@ using UnityEngine;
 public class LionCubEntity : AnimalEntity {
     public string predatorGroup = "Hyenas";
     public Vector2 spawnPoint;
+    public bool isDying = false;
+    public GameObject MachoirAnim;
+    public GameObject Gameover;
 
     //protected override void OnTriggerEnter(Collider collide) {
     //    base.OnTriggerEnter(collide);
@@ -38,12 +41,18 @@ public class LionCubEntity : AnimalEntity {
         Entity entity = collision.gameObject.GetComponent<Entity>();
         if (entity == null) return;
 
-        if(Array.IndexOf(entity.entityGroup, predatorGroup) >= 0) {
-            Respawn();
+        if(Array.IndexOf(entity.entityGroup, predatorGroup) >= 0 && !isDying) {
+            isDying = true;
+            StartCoroutine(gameOver());
+           
         }
     }
 
+   
+
     public void Respawn() {
+        Gameover.SetActive(false);
+        isDying = false;
         Entity[] hyenas = EntitiesManager.FindEntities("Hyenas");
         MoveInstant(spawnPoint.ConvertTo3D());
 
@@ -56,6 +65,17 @@ public class LionCubEntity : AnimalEntity {
                 //Debug.Log("Patrol " + hyenas[i].name);
             //}
         }
+    }
+
+    public IEnumerator gameOver() 
+    {
+        MachoirAnim.SetActive(true);
+        MachoirAnim.GetComponentInChildren<Animation>().Play();
+        yield return new WaitForSeconds(2.5f);
+        MachoirAnim.GetComponentInChildren<Animation>().Stop();
+        MachoirAnim.SetActive(false);
+        Gameover.SetActive(true);
+    
     }
 
     public void ChangeSpawnPoint(Vector3 position) {
