@@ -1,0 +1,129 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e4b22725c5d0d04d9ec791f2212695f, type: 3}
+  m_Name: RS1
+  m_EditorClassIdentifier: 
+  sounds:
+  - sound:
+      clip: {fileID: 8300000, guid: f97ef62e0a7218e4695ae69a9005c034, type: 3}
+      volume: 1
+      pitch: 1
+      loop: 0
+    probability: 6
+  - sound:
+      clip: {fileID: 8300000, guid: ee002e15eb7de4d438864475a9bb9972, type: 3}
+      volume: 1
+      pitch: 1
+      loop: 0
+    probability: 6
+  - sound:
+      clip: {fileID: 8300000, guid: 4f1cb7c89cc6a38468ee80242ab1f0c5, type: 3}
+      volume: 1
+      pitch: 1
+      loop: 0
+    probability: 6
+  - sound:
+      clip: {fileID: 8300000, guid: edefa1ec542d5524db0a18e1e7f1874b, type: 3}
+      volume: 1
+      pitch: 1
+      loop: 0
+    probability: 6
+  - sound:
+      clip: {fileID: 8300000, guid: c660e7a31c948d1469edfccda523db75, type: 3}
+      volume: 1
+      pitch: 1
+      loop: 0
+    probability: 6
+  - sound:
+      clip: {fileID: 8300000, guid: 6fe59009b9e7d984e85a10b39e3cf388, type: 3}
+      volume: 1
+      pitch: 1
+      loop: 0
+    probability: 6
+  - sound:
+      clip: {fileID: 8300000, guid: 70781ab30b1999e4bb5bd598b6d45d23, type: 3}
+      volume: 1
+      pitch: 1
+      loop: 0
+    probability: 11
+  - sound:
+      clip: {fileID: 8300000, guid: f3bf3b1f83655aa47988f104a6e4f017, type: 3}
+      volume: 1
+      pitch: 1
+      loop: 0
+    probability: 11
+  - sound:
+      clip: {fileID: 8300000, guid: 0e46b078c3d3195478ff3e2118194819, type: 3}
+      volume: 1
+      pitch: 1
+      loop: 0
+    probability: 11
+  - sound:
+      clip: {fileID: 8300000, guid: b36df229c099b6d42851fac1335352d4, type: 3}
+      volume: 1
+      pitch: 1
+      loop: 0
+    probability: 3
+  - sound:
+      clip: {fileID: 8300000, guid: ed5329bf98a8c5042829c0d48b22de48, type: 3}
+      volume: 1
+      pitch: 1
+      loop: 0
+    probability: 3
+  - sound:
+      clip: {fileID: 8300000, guid: 72db2afe80350fb4ca6d3bb13cf9fd99, type: 3}
+      volume: 1
+      pitch: 1
+      loop: 0
+    probability: 3
+  - sound:
+      clip: {fileID: 8300000, guid: 46f98dac2921bf843a6291c1126b2b15, type: 3}
+      volume: 1
+      pitch: 1
+      loop: 0
+    probability: 3
+  - sound:
+      clip: {fileID: 8300000, guid: d88e85290ae80e34783f8cd119417ca4, type: 3}
+      volume: 1
+      pitch: 1
+      loop: 0
+    probability: 3
+  - sound:
+      clip: {fileID: 8300000, guid: d8f2c6ce2ede66341b4a799139a71a4c, type: 3}
+      volume: 1
+      pitch: 1
+      loop: 0
+    probability: 3
+  - sound:
+      clip: {fileID: 8300000, guid: 786d2d92cdcf29c41acd36496c0cbf94, type: 3}
+      volume: 1
+      pitch: 1
+      loop: 0
+    probability: 3
+  - sound:
+      clip: {fileID: 8300000, guid: ffc2725d56d91054f90884fe703ff967, type: 3}
+      volume: 1
+      pitch: 1
+      loop: 0
+    probability: 3
+  - sound:
+      clip: {fileID: 8300000, guid: 992d72d8fe1388841bd50136e2695003, type: 3}
+      volume: 1
+      pitch: 1
+      loop: 0
+    probability: 3
+  - sound:
+      clip: {fileID: 8300000, guid: 1b97a8d5147b5c04dae55d6941ac1994, type: 3}
+      volume: 1
+      pitch: 1
+      loop: 0
+    probability: 3

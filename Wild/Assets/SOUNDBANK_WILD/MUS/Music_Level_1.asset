@@ -17,8 +17,8 @@ MonoBehaviour:
   - name: Theme
     sound:
       clip: {fileID: 8300000, guid: 86a419b5349645142bd650b5df96c3b4, type: 3}
-      volume: 1
-      pitch: 1
+      volume: 0.29
+      pitch: 0.72
       loop: 1
   - name: Chase
     sound:
