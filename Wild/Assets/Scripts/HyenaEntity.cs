@@ -71,6 +71,18 @@ public class HyenaEntity : AnimalEntity {
     public float suspiciousFactor = 0f;
     private float suspiciousSpeedFactor = 1f;
 
+    [Header("Animation")]
+    private float _animWalkSpeedMin = 0.1f;
+    public const float ANIM_ANGLE_STEP = Mathf.PI / 8f;
+    private float ANIM_SMOOTH_ORIENT_DURATION = 0.075f;
+
+    private bool _smoothOrientEnabled = false;
+    private int _smoothOrientStepDelta = 0;
+    private float _smoothOrientTimer = 0f;
+    private float _orientTimer = 0f;
+
+    private Vector2 _lastSmoothOrientDir = Vector2.zero;
+
     [Header("Sounds")]
     [SerializeField] private QueuedSoundObject laughs = null;
 
@@ -105,8 +117,6 @@ public class HyenaEntity : AnimalEntity {
         orientAngle = Mathf.Sign(orientAngle) * (Mathf.Abs(orientAngle) % (Mathf.PI * 2f));
         _lastSmoothOrientDir = orientDir;
     }
-
-    private float _orientTimer = 0f;
 
     void Update() {
         switch (awarness) {
@@ -143,6 +153,7 @@ public class HyenaEntity : AnimalEntity {
     #endregion
 
     #region Updates
+
     void UpdateStanding() {
         GameObject targ = Looking();
         if (targ != null) {
@@ -159,34 +170,18 @@ public class HyenaEntity : AnimalEntity {
         }
     }
 
-    [Header("Animation")]
-    private float _animWalkSpeedMin = 0.1f;
-
     //Smooth orient
     //(!) You can increase or decrease orient duration to slowdown entity anim smooth turns
-    private float ANIM_SMOOTH_ORIENT_DURATION = 0.075f;
 
-    public const float ANIM_ANGLE_STEP = Mathf.PI / 8f;
-    private bool _smoothOrientEnabled = false;
-    private int _smoothOrientStepDelta = 0;
-    private float _smoothOrientTimer = 0f;
-
-    private Vector2 _lastSmoothOrientDir = Vector2.zero;
-
-    void UpdateAnims()
-    {
-        switch (awarness)
-        {
+    void UpdateAnims() {
+        switch (awarness) {
             case Awarness.PATROLLING:
             case Awarness.STANDING:
             case Awarness.SUSPICIOUS:
-                if (velocity.magnitude > _animWalkSpeedMin)
-                {
+                if (velocity.magnitude > _animWalkSpeedMin) {
                     animator.SetBool("Running", false);
                     animator.SetBool("Walking", true);
-                }
-                else
-                {
+                } else {
                     animator.SetBool("Running", false);
                     animator.SetBool("Walking", false);
                 }
@@ -204,14 +199,11 @@ public class HyenaEntity : AnimalEntity {
         float orientAngleDiff = Vector2.SignedAngle(_lastSmoothOrientDir, orientDir) * Mathf.Deg2Rad;
         //Normalize difference using ANIM_ANGLE STEP (Here there are 8 orient per anim) so we need to divide by PI / 8
         int orientStepDiff = (int)Mathf.Sign(orientAngleDiff) * Mathf.FloorToInt(Mathf.Abs(orientAngleDiff) / ANIM_ANGLE_STEP);
-        if (orientStepDiff != 0)
-        {
+        if (orientStepDiff != 0) {
             //Increment a step delta (will be used later) and enable smooth orientation system
             _smoothOrientStepDelta += orientStepDiff;
-            if (_smoothOrientStepDelta != 0)
-            {
-                if (!_smoothOrientEnabled)
-                {
+            if (_smoothOrientStepDelta != 0) {
+                if (!_smoothOrientEnabled) {
                     _smoothOrientTimer = 0f;
                 }
                 _smoothOrientEnabled = true;
@@ -219,8 +211,7 @@ public class HyenaEntity : AnimalEntity {
             _lastSmoothOrientDir = orientDir;
         }
 
-        if (_smoothOrientEnabled)
-        {
+        if (_smoothOrientEnabled) {
             //For each step available :
             //Interpolate between 0f and PI/8 (multiplied by factor to orient angle)
             //Using a small duration to manage interpolate (better if < 0.1f)
@@ -233,14 +224,12 @@ public class HyenaEntity : AnimalEntity {
                 ratio
             );
 
-            if (_smoothOrientTimer >= ANIM_SMOOTH_ORIENT_DURATION)
-            {
+            if (_smoothOrientTimer >= ANIM_SMOOTH_ORIENT_DURATION) {
                 //If interpolation is finished => move to next step
                 _smoothOrientTimer -= ANIM_SMOOTH_ORIENT_DURATION;
                 _smoothOrientStepDelta -= (int)Mathf.Sign(_smoothOrientStepDelta);
 
-                if (_smoothOrientStepDelta != 0)
-                {
+                if (_smoothOrientStepDelta != 0) {
                     //Update animation orientation using orientDir and step delta
                     float orientAngle = Mathf.Atan2(orientDir.y, orientDir.x);
                     float intermediateOrientAngle = orientAngle + (_smoothOrientStepDelta) * ANIM_ANGLE_STEP;
@@ -249,9 +238,7 @@ public class HyenaEntity : AnimalEntity {
 
                     //Reset smooth orient angle
                     smoothOrientAngle = 0f;
-                }
-                else
-                {
+                } else {
                     //If there is no step => entity will be oriented using orient dir directly
                     animator.SetFloat("MoveX", OrientDir.x);
                     animator.SetFloat("MoveY", OrientDir.y);
@@ -297,24 +284,20 @@ public class HyenaEntity : AnimalEntity {
 
     void UpdateChase() {
         GameObject targ = Looking();
-        if (targ == null)
-        {
+        if (targ == null) {
             //Search(new Vector3(prey.transform.position.x, prey.transform.position.z));
             Search(prey.transform.position.ConvertTo2D());
-            //return;
-        }
-        else
-        {
+            return;
+        } else {
             targ = PeripheralLooking();
 
-            if (targ == null)
-            {
+            if (targ == null) {
                 Search(prey.transform.position.ConvertTo2D());
-                //return;
+                return;
             }
         }
 
-        Debug.Log(targ);
+        //Debug.Log(targ);
         BeSuspicious();
     }
 
