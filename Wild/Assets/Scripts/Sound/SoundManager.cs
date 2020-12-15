@@ -29,6 +29,8 @@ namespace SoundManager {
 
         public MusicSoundObject[] musics;
         public int level = 0;
+        public RandomSoundObject rs;
+        [Range(1.0f, 10.0f)] public float time;
 
         private Coroutine playDelay = null;
         private Coroutine stopDelay = null;
@@ -41,6 +43,8 @@ namespace SoundManager {
             if(musics.Length > 0) {
                 PlayMusic(0);
             }
+
+            StartCoroutine(PlaySoundAtXSeconds(time));
 
             #region Editor
             //soundsObject = Tools.FindAssets<SoundObject>(); // Load all useful sounds
@@ -99,6 +103,13 @@ namespace SoundManager {
         private IEnumerator PlayDelay(AudioSource source, float time) {
             yield return new WaitForSeconds(time);
             Play(source);
+        }
+
+        public IEnumerator PlaySoundAtXSeconds(float time)
+        {
+            Play(rs);
+            yield return new WaitForSeconds(time);
+            StartCoroutine(PlaySoundAtXSeconds(time));
         }
 
         #endregion
