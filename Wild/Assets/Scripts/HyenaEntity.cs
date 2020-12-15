@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using SoundManager;
 
+[SelectionBase]
 public class HyenaEntity : AnimalEntity {
     public enum Awarness {
         PATROLLING = 0, SLEEPING, STANDING, CHASING, SUSPICIOUS
@@ -63,6 +64,7 @@ public class HyenaEntity : AnimalEntity {
     private float searchCountdown = -1f;
     private float beforeChaseCountdown = -1f;
     private Vector2 lastPreyPos = Vector2.zero;
+    private bool destinationReached = false;
 
 
     public float suspiciousFactor = 0f;
@@ -100,15 +102,6 @@ public class HyenaEntity : AnimalEntity {
     }
 
     void Update() {
-        GameObject prey = FeelPresence(preyId);
-        if (prey != null) {
-            BeSuspicious(2f);
-
-            if (Suspicious) {
-                Chase(prey);
-            }
-        }
-
         switch (awarness) {
             case Awarness.PATROLLING:
                 UpdatePatrol();
@@ -122,6 +115,18 @@ public class HyenaEntity : AnimalEntity {
             case Awarness.STANDING:
                 UpdateStanding();
                 break;
+        }
+
+        // Aura of detection
+        if (awarness != Awarness.CHASING) {
+            GameObject prey = FeelPresence(preyId);
+            if (prey != null) {
+                BeSuspicious(2f);
+
+                if (Suspicious) {
+                    Chase(prey);
+                }
+            }
         }
 
         UpdateSuspicious();
@@ -187,23 +192,24 @@ public class HyenaEntity : AnimalEntity {
         if (targ == null) {
             //Search(new Vector3(prey.transform.position.x, prey.transform.position.z));
             Search(prey.transform.position.ConvertTo2D());
-            return;
+            //return;
         } else {
-
             targ = PeripheralLooking();
 
             if (targ == null) {
                 Search(prey.transform.position.ConvertTo2D());
-                return;
+                //return;
+            } else {
+
+                animator.SetBool("Running", true);
+                animator.SetBool("Walking", false);
+
+                animator.SetFloat("MoveX", -(transform.position.ConvertTo2D() - targ.transform.position.ConvertTo2D()).normalized.x);
+                animator.SetFloat("MoveY", -(transform.position.ConvertTo2D() - targ.transform.position.ConvertTo2D()).normalized.y);
             }
-
-            animator.SetBool("Running", true);
-            animator.SetBool("Walking", false);
-
-            animator.SetFloat("MoveX", -(transform.position.ConvertTo2D() - targ.transform.position.ConvertTo2D()).normalized.x);
-            animator.SetFloat("MoveY", -(transform.position.ConvertTo2D() - targ.transform.position.ConvertTo2D()).normalized.y);
         }
 
+        Debug.Log(targ);
         BeSuspicious();
     }
 
@@ -221,9 +227,13 @@ public class HyenaEntity : AnimalEntity {
                     Chase(targ);
                 }
             } else {
-                searchCountdown -= Time.deltaTime;
-                if (searchCountdown <= 0) {
-                    Patrol();
+                if (destinationReached || IsNearPoint(lastPreyPos, destinationRadius)) {
+                    destinationReached = true;
+
+                    searchCountdown -= Time.deltaTime;
+                    if (searchCountdown <= 0) {
+                        Patrol();
+                    }
                 }
             }
         }
@@ -279,7 +289,7 @@ public class HyenaEntity : AnimalEntity {
         RaycastHit[] hits;
         Vector3 pos = new Vector3(Position.x, 1f, Position.z);
         //Debug.DrawLine(pos, pos + new Vector3(direction.x, 1f, direction.y).normalized * distanceOfView, Color.red);
-        Debug.DrawLine(pos, pos + direction.ConvertTo3D().normalized * distanceOfView, Color.blue);
+        Debug.DrawLine(pos, pos + direction.ConvertTo3D().normalized * distanceOfView, new Color(255, 125, 0));
 
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg + visionAngles[0];
         for (int i = 0; i < raycastNumber; i++) {
@@ -348,6 +358,8 @@ public class HyenaEntity : AnimalEntity {
     #region States
 
     public void Patrol() {
+        if (debug) { Debug.LogWarning("Patrolling"); }
+
         CopyMovementsValues(patrolValues);
 
         prey = null;
@@ -357,6 +369,8 @@ public class HyenaEntity : AnimalEntity {
     }
 
     public void Chase(GameObject targ) {
+        if (debug) { Debug.LogWarning("Chasing"); }
+
         prey = targ;
         Follow(prey);
 
@@ -372,10 +386,13 @@ public class HyenaEntity : AnimalEntity {
     }
 
     public void Search(Vector2 pos) {
+        if (debug) { Debug.LogWarning("Searching"); }
+
         ClearFollow();
         prey = null;
         MoveToDestination(pos.ConvertTo3D());
         searchCountdown = searchTime;
+        destinationReached = false;
         lastPreyPos = pos;
 
         CopyMovementsValues(suspiciousValues);

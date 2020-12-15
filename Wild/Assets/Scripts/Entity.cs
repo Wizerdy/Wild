@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using SoundManager;
 
+[SelectionBase]
 public class Entity : MonoBehaviour {
     private const int MOVE_FPS = 60;
 

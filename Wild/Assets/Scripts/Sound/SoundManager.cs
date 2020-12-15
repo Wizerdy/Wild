@@ -101,10 +101,6 @@ namespace SoundManager {
             Play(source);
         }
 
-        private void PlayMusic(int index, string name) {
-            musics[index].Play(name);
-        }
-
         #endregion
 
         #region Stop
@@ -214,6 +210,8 @@ namespace SoundManager {
         }
 
         public void PlayMusic(int index) {
+            if (index >= musics.Length) { Debug.LogWarning("Music not set"); return; }
+
             musics[level].Play(index);
         }
     }
