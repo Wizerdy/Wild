@@ -4,9 +4,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using SoundManager;
 
+[SelectionBase]
 public class HyenaEntity : AnimalEntity {
     public enum Awarness {
-        PATROLLING = 0, SLEEPING, STANDING, CHASING, SUSPICIOUS
+        PATROLLING = 0, SLEEPING, STANDING, CHASING, SUSPICIOUS, RETURNING
     }
 
     [Serializable]
@@ -41,6 +42,7 @@ public class HyenaEntity : AnimalEntity {
     public float distanceOfView = 10f;
 
     public float presenceRadius = 15f;
+    public Color circleColor;
 
     //private Vector3[] periphericalPoints;
     private float[] visionAngles;
@@ -63,10 +65,23 @@ public class HyenaEntity : AnimalEntity {
     private float searchCountdown = -1f;
     private float beforeChaseCountdown = -1f;
     private Vector2 lastPreyPos = Vector2.zero;
+    private bool destinationReached = false;
 
 
     public float suspiciousFactor = 0f;
     private float suspiciousSpeedFactor = 1f;
+
+    [Header("Animation")]
+    private float _animWalkSpeedMin = 0.2f;
+    public const float ANIM_ANGLE_STEP = Mathf.PI / 8f;
+    private float ANIM_SMOOTH_ORIENT_DURATION = 0.075f;
+
+    private bool _smoothOrientEnabled = false;
+    private int _smoothOrientStepDelta = 0;
+    private float _smoothOrientTimer = 0f;
+    private float _orientTimer = 0f;
+
+    private Vector2 _lastSmoothOrientDir = Vector2.zero;
 
     [Header("Sounds")]
     [SerializeField] private QueuedSoundObject laughs = null;
@@ -97,18 +112,13 @@ public class HyenaEntity : AnimalEntity {
         startRotation = transform.rotation;
 
         FindVisionPoints();
+
+        float orientAngle = Mathf.Atan2(OrientDir.y, OrientDir.x);
+        orientAngle = Mathf.Sign(orientAngle) * (Mathf.Abs(orientAngle) % (Mathf.PI * 2f));
+        _lastSmoothOrientDir = orientDir;
     }
 
     void Update() {
-        GameObject prey = FeelPresence(preyId);
-        if (prey != null) {
-            BeSuspicious(2f);
-
-            if (Suspicious) {
-                Chase(prey);
-            }
-        }
-
         switch (awarness) {
             case Awarness.PATROLLING:
                 UpdatePatrol();
@@ -122,111 +132,208 @@ public class HyenaEntity : AnimalEntity {
             case Awarness.STANDING:
                 UpdateStanding();
                 break;
+            case Awarness.RETURNING:
+                UpdateReturn();
+                break;
+        }
+
+        // Aura of detection
+        if (awarness != Awarness.CHASING) {
+            GameObject prey = FeelPresence(preyId);
+            if (prey != null) {
+                BeSuspicious(3f);
+
+                if (Suspicious) {
+                    Chase(prey);
+                }
+            }
         }
 
         UpdateSuspicious();
+        UpdateAnims();
     }
 
     #endregion
 
     #region Updates
+
+    void UpdateAnims() {
+        switch (awarness) {
+            case Awarness.RETURNING:
+            case Awarness.PATROLLING:
+            case Awarness.STANDING:
+            case Awarness.SUSPICIOUS:
+            case Awarness.SLEEPING:
+                if (velocity.sqrMagnitude > _animWalkSpeedMin * _animWalkSpeedMin) {
+                    animator.SetBool("Running", false);
+                    animator.SetBool("Walking", true);
+                } else {
+                    animator.SetBool("Running", false);
+                    animator.SetBool("Walking", false);
+                }
+                break;
+
+            case Awarness.CHASING:
+                animator.SetBool("Running", true);
+                animator.SetBool("Walking", false);
+                break;
+        }
+
+        animator.SetBool("Sleeping", awarness == Awarness.SLEEPING);
+
+        animator.SetFloat("MoveX", OrientDir.x);
+        animator.SetFloat("MoveY", OrientDir.y);
+
+        #region Angled animation
+
+        ////Calculate difference between orientDir and last smooth orient dir
+        //float orientAngleDiff = Vector2.SignedAngle(_lastSmoothOrientDir, orientDir) * Mathf.Deg2Rad;
+        ////Normalize difference using ANIM_ANGLE STEP (Here there are 8 orient per anim) so we need to divide by PI / 8
+        //int orientStepDiff = (int)Mathf.Sign(orientAngleDiff) * Mathf.FloorToInt(Mathf.Abs(orientAngleDiff) / ANIM_ANGLE_STEP);
+        //if (orientStepDiff != 0) {
+        //    //Increment a step delta (will be used later) and enable smooth orientation system
+        //    _smoothOrientStepDelta += orientStepDiff;
+        //    if (_smoothOrientStepDelta != 0) {
+        //        if (!_smoothOrientEnabled) {
+        //            _smoothOrientTimer = 0f;
+        //        }
+        //        _smoothOrientEnabled = true;
+        //    }
+        //    _lastSmoothOrientDir = orientDir;
+        //}
+
+        //if (_smoothOrientEnabled) {
+        //    //For each step available :
+        //    //Interpolate between 0f and PI/8 (multiplied by factor to orient angle)
+        //    //Using a small duration to manage interpolate (better if < 0.1f)
+        //    _smoothOrientTimer += Time.deltaTime;
+        //    float ratio = _smoothOrientTimer / ANIM_SMOOTH_ORIENT_DURATION;
+        //    float smoothOrientAngleEnd = Mathf.Sign(_smoothOrientStepDelta) * ANIM_ANGLE_STEP;
+        //    float smoothOrientAngle = Mathf.Lerp(
+        //        0f,
+        //        smoothOrientAngleEnd,
+        //        ratio
+        //    );
+
+        //    if (_smoothOrientTimer >= ANIM_SMOOTH_ORIENT_DURATION) {
+        //        //If interpolation is finished => move to next step
+        //        _smoothOrientTimer -= ANIM_SMOOTH_ORIENT_DURATION;
+        //        _smoothOrientStepDelta -= (int)Mathf.Sign(_smoothOrientStepDelta);
+
+        //        if (_smoothOrientStepDelta != 0) {
+        //            //Update animation orientation using orientDir and step delta
+        //            float orientAngle = Mathf.Atan2(orientDir.y, orientDir.x);
+        //            float intermediateOrientAngle = orientAngle + (_smoothOrientStepDelta) * ANIM_ANGLE_STEP;
+        //            animator.SetFloat("MoveX", Mathf.Cos(intermediateOrientAngle));
+        //            animator.SetFloat("MoveY", Mathf.Sin(intermediateOrientAngle));
+
+        //            //Reset smooth orient angle
+        //            smoothOrientAngle = 0f;
+        //        } else {
+        //            //If there is no step => entity will be oriented using orient dir directly
+        //            animator.SetFloat("MoveX", OrientDir.x);
+        //            animator.SetFloat("MoveY", OrientDir.y);
+        //            smoothOrientAngle = 0f;
+
+        //            //disable smooth orientation system
+        //            _smoothOrientEnabled = false;
+        //        }
+        //    }
+
+        //    Vector3 localEulerAngles = animator.transform.localEulerAngles;
+        //    localEulerAngles.z = -smoothOrientAngle * Mathf.Rad2Deg;
+        //    animator.transform.localEulerAngles = localEulerAngles;
+        //}
+
+        #endregion
+    }
+
     void UpdateStanding() {
-        GameObject targ = Looking();
+        GameObject targ = Watch();
+
         if (targ != null) {
             Chase(targ);
-        } else {
-            targ = PeripheralLooking();
-
-            if (targ != null) {
-                BeSuspicious();
-                if (Suspicious) {
-                    Chase(targ);
-                }
-            }
         }
     }
 
     void UpdatePatrol() {
+        GameObject targ = Watch();
+        if (targ != null) {
+            Chase(targ);
+            return;
+        }
+
         if (patrolPoints.Length > 0) {
             //MoveToDestination(new Vector3(patrolPoints[patrolPointIndex].x, 0, patrolPoints[patrolPointIndex].y));
-            if (patrolPoints.Length > 1 || !IsNearPoint(patrolPoints[patrolPointIndex], destinationRadius)) {
-                animator.SetBool("Running", false);
-                animator.SetBool("Walking", true);
-                animator.SetFloat("MoveX", -(transform.position.ConvertTo2D() - patrolPoints[patrolPointIndex]).normalized.x);
-                animator.SetFloat("MoveY", -(transform.position.ConvertTo2D() - patrolPoints[patrolPointIndex]).normalized.y);
-            } else {
-                animator.SetBool("Running", false);
-                animator.SetBool("Walking", false);
-                animator.SetFloat("MoveX", -(transform.position.ConvertTo2D() - patrolPoints[patrolPointIndex]).normalized.x);
-                animator.SetFloat("MoveY", -(transform.position.ConvertTo2D() - patrolPoints[patrolPointIndex]).normalized.y);
-            }
 
             MoveToDestination(patrolPoints[patrolPointIndex].ConvertTo3D());
             if (IsNearPoint(patrolPoints[patrolPointIndex], destinationRadius)) {
                 patrolPointIndex = (patrolPointIndex + 1) % patrolPoints.Length;
             }
         }
-
-        GameObject targ = Looking();
-        if (targ != null) {
-            Chase(targ);
-        } else {
-            targ = PeripheralLooking();
-
-            if (targ != null) {
-                BeSuspicious();
-                if (Suspicious) {
-                    Chase(targ);
-                }
-            }
-        }
     }
 
     void UpdateChase() {
-        GameObject targ = Looking();
+        GameObject targ = Watch();
         if (targ == null) {
-            //Search(new Vector3(prey.transform.position.x, prey.transform.position.z));
             Search(prey.transform.position.ConvertTo2D());
             return;
-        } else {
-
-            targ = PeripheralLooking();
-
-            if (targ == null) {
-                Search(prey.transform.position.ConvertTo2D());
-                return;
-            }
-
-            animator.SetBool("Running", true);
-            animator.SetBool("Walking", false);
-
-            animator.SetFloat("MoveX", -(transform.position.ConvertTo2D() - targ.transform.position.ConvertTo2D()).normalized.x);
-            animator.SetFloat("MoveY", -(transform.position.ConvertTo2D() - targ.transform.position.ConvertTo2D()).normalized.y);
         }
 
+        //Debug.Log(targ);
         BeSuspicious();
     }
 
     void UpdateSearch() {
-        GameObject targ = Looking();
-
+        GameObject targ = Watch();
         if (targ != null) {
             Chase(targ);
             return;
         } else {
-            targ = PeripheralLooking();
-            if (targ != null) {
-                BeSuspicious();
-                if (Suspicious) {
-                    Chase(targ);
-                }
-            } else {
+            if (destinationReached || IsNearPoint(lastPreyPos, destinationRadius)) {
+                destinationReached = true;
+
                 searchCountdown -= Time.deltaTime;
                 if (searchCountdown <= 0) {
-                    Patrol();
+                    Return();
                 }
             }
         }
+    }
+
+    void UpdateReturn() {
+        GameObject targ = Watch();
+
+        if (targ != null) {
+            Chase(targ);
+            return;
+        }
+
+        if (IsNearPoint(startPosition.ConvertTo2D(), destinationRadius)) {
+            ResetToStart(false);
+        } else {
+            MoveToDestination(startPosition.ConvertTo2D());
+        }
+    }
+
+    private void UpdateSuspicious() {
+        if (timeBeforeChase == 0f) { suspiciousFactor = 1f; return; }
+
+        if (suspiciousSpeedFactor > 0f) {
+            if (suspiciousFactor < 1f) {
+                suspiciousFactor += Time.deltaTime / timeBeforeChase * suspiciousSpeedFactor;
+            } else {
+                suspiciousFactor = 1f;
+            }
+        } else if (suspiciousFactor > 0f) {
+            suspiciousFactor -= Time.deltaTime / timeBeforeChase;
+        }
+
+        if (suspiciousFactor < 0f) {
+            suspiciousFactor = 0f;
+        }
+
+        suspiciousSpeedFactor = 0f;
     }
 
     #endregion
@@ -248,6 +355,24 @@ public class HyenaEntity : AnimalEntity {
 
         visionAngles[0] = Mathf.Atan2(points[0].z, points[0].x) * Mathf.Rad2Deg;
         visionAngles[1] = Mathf.Atan2(points[1].z, points[1].x) * Mathf.Rad2Deg - visionAngles[0];
+    }
+
+    GameObject Watch() {
+        GameObject targ = Looking();
+
+        if (targ != null) {
+            return targ;
+        } else {
+            targ = PeripheralLooking();
+            if (targ != null) {
+                BeSuspicious();
+                if (Suspicious) {
+                    return targ;
+                }
+            }
+        }
+
+        return null;
     }
 
     GameObject PeripheralLooking() {
@@ -279,7 +404,7 @@ public class HyenaEntity : AnimalEntity {
         RaycastHit[] hits;
         Vector3 pos = new Vector3(Position.x, 1f, Position.z);
         //Debug.DrawLine(pos, pos + new Vector3(direction.x, 1f, direction.y).normalized * distanceOfView, Color.red);
-        Debug.DrawLine(pos, pos + direction.ConvertTo3D().normalized * distanceOfView, Color.blue);
+        Debug.DrawLine(pos, pos + direction.ConvertTo3D().normalized * distanceOfView, new Color(255, 125, 0));
 
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg + visionAngles[0];
         for (int i = 0; i < raycastNumber; i++) {
@@ -348,6 +473,8 @@ public class HyenaEntity : AnimalEntity {
     #region States
 
     public void Patrol() {
+        if (debug) { Debug.LogWarning("Patrolling"); }
+
         CopyMovementsValues(patrolValues);
 
         prey = null;
@@ -357,6 +484,8 @@ public class HyenaEntity : AnimalEntity {
     }
 
     public void Chase(GameObject targ) {
+        if (debug) { Debug.LogWarning("Chasing"); }
+
         prey = targ;
         Follow(prey);
 
@@ -372,10 +501,13 @@ public class HyenaEntity : AnimalEntity {
     }
 
     public void Search(Vector2 pos) {
+        if (debug) { Debug.LogWarning("Searching"); }
+
         ClearFollow();
         prey = null;
         MoveToDestination(pos.ConvertTo3D());
         searchCountdown = searchTime;
+        destinationReached = false;
         lastPreyPos = pos;
 
         CopyMovementsValues(suspiciousValues);
@@ -385,6 +517,21 @@ public class HyenaEntity : AnimalEntity {
         SoundManager.SoundManager.instance.PlayMusic(2);
 
         Laugh((int)awarness);
+    }
+
+    public void Return() {
+        switch (startAwarness) {
+            case Awarness.PATROLLING:
+                Patrol();
+                break;
+            case Awarness.SLEEPING:
+            case Awarness.STANDING:
+                awarness = Awarness.RETURNING;
+                MoveToDestination(startPosition);
+                break;
+            default:
+                break;
+        }
     }
 
     #endregion
@@ -411,29 +558,11 @@ public class HyenaEntity : AnimalEntity {
         suspiciousSpeedFactor = factor;
     }
 
-    private void UpdateSuspicious() {
-        if (timeBeforeChase == 0f) { suspiciousFactor = 1f; return; }
-
-        if (suspiciousSpeedFactor > 0f) {
-            if (suspiciousFactor < 1f) {
-                suspiciousFactor += Time.deltaTime / timeBeforeChase * suspiciousSpeedFactor;
-            } else {
-                suspiciousFactor = 1f;
-            }
-        } else if (suspiciousFactor > 0f) {
-            suspiciousFactor -= Time.deltaTime / timeBeforeChase;
-        }
-
-        if (suspiciousFactor < 0f) {
-            suspiciousFactor = 0f;
-        }
-
-        suspiciousSpeedFactor = 0f;
-    }
-
-    public void ResetToStart() {
-        transform.position = startPosition;
+    public void ResetToStart(bool resetPos = true) {
+        if (resetPos) { transform.position = startPosition; }
         transform.rotation = startRotation;
         awarness = startAwarness;
+        prey = null;
+        suspiciousFactor = 0f;
     }
 }

@@ -29,6 +29,8 @@ namespace SoundManager {
 
         public MusicSoundObject[] musics;
         public int level = 0;
+        public RandomSoundObject randomSounds;
+        [Range(1.0f, 10.0f)] public float time;
 
         private Coroutine playDelay = null;
         private Coroutine stopDelay = null;
@@ -40,6 +42,10 @@ namespace SoundManager {
 
             if(musics.Length > 0) {
                 PlayMusic(0);
+            }
+
+            if (randomSounds != null) {
+                StartCoroutine(PlaySoundAtXSeconds(time));
             }
 
             #region Editor
@@ -101,8 +107,11 @@ namespace SoundManager {
             Play(source);
         }
 
-        private void PlayMusic(int index, string name) {
-            musics[index].Play(name);
+        public IEnumerator PlaySoundAtXSeconds(float time)
+        {
+            Play(randomSounds);
+            yield return new WaitForSeconds(time);
+            StartCoroutine(PlaySoundAtXSeconds(time));
         }
 
         #endregion
@@ -214,6 +223,8 @@ namespace SoundManager {
         }
 
         public void PlayMusic(int index) {
+            if (index >= musics.Length) { /*Debug.LogWarning("Music not set");*/ return; }
+
             musics[level].Play(index);
         }
     }

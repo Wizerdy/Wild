@@ -40,7 +40,7 @@ public class Entity_Controller : MonoBehaviour {
             walkSpeed = player.defaultSpeedMax / 2;
         }
 
-        if (dirMove.x == Mathf.Clamp(dirMove.x, -0.9f, 0.9f) && dirMove.y == Mathf.Clamp(dirMove.y, -0.9f, 0.9f))
+        if (dirMove.sqrMagnitude < 0.7f * 0.7f)
         {
             player.speedMax = walkSpeed;
             isWalking = true;
