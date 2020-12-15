@@ -1416,12 +1416,13 @@ MonoBehaviour:
   stepSound: {fileID: 0}
   hidden: 0
   hideId: 
-  awarness: 0
+  awarness: 2
   debug: 1
-  raycastNumber: 30
+  raycastNumber: 8
   fieldOfView: 60
   distanceOfView: 80
-  presenceRadius: 15
+  presenceRadius: 20
+  circleColor: {r: 0.16197936, g: 0.3773585, b: 0.1884072, a: 0.14901961}
   patrolPoints:
   - {x: 19.325216, y: 0}
   patrolValues:
@@ -2601,7 +2602,10 @@ MonoBehaviour:
   hidden: 0
   hideId: 
   predatorGroup: Hyenas
-  spawnPoint: {x: 240, y: 81}
+  spawnPoint: {x: -50, y: 56}
+  isDying: 0
+  MachoirAnim: {fileID: 0}
+  Gameover: {fileID: 0}
 --- !u!4 &1522740782
 Transform:
   m_ObjectHideFlags: 0
@@ -3019,6 +3023,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   musics: []
   level: 0
+  randomSounds: {fileID: 0}
+  time: 0
 --- !u!4 &1845436736
 Transform:
   m_ObjectHideFlags: 0

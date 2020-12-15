@@ -247,6 +247,9 @@ public class Entity : MonoBehaviour {
                 Vector2 velocity = ApplyAcceleration();
                 this.velocity = ApplyTurn(velocity);
                 direction = this.velocity.normalized;
+            }
+
+            if (velocity != Vector2.zero) {
                 orientDir = velocity.normalized;
             }
 

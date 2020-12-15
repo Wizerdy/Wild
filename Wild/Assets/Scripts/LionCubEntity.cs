@@ -2,13 +2,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class LionCubEntity : AnimalEntity {
     public string predatorGroup = "Hyenas";
     public Vector2 spawnPoint;
     public bool isDying = false;
+    public bool changingcolor = false;
     public GameObject MachoirAnim;
     public GameObject Gameover;
+    public GameObject fondu;
+   
 
     //protected override void OnTriggerEnter(Collider collide) {
     //    base.OnTriggerEnter(collide);
@@ -66,16 +70,18 @@ public class LionCubEntity : AnimalEntity {
             //}
         }
     }
-
+    
     public IEnumerator gameOver() 
     {
+        fondu.SetActive(true);
+        fondu.GetComponentInChildren<Animation>().Play();
+        yield return new WaitForSeconds(1);
         MachoirAnim.SetActive(true);
         MachoirAnim.GetComponentInChildren<Animation>().Play();
         yield return new WaitForSeconds(2.5f);
         MachoirAnim.GetComponentInChildren<Animation>().Stop();
         MachoirAnim.SetActive(false);
         Gameover.SetActive(true);
-    
     }
 
     public void ChangeSpawnPoint(Vector3 position) {
