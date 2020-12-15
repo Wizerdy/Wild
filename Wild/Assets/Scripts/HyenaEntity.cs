@@ -99,7 +99,13 @@ public class HyenaEntity : AnimalEntity {
         startRotation = transform.rotation;
 
         FindVisionPoints();
+
+        float orientAngle = Mathf.Atan2(OrientDir.y, OrientDir.x);
+        orientAngle = Mathf.Sign(orientAngle) * (Mathf.Abs(orientAngle) % (Mathf.PI * 2f));
+        _lastSmoothOrientDir = orientDir;
     }
+
+    private float _orientTimer = 0f;
 
     void Update() {
         switch (awarness) {
@@ -130,6 +136,7 @@ public class HyenaEntity : AnimalEntity {
         }
 
         UpdateSuspicious();
+        UpdateAnims();
     }
 
     #endregion
@@ -151,20 +158,120 @@ public class HyenaEntity : AnimalEntity {
         }
     }
 
+    [Header("Animation")]
+    private float _animWalkSpeedMin = 0.1f;
+
+    //Smooth orient
+    //(!) You can increase or decrease orient duration to slowdown entity anim smooth turns
+    private float ANIM_SMOOTH_ORIENT_DURATION = 0.075f;
+
+    public const float ANIM_ANGLE_STEP = Mathf.PI / 8f;
+    private bool _smoothOrientEnabled = false;
+    private int _smoothOrientStepDelta = 0;
+    private float _smoothOrientTimer = 0f;
+
+    private Vector2 _lastSmoothOrientDir = Vector2.zero;
+
+    void UpdateAnims()
+    {
+        switch (awarness)
+        {
+            case Awarness.PATROLLING:
+            case Awarness.STANDING:
+            case Awarness.SUSPICIOUS:
+                if (velocity.magnitude > _animWalkSpeedMin)
+                {
+                    animator.SetBool("Running", false);
+                    animator.SetBool("Walking", true);
+                }
+                else
+                {
+                    animator.SetBool("Running", false);
+                    animator.SetBool("Walking", false);
+                }
+                break;
+
+            case Awarness.CHASING:
+                animator.SetBool("Running", true);
+                animator.SetBool("Walking", false);
+                break;
+        }
+
+        animator.SetBool("Sleeping", awarness == Awarness.SLEEPING);
+
+        //Calculate difference between orientDir and last smooth orient dir
+        float orientAngleDiff = Vector2.SignedAngle(_lastSmoothOrientDir, orientDir) * Mathf.Deg2Rad;
+        //Normalize difference using ANIM_ANGLE STEP (Here there are 8 orient per anim) so we need to divide by PI / 8
+        int orientStepDiff = (int)Mathf.Sign(orientAngleDiff) * Mathf.FloorToInt(Mathf.Abs(orientAngleDiff) / ANIM_ANGLE_STEP);
+        if (orientStepDiff != 0)
+        {
+            //Increment a step delta (will be used later) and enable smooth orientation system
+            _smoothOrientStepDelta += orientStepDiff;
+            if (_smoothOrientStepDelta != 0)
+            {
+                if (!_smoothOrientEnabled)
+                {
+                    _smoothOrientTimer = 0f;
+                }
+                _smoothOrientEnabled = true;
+            }
+            _lastSmoothOrientDir = orientDir;
+        }
+
+        if (_smoothOrientEnabled)
+        {
+            //For each step available :
+            //Interpolate between 0f and PI/8 (multiplied by factor to orient angle)
+            //Using a small duration to manage interpolate (better if < 0.1f)
+            _smoothOrientTimer += Time.deltaTime;
+            float ratio = _smoothOrientTimer / ANIM_SMOOTH_ORIENT_DURATION;
+            float smoothOrientAngleEnd = Mathf.Sign(_smoothOrientStepDelta) * ANIM_ANGLE_STEP;
+            float smoothOrientAngle = Mathf.Lerp(
+                0f,
+                smoothOrientAngleEnd,
+                ratio
+            );
+
+            if (_smoothOrientTimer >= ANIM_SMOOTH_ORIENT_DURATION)
+            {
+                //If interpolation is finished => move to next step
+                _smoothOrientTimer -= ANIM_SMOOTH_ORIENT_DURATION;
+                _smoothOrientStepDelta -= (int)Mathf.Sign(_smoothOrientStepDelta);
+
+                if (_smoothOrientStepDelta != 0)
+                {
+                    //Update animation orientation using orientDir and step delta
+                    float orientAngle = Mathf.Atan2(orientDir.y, orientDir.x);
+                    float intermediateOrientAngle = orientAngle + (_smoothOrientStepDelta) * ANIM_ANGLE_STEP;
+                    animator.SetFloat("MoveX", Mathf.Cos(intermediateOrientAngle));
+                    animator.SetFloat("MoveY", Mathf.Sin(intermediateOrientAngle));
+
+                    //Reset smooth orient angle
+                    smoothOrientAngle = 0f;
+                }
+                else
+                {
+                    //If there is no step => entity will be oriented using orient dir directly
+                    animator.SetFloat("MoveX", OrientDir.x);
+                    animator.SetFloat("MoveY", OrientDir.y);
+                    smoothOrientAngle = 0f;
+
+                    //disable smooth orientation system
+                    _smoothOrientEnabled = false;
+                }
+            }
+
+            Vector3 localEulerAngles = animator.transform.localEulerAngles;
+            localEulerAngles.z = -smoothOrientAngle * Mathf.Rad2Deg;
+            animator.transform.localEulerAngles = localEulerAngles;
+
+        }
+
+    }
+
     void UpdatePatrol() {
         if (patrolPoints.Length > 0) {
             //MoveToDestination(new Vector3(patrolPoints[patrolPointIndex].x, 0, patrolPoints[patrolPointIndex].y));
-            if (patrolPoints.Length > 1 || !IsNearPoint(patrolPoints[patrolPointIndex], destinationRadius)) {
-                animator.SetBool("Running", false);
-                animator.SetBool("Walking", true);
-                animator.SetFloat("MoveX", -(transform.position.ConvertTo2D() - patrolPoints[patrolPointIndex]).normalized.x);
-                animator.SetFloat("MoveY", -(transform.position.ConvertTo2D() - patrolPoints[patrolPointIndex]).normalized.y);
-            } else {
-                animator.SetBool("Running", false);
-                animator.SetBool("Walking", false);
-                animator.SetFloat("MoveX", -(transform.position.ConvertTo2D() - patrolPoints[patrolPointIndex]).normalized.x);
-                animator.SetFloat("MoveY", -(transform.position.ConvertTo2D() - patrolPoints[patrolPointIndex]).normalized.y);
-            }
 
             MoveToDestination(patrolPoints[patrolPointIndex].ConvertTo3D());
             if (IsNearPoint(patrolPoints[patrolPointIndex], destinationRadius)) {
@@ -189,23 +296,20 @@ public class HyenaEntity : AnimalEntity {
 
     void UpdateChase() {
         GameObject targ = Looking();
-        if (targ == null) {
+        if (targ == null)
+        {
             //Search(new Vector3(prey.transform.position.x, prey.transform.position.z));
             Search(prey.transform.position.ConvertTo2D());
             //return;
-        } else {
+        }
+        else
+        {
             targ = PeripheralLooking();
 
-            if (targ == null) {
+            if (targ == null)
+            {
                 Search(prey.transform.position.ConvertTo2D());
                 //return;
-            } else {
-
-                animator.SetBool("Running", true);
-                animator.SetBool("Walking", false);
-
-                animator.SetFloat("MoveX", -(transform.position.ConvertTo2D() - targ.transform.position.ConvertTo2D()).normalized.x);
-                animator.SetFloat("MoveY", -(transform.position.ConvertTo2D() - targ.transform.position.ConvertTo2D()).normalized.y);
             }
         }
 
