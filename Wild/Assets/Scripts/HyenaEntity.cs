@@ -42,6 +42,7 @@ public class HyenaEntity : AnimalEntity {
     public float distanceOfView = 10f;
 
     public float presenceRadius = 15f;
+    public Color circleColor;
 
     //private Vector3[] periphericalPoints;
     private float[] visionAngles;
