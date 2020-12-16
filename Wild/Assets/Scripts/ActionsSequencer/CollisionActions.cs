@@ -67,7 +67,6 @@ public class CollisionActions : MonoBehaviour
         if(boxCollider == null) { return; }
 
         Color color = gizmosColor;
-        color.a = 0.75f;
         Gizmos.color = color;
         Gizmos.DrawCube(transform.position + boxCollider.center, boxCollider.size);
     }
