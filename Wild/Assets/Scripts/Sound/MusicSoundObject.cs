@@ -24,7 +24,7 @@ namespace SoundManager {
 
         #region Properties
 
-        private bool IsPlaying {
+        public bool IsPlaying {
             get { return (source != null && source.isPlaying); }
         }
 
@@ -95,6 +95,13 @@ namespace SoundManager {
                 }
             }
             return null;
+        }
+
+        public bool Playing(int index) {
+            if (IsPlaying && source.clip == sounds[index].sound.clip) {
+                return true;
+            }
+            return false;
         }
     }
 }
