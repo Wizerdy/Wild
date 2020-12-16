@@ -47,7 +47,7 @@ public class LionCubEntity : AnimalEntity {
 
         if(Array.IndexOf(entity.entityGroup, predatorGroup) >= 0 && !isDying) {
             isDying = true;
-            StartCoroutine(gameOver());
+            gameOver();
            
         }
     }
@@ -56,6 +56,7 @@ public class LionCubEntity : AnimalEntity {
 
     public void Respawn() {
         Gameover.SetActive(false);
+        fondu.SetActive(false);
         isDying = false;
         Entity[] hyenas = EntitiesManager.FindEntities("Hyenas");
         MoveInstant(spawnPoint.ConvertTo3D());
@@ -71,17 +72,26 @@ public class LionCubEntity : AnimalEntity {
         }
     }
     
-    public IEnumerator gameOver() 
+    public void gameOver() 
     {
         fondu.SetActive(true);
         fondu.GetComponentInChildren<Animation>().Play();
+        Debug.Log("here");
+        StartCoroutine(nextgameover());
+
+    }
+
+    IEnumerator nextgameover() 
+    {
         yield return new WaitForSeconds(1);
+        Debug.Log("next");
         MachoirAnim.SetActive(true);
         MachoirAnim.GetComponentInChildren<Animation>().Play();
         yield return new WaitForSeconds(2.5f);
         MachoirAnim.GetComponentInChildren<Animation>().Stop();
         MachoirAnim.SetActive(false);
         Gameover.SetActive(true);
+
     }
 
     public void ChangeSpawnPoint(Vector3 position) {
