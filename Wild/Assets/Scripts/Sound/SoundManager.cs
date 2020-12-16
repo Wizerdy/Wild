@@ -78,7 +78,7 @@ namespace SoundManager {
                 source.rolloffMode = AudioRolloffMode.Custom;
                 source.spatialize = true;
                 source.spatialBlend = 1f;
-                source.maxDistance = 100f;
+                source.maxDistance = 200f;
             }
 
             source.Play();

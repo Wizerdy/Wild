@@ -684,5 +684,6 @@ public class HyenaEntity : AnimalEntity {
         prey = null;
         suspiciousFactor = 0f;
         ClearFollow();
+        MoveDir(Vector2.zero);
     }
 }

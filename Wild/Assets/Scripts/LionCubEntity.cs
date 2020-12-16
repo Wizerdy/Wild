@@ -63,6 +63,8 @@ public class LionCubEntity : AnimalEntity {
 
         if (hyenas == null) return;
 
+        SoundManager.SoundManager.instance.PlayMusic(0);
+
         for (int i = 0; i < hyenas.Length; i++) {
             HyenaEntity hyena = hyenas[i].gameObject.GetComponent<HyenaEntity>();
             //if (hyena != null && (hyena.awarness == HyenaEntity.Awarness.SUSPICIOUS || hyena.awarness == HyenaEntity.Awarness.CHASING)) {
