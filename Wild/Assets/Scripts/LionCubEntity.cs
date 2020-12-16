@@ -106,7 +106,7 @@ public class LionCubEntity : AnimalEntity {
         if (hidden == false) {
             hidden = true;
             hideId = "Hole";
-            Position = zone.transform.position.Overwrite(Position.y, Tools.IgnoreMode.Y);
+            Position = zone.transform.position.Overwrite(Position.y - 10, Tools.IgnoreMode.Y);
         } else {
             hidden = false;
             hideId = "";
