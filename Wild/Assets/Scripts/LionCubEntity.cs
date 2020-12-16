@@ -58,6 +58,7 @@ public class LionCubEntity : AnimalEntity {
         Gameover.SetActive(false);
         fondu.SetActive(false);
         isDying = false;
+        hidden = false;
         Entity[] hyenas = EntitiesManager.FindEntities("Hyenas");
         MoveInstant(spawnPoint.ConvertTo3D());
 
@@ -74,6 +75,7 @@ public class LionCubEntity : AnimalEntity {
     
     public void gameOver() 
     {
+        hidden = true;
         fondu.SetActive(true);
         fondu.GetComponentInChildren<Animation>().Play();
         Debug.Log("here");
