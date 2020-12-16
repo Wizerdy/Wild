@@ -84,7 +84,6 @@ public class LionCubEntity : AnimalEntity {
     IEnumerator nextgameover() 
     {
         yield return new WaitForSeconds(1);
-        Debug.Log("next");
         MachoirAnim.SetActive(true);
         MachoirAnim.GetComponentInChildren<Animation>().Play();
         yield return new WaitForSeconds(2.5f);
@@ -106,7 +105,7 @@ public class LionCubEntity : AnimalEntity {
         if (hidden == false) {
             hidden = true;
             hideId = "Hole";
-            Position = zone.transform.position.Overwrite(Position.y - 10, Tools.IgnoreMode.Y);
+            Position = zone.transform.position.Overwrite(Position.y, Tools.IgnoreMode.Y);
         } else {
             hidden = false;
             hideId = "";

@@ -481,7 +481,7 @@ public class HyenaEntity : AnimalEntity {
                     if (!hideId.Equals(entity.entityId)) {
                         return null;
                     }
-                } else if (entityId.Equals(entity.entityId)) {
+                } else if (entity.GetComponent<AnimalEntity>() != null && entity.GetComponent<AnimalEntity>().hidden == false && entityId.Equals(entity.entityId)) {
                     return collide;
                 }
             } else {
@@ -494,8 +494,8 @@ public class HyenaEntity : AnimalEntity {
     private GameObject FeelPresence(string preyId) {
         Collider[] colliders = Physics.OverlapSphere(transform.position, presenceRadius);
         for (int i = 0; i < colliders.Length; i++) {
-            Entity entity = colliders[i].gameObject.GetComponent<Entity>();
-            if (entity != null && entity.IsEntityId(preyId)) {
+            AnimalEntity entity = colliders[i].gameObject.GetComponent<AnimalEntity>();
+            if (entity != null && entity.hidden == false && entity.IsEntityId(preyId)) {
                 return entity.gameObject;
             }
         }

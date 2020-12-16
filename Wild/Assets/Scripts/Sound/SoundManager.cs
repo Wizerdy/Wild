@@ -75,6 +75,10 @@ namespace SoundManager {
 
             if (position != null) {
                 source.transform.position = (Vector3)position;
+                source.rolloffMode = AudioRolloffMode.Custom;
+                source.spatialize = true;
+                source.spatialBlend = 1f;
+                source.maxDistance = 100f;
             }
 
             source.Play();
@@ -227,9 +231,11 @@ namespace SoundManager {
         }
 
         public void PlayMusic(int index) {
-            if (index >= musics.Length) { /*Debug.LogWarning("Music not set");*/ return; }
+            //if (index >= musics[level]) { Debug.LogWarning("Music not set " + musics.Length + " .. " + index); return; }
 
             if (musics[level].Playing(index)) { return; }
+
+            Debug.LogWarning("+ " + index);
 
             musics[level].Play(index);
         }
