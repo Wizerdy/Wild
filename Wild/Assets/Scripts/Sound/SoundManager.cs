@@ -68,15 +68,19 @@ namespace SoundManager {
 
         #region Play
 
-        public void Play(AudioSource source) {
+        public void Play(AudioSource source, Vector3? position = null) {
             if (!source.gameObject.activeSelf) {
                 source.gameObject.SetActive(true);
+            }
+
+            if (position != null) {
+                source.transform.position = (Vector3)position;
             }
 
             source.Play();
         }
 
-        public AudioSource Play(Sound sound) {
+        public AudioSource Play(Sound sound, Vector3? position = null) {
             if (!sources.ContainsKey(sound.name)) {
                 AddSource(sound);
             }
@@ -85,12 +89,12 @@ namespace SoundManager {
 
             SetSource(ref source, sound);
 
-            Play(source);
+            Play(source, position);
             return source;
         }
 
-        public void Play(ISoundObject soundObject) {
-            soundObject.Play();
+        public void Play(ISoundObject soundObject, Vector3? position = null) {
+            soundObject.Play(position);
         }
 
         public AudioSource PlayWithDelay(Sound sound, float time) {

@@ -657,7 +657,7 @@ public class HyenaEntity : AnimalEntity {
 
     public void Laugh(int index) {
         if (laughs == null) { return; }
-        laughs.Play(index);
+        laughs.Play(index, transform.position);
     }
 
     public void CopyMovementsValues(MovementsValues values) {

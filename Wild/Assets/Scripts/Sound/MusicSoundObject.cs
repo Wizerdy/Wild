@@ -34,7 +34,7 @@ namespace SoundManager {
 
         #endregion
 
-        public override void Play() {
+        public override void Play(Vector3? position = null) {
             if (sounds.Length == 0) { Debug.LogWarning("Sound object is empty : " + name); return; }
 
             Play(sounds[0].name);
