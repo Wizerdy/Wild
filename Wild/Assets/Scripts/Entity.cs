@@ -627,10 +627,7 @@ public class Entity : MonoBehaviour {
         {
             StopCoroutine(startDashCooldown);
         }
-        else
-        {
-            startDashCooldown = StartCoroutine(DashCooldown(time));
-        }
+        startDashCooldown = StartCoroutine(DashCooldown(time));
     }
 
     public IEnumerator SpeedReducedForSeconds(float speed, float time)

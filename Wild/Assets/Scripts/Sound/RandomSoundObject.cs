@@ -18,11 +18,11 @@ namespace SoundManager {
 
         private AudioSource source;
 
-        public override void Play() {
+        public override void Play(Vector3? position = null) {
             if (sounds.Length == 0) { Debug.LogWarning("Sound object is empty : " + name); return; }
 
             if (sounds.Length == 1) {
-                Play(sounds[0]);
+                Play(sounds[0], position);
                 return;
             }
 
@@ -38,17 +38,17 @@ namespace SoundManager {
             int prob = 0;
             for (int i = 0; i < sounds.Length; i++) {
                 if (random < prob + sounds[i].probability) {
-                    Play(sounds[i]);
+                    Play(sounds[i], position);
                     return;
                 }
                 prob += sounds[i].probability;
             }
         }
 
-        private void Play(ProbSound sound) {
+        private void Play(ProbSound sound, Vector3? position = null) {
             if(sound == null) { return; }
 
-            source = SoundManager.instance.Play(sound.sound);
+            source = SoundManager.instance.Play(sound.sound, position);
         }
     }
 }

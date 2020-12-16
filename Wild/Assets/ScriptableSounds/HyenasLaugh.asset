@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: HyenasLaugh
   m_EditorClassIdentifier: 
   oneSoundAtTime: 0
-  index: 3
+  index: 4
   sounds:
   - clip: {fileID: 8300000, guid: 25c1b4fb85de97745834c5b7617daef6, type: 3}
-    volume: 0.6
+    volume: 1
     pitch: 1
     loop: 0
   - clip: {fileID: 0}
@@ -28,11 +28,11 @@ MonoBehaviour:
     pitch: 0
     loop: 0
   - clip: {fileID: 8300000, guid: 22ea13c2dc7dbbc43ba8b6e9cfdc4bd0, type: 3}
-    volume: 0.6
+    volume: 1
     pitch: 1
     loop: 0
   - clip: {fileID: 8300000, guid: 9f65c06d788cd0a4e81c0cbaff7923f0, type: 3}
-    volume: 0.6
+    volume: 1
     pitch: 1
     loop: 0
   - clip: {fileID: 0}

@@ -84,7 +84,6 @@ public class LionCubEntity : AnimalEntity {
     IEnumerator nextgameover() 
     {
         yield return new WaitForSeconds(1);
-        Debug.Log("next");
         MachoirAnim.SetActive(true);
         MachoirAnim.GetComponentInChildren<Animation>().Play();
         yield return new WaitForSeconds(2.5f);

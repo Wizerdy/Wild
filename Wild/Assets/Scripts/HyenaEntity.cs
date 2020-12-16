@@ -67,6 +67,10 @@ public class HyenaEntity : AnimalEntity {
     private Vector2 lastPreyPos = Vector2.zero;
     private bool destinationReached = false;
 
+    [Header("Sleeping")]
+    [Range(-1.0f, 1.0f)] public float moveX;
+    [Range(-1.0f, 1.0f)] public float moveY;
+
     public float suspiciousFactor = 0f;
     private float suspiciousSpeedFactor = 0f;
 
@@ -198,9 +202,16 @@ public class HyenaEntity : AnimalEntity {
         }
 
         animator.SetBool("Sleeping", awarness == Awarness.SLEEPING);
-
-        animator.SetFloat("MoveX", OrientDir.x);
-        animator.SetFloat("MoveY", OrientDir.y);
+        if (awarness == Awarness.SLEEPING)
+        {
+            animator.SetFloat("MoveX", moveX);
+            animator.SetFloat("MoveY", moveY);
+        }
+        else
+        {
+            animator.SetFloat("MoveX", OrientDir.x);
+            animator.SetFloat("MoveY", OrientDir.y);
+        }
 
         #region Angled animation
 
@@ -470,7 +481,7 @@ public class HyenaEntity : AnimalEntity {
                     if (!hideId.Equals(entity.entityId)) {
                         return null;
                     }
-                } else if (entityId.Equals(entity.entityId)) {
+                } else if (entity.GetComponent<AnimalEntity>() != null && entity.GetComponent<AnimalEntity>().hidden == false && entityId.Equals(entity.entityId)) {
                     return collide;
                 }
             } else {
@@ -483,8 +494,8 @@ public class HyenaEntity : AnimalEntity {
     private GameObject FeelPresence(string preyId) {
         Collider[] colliders = Physics.OverlapSphere(transform.position, presenceRadius);
         for (int i = 0; i < colliders.Length; i++) {
-            Entity entity = colliders[i].gameObject.GetComponent<Entity>();
-            if (entity != null && entity.IsEntityId(preyId)) {
+            AnimalEntity entity = colliders[i].gameObject.GetComponent<AnimalEntity>();
+            if (entity != null && entity.hidden == false && entity.IsEntityId(preyId)) {
                 return entity.gameObject;
             }
         }
@@ -646,7 +657,7 @@ public class HyenaEntity : AnimalEntity {
 
     public void Laugh(int index) {
         if (laughs == null) { return; }
-        laughs.Play(index);
+        laughs.Play(index, transform.position);
     }
 
     public void CopyMovementsValues(MovementsValues values) {
@@ -672,5 +683,6 @@ public class HyenaEntity : AnimalEntity {
         ChangeState(startAwarness);
         prey = null;
         suspiciousFactor = 0f;
+        ClearFollow();
     }
 }

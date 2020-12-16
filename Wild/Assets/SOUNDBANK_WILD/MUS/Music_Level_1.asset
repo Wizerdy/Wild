@@ -29,6 +29,6 @@ MonoBehaviour:
   - name: Loop
     sound:
       clip: {fileID: 8300000, guid: f75e6649240a2f74ebb361e5e37593e9, type: 3}
-      volume: 1
-      pitch: 1
+      volume: 0.35
+      pitch: 0.9
       loop: 1
