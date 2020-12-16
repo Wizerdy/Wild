@@ -12,6 +12,7 @@ public class CollisionActions : MonoBehaviour
     private ActionSequencer enterActions;
     private ActionSequencer exitActions;
 
+    public bool showGizmos = true;
     public Color gizmosColor = Color.red;
 
     private Rigidbody rigidBody;
@@ -65,6 +66,7 @@ public class CollisionActions : MonoBehaviour
 
     private void OnDrawGizmos() {
         if(boxCollider == null) { return; }
+        if(!showGizmos) { return; }
 
         Color color = gizmosColor;
         Gizmos.color = color;

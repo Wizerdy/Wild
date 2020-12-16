@@ -179,6 +179,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   entityGroup: Hyenas
+  showGizmos: 0
   gizmosColor: {r: 0, g: 1, b: 0.84967804, a: 0.34117648}
 --- !u!1 &547998252311328529
 GameObject:
