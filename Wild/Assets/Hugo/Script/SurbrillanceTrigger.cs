@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SurbrillanceTrigger : MonoBehaviour
 {
@@ -37,6 +38,7 @@ public class SurbrillanceTrigger : MonoBehaviour
         if (cooldown < 0 && null == isPlaying)
         {
             lion.StopMove(timeToGrow + Skilltime);
+            GameManager.Instance.instinctButton.GetComponent<Image>().color = GameManager.Instance.instinctColor[0];
             Tools.ChangeAlphaMaterial(gameObject, alpha);
             transform.position = lion.transform.position;
             isPlaying = StartCoroutine(trigger());
@@ -59,6 +61,7 @@ public class SurbrillanceTrigger : MonoBehaviour
         yield return new WaitForSeconds(0.2f);
         sp.enabled = false;
         isPlaying = null;
+        GameManager.Instance.instinctButton.GetComponent<Image>().color = GameManager.Instance.instinctColor[1];
         yield break;
     }
 

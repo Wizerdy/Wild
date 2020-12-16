@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 using UnityEngine.SceneManagement;
+using UnityEngine.Rendering.PostProcessing;
 
 public static class Tools
 {
@@ -37,6 +38,12 @@ public static class Tools
         EntitiesManager.ClearEntities();
         SceneManager.LoadScene(num);
     }
+
+    public static void ChangePostProcessingProfile(PostProcessProfile profile)
+    {
+        Camera.main.GetComponent<PostProcessVolume>().profile = profile;
+    }
+
 #if UNITY_EDITOR
     public static void PropertyField(this SerializedProperty prop) {
         EditorGUILayout.PropertyField(prop);

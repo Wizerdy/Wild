@@ -123,10 +123,14 @@ public class HyenaEntity : AnimalEntity {
         _lastSmoothOrientDir = orientDir;
 
         Transform fx = transform.Find("FX");
-        fxs = new ParticleSystem[fx.childCount];
-        for (int i = 0; i < fx.childCount; i++) {
-            fxs[i] = fx.GetChild(i).GetComponent<ParticleSystem>();
-            Debug.Log(fxs[i].name);
+        if (fx != null)
+        {
+            fxs = new ParticleSystem[fx.childCount];
+            for (int i = 0; i < fx.childCount; i++)
+            {
+                fxs[i] = fx.GetChild(i).GetComponent<ParticleSystem>();
+                Debug.Log(fxs[i].name);
+            }
         }
 
         ChangeState(awarness);
@@ -496,6 +500,11 @@ public class HyenaEntity : AnimalEntity {
             StopFx(0);
         }
 
+        if (this.awarness == Awarness.CHASING && awarness != Awarness.CHASING)
+        {
+            GameManager.Instance.IncrementChasingHyenas(-1);
+        }
+
         switch (awarness) {
             case Awarness.PATROLLING:
                 Patrol();
@@ -512,7 +521,7 @@ public class HyenaEntity : AnimalEntity {
                 Return();
                 break;
             case Awarness.SLEEPING:
-                fxs[0].Play();
+                PlayFx(0);
                 this.awarness = awarness;
                 break;
             default:
@@ -546,6 +555,8 @@ public class HyenaEntity : AnimalEntity {
         suspiciousFactor = 1f;
 
         awarness = Awarness.CHASING;
+
+        GameManager.Instance.IncrementChasingHyenas(1);
 
         Laugh((int)awarness);
 
@@ -593,8 +604,12 @@ public class HyenaEntity : AnimalEntity {
 
     #region FX
 
-    void PlayFx(int index) {
-        if (index > fxs.Length || index < 0) {
+    void PlayFx(int index)
+    {
+        if (fxs == null) { return; }
+
+        if (index > fxs.Length || index < 0)
+        {
             return;
         }
 
@@ -602,19 +617,27 @@ public class HyenaEntity : AnimalEntity {
         fxIndex = index;
     }
 
-    void StopFxs() {
-        for (int i = 0; i < fxs.Length; i++) {
+    void StopFxs()
+    {
+        if (fxs == null) { return; }
+
+        for (int i = 0; i < fxs.Length; i++)
+        {
             StopFx(i);
         }
     }
 
-    void StopFx(int index) {
-        if(index < 0 || !fxs[index].isPlaying) { return; }
+    void StopFx(int index)
+    {
+        if (fxs == null) { return; }
+
+        if (index < 0 || !fxs[index].isPlaying) { return; }
 
         fxs[index].Stop();
         fxs[index].Clear();
 
-        if (fxs[index].particleCount > 0) {
+        if (fxs[index].particleCount > 0)
+        {
             fxs[index].Clear();
         }
     }
