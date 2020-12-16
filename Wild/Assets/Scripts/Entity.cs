@@ -87,7 +87,7 @@ public class Entity : MonoBehaviour {
     private GameObject goToFollow = null;
     private Vector3 followPositionDelta = Vector3.zero;
     private Vector3 destination = Vector3.zero;
-    private bool goToDestination = false;
+    protected bool goToDestination = false;
     protected Coroutine startDashCooldown;
 
     public float refreshPathDuration = 2f;
