@@ -34,6 +34,8 @@ namespace SoundManager {
 
         #endregion
 
+        #region Play
+
         public override void Play(Vector3? position = null) {
             if (sounds.Length == 0) { Debug.LogWarning("Sound object is empty : " + name); return; }
 
@@ -83,9 +85,17 @@ namespace SoundManager {
             source = SoundManager.instance.Play(sound.sound);
         }
 
+        #endregion
+
         private void Stop(AudioSource source) {
             SoundManager.instance.Stop(source);
             source = null;
+        }
+
+        public void Stop() {
+            if (source == null) { return; }
+
+            Stop(source);
         }
 
         private NamedSound Find(string name) {

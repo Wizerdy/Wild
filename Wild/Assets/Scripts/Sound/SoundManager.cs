@@ -239,5 +239,9 @@ namespace SoundManager {
 
             musics[level].Play(index);
         }
+
+        public void StopMusic() {
+            musics[level].Stop();
+        }
     }
 }

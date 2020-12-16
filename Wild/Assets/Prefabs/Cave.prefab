@@ -56,7 +56,7 @@ GameObject:
   - component: {fileID: 547998251123925782}
   - component: {fileID: 547998251123925777}
   m_Layer: 2
-  m_Name: Colliision
+  m_Name: Collision
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

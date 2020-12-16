@@ -685,6 +685,8 @@ public class HyenaEntity : AnimalEntity {
         suspiciousFactor = 0f;
         ClearFollow();
         MoveDir(Vector2.zero);
+        ResetVelocityX();
+        ResetVelocityY();
         goToDestination = false;
     }
 }
