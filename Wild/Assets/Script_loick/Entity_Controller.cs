@@ -34,10 +34,13 @@ public class Entity_Controller : MonoBehaviour {
         {
             runSpeed = player.speedMaxGlobal;
             walkSpeed = player.speedMaxGlobal / 2;
-        } else
+            Tools.ChangePostProcessingProfile(GameManager.Instance.snakeProfile);
+        }
+        else
         {
             runSpeed = player.defaultSpeedMax;
             walkSpeed = player.defaultSpeedMax / 2;
+            Tools.ChangePostProcessingProfile(GameManager.Instance.defaultProfile);
         }
 
         if (dirMove.sqrMagnitude < 0.7f * 0.7f)

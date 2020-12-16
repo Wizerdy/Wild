@@ -67,9 +67,14 @@ public class HyenaEntity : AnimalEntity {
     private Vector2 lastPreyPos = Vector2.zero;
     private bool destinationReached = false;
 
+    [Header("Sleeping")]
+    [Range(-1.0f, 1.0f)] public float moveX;
+    [Range(-1.0f, 1.0f)] public float moveY;
 
     public float suspiciousFactor = 0f;
-    private float suspiciousSpeedFactor = 1f;
+    private float suspiciousSpeedFactor = 0f;
+
+    public bool wereSuspicious = false;
 
     [Header("Animation")]
     private float _animWalkSpeedMin = 0.2f;
@@ -82,6 +87,10 @@ public class HyenaEntity : AnimalEntity {
     private float _orientTimer = 0f;
 
     private Vector2 _lastSmoothOrientDir = Vector2.zero;
+
+    private ParticleSystem[] fxs = null;
+    private int fxIndex = -1;
+    
 
     [Header("Sounds")]
     [SerializeField] private QueuedSoundObject laughs = null;
@@ -116,6 +125,19 @@ public class HyenaEntity : AnimalEntity {
         float orientAngle = Mathf.Atan2(OrientDir.y, OrientDir.x);
         orientAngle = Mathf.Sign(orientAngle) * (Mathf.Abs(orientAngle) % (Mathf.PI * 2f));
         _lastSmoothOrientDir = orientDir;
+
+        Transform fx = transform.Find("FX");
+        if (fx != null)
+        {
+            fxs = new ParticleSystem[fx.childCount];
+            for (int i = 0; i < fx.childCount; i++)
+            {
+                fxs[i] = fx.GetChild(i).GetComponent<ParticleSystem>();
+                Debug.Log(fxs[i].name);
+            }
+        }
+
+        ChangeState(awarness);
     }
 
     void Update() {
@@ -144,7 +166,7 @@ public class HyenaEntity : AnimalEntity {
                 BeSuspicious(3f);
 
                 if (Suspicious) {
-                    Chase(prey);
+                    ChangeState(Awarness.CHASING, prey);
                 }
             }
         }
@@ -180,9 +202,16 @@ public class HyenaEntity : AnimalEntity {
         }
 
         animator.SetBool("Sleeping", awarness == Awarness.SLEEPING);
-
-        animator.SetFloat("MoveX", OrientDir.x);
-        animator.SetFloat("MoveY", OrientDir.y);
+        if (awarness == Awarness.SLEEPING)
+        {
+            animator.SetFloat("MoveX", moveX);
+            animator.SetFloat("MoveY", moveY);
+        }
+        else
+        {
+            animator.SetFloat("MoveX", OrientDir.x);
+            animator.SetFloat("MoveY", OrientDir.y);
+        }
 
         #region Angled animation
 
@@ -252,14 +281,14 @@ public class HyenaEntity : AnimalEntity {
         GameObject targ = Watch();
 
         if (targ != null) {
-            Chase(targ);
+            ChangeState(Awarness.CHASING, targ);
         }
     }
 
     void UpdatePatrol() {
         GameObject targ = Watch();
         if (targ != null) {
-            Chase(targ);
+            ChangeState(Awarness.CHASING, targ);
             return;
         }
 
@@ -276,7 +305,8 @@ public class HyenaEntity : AnimalEntity {
     void UpdateChase() {
         GameObject targ = Watch();
         if (targ == null) {
-            Search(prey.transform.position.ConvertTo2D());
+            //Search(prey.transform.position.ConvertTo2D());
+            ChangeState(Awarness.SUSPICIOUS, prey);
             return;
         }
 
@@ -287,7 +317,7 @@ public class HyenaEntity : AnimalEntity {
     void UpdateSearch() {
         GameObject targ = Watch();
         if (targ != null) {
-            Chase(targ);
+            ChangeState(Awarness.CHASING, targ);
             return;
         } else {
             if (destinationReached || IsNearPoint(lastPreyPos, destinationRadius)) {
@@ -305,7 +335,7 @@ public class HyenaEntity : AnimalEntity {
         GameObject targ = Watch();
 
         if (targ != null) {
-            Chase(targ);
+            ChangeState(Awarness.CHASING, targ);
             return;
         }
 
@@ -320,13 +350,17 @@ public class HyenaEntity : AnimalEntity {
         if (timeBeforeChase == 0f) { suspiciousFactor = 1f; return; }
 
         if (suspiciousSpeedFactor > 0f) {
+            if (!wereSuspicious && awarness != Awarness.CHASING) { StopFx(2); PlayFx(1); }
+
             if (suspiciousFactor < 1f) {
                 suspiciousFactor += Time.deltaTime / timeBeforeChase * suspiciousSpeedFactor;
             } else {
                 suspiciousFactor = 1f;
             }
+            wereSuspicious = true;
         } else if (suspiciousFactor > 0f) {
             suspiciousFactor -= Time.deltaTime / timeBeforeChase;
+            wereSuspicious = false;
         }
 
         if (suspiciousFactor < 0f) {
@@ -472,6 +506,41 @@ public class HyenaEntity : AnimalEntity {
 
     #region States
 
+    public void ChangeState(Awarness awarness, GameObject prey = null) {
+        if (this.awarness == Awarness.SLEEPING) {
+            StopFx(0);
+        }
+
+        if (this.awarness == Awarness.CHASING && awarness != Awarness.CHASING)
+        {
+            GameManager.Instance.IncrementChasingHyenas(-1);
+        }
+
+        switch (awarness) {
+            case Awarness.PATROLLING:
+                Patrol();
+                break;
+            case Awarness.CHASING:
+                if(prey == null) { return; }
+                Chase(prey);
+                break;
+            case Awarness.SUSPICIOUS:
+                if (prey == null) { return; }
+                Search(prey.transform.position.ConvertTo2D());
+                break;
+            case Awarness.RETURNING:
+                Return();
+                break;
+            case Awarness.SLEEPING:
+                PlayFx(0);
+                this.awarness = awarness;
+                break;
+            default:
+                this.awarness = awarness;
+                break;
+        }
+    }
+
     public void Patrol() {
         if (debug) { Debug.LogWarning("Patrolling"); }
 
@@ -486,6 +555,9 @@ public class HyenaEntity : AnimalEntity {
     public void Chase(GameObject targ) {
         if (debug) { Debug.LogWarning("Chasing"); }
 
+        StopFx(1);
+        PlayFx(2);
+
         prey = targ;
         Follow(prey);
 
@@ -495,6 +567,8 @@ public class HyenaEntity : AnimalEntity {
 
         awarness = Awarness.CHASING;
 
+        GameManager.Instance.IncrementChasingHyenas(1);
+
         Laugh((int)awarness);
 
         SoundManager.SoundManager.instance.PlayMusic(1);
@@ -502,6 +576,9 @@ public class HyenaEntity : AnimalEntity {
 
     public void Search(Vector2 pos) {
         if (debug) { Debug.LogWarning("Searching"); }
+
+        StopFx(2);
+        PlayFx(1);
 
         ClearFollow();
         prey = null;
@@ -522,7 +599,7 @@ public class HyenaEntity : AnimalEntity {
     public void Return() {
         switch (startAwarness) {
             case Awarness.PATROLLING:
-                Patrol();
+                ChangeState(Awarness.PATROLLING);
                 break;
             case Awarness.SLEEPING:
             case Awarness.STANDING:
@@ -536,9 +613,51 @@ public class HyenaEntity : AnimalEntity {
 
     #endregion
 
+    #region FX
+
+    void PlayFx(int index)
+    {
+        if (fxs == null) { return; }
+
+        if (index > fxs.Length || index < 0)
+        {
+            return;
+        }
+
+        fxs[index].Play();
+        fxIndex = index;
+    }
+
+    void StopFxs()
+    {
+        if (fxs == null) { return; }
+
+        for (int i = 0; i < fxs.Length; i++)
+        {
+            StopFx(i);
+        }
+    }
+
+    void StopFx(int index)
+    {
+        if (fxs == null) { return; }
+
+        if (index < 0 || !fxs[index].isPlaying) { return; }
+
+        fxs[index].Stop();
+        fxs[index].Clear();
+
+        if (fxs[index].particleCount > 0)
+        {
+            fxs[index].Clear();
+        }
+    }
+
+    #endregion
+
     public void Laugh(int index) {
         if (laughs == null) { return; }
-        laughs.Play(index);
+        laughs.Play(index, transform.position);
     }
 
     public void CopyMovementsValues(MovementsValues values) {
@@ -561,8 +680,9 @@ public class HyenaEntity : AnimalEntity {
     public void ResetToStart(bool resetPos = true) {
         if (resetPos) { transform.position = startPosition; }
         transform.rotation = startRotation;
-        awarness = startAwarness;
+        ChangeState(startAwarness);
         prey = null;
         suspiciousFactor = 0f;
+        ClearFollow();
     }
 }

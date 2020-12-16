@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4279387447327879977}
   - component: {fileID: 4279387447327879976}
   - component: {fileID: 4279387447327879983}
+  - component: {fileID: 3521518475000288732}
   m_Layer: 5
   m_Name: RawImage
   m_TagString: Untagged
@@ -92,6 +93,21 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!111 &3521518475000288732
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4279387447327879981}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: 1f16eefdd477e404d901943a62b60305, type: 2}
+  m_Animations: []
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_CullingType: 0
 --- !u!1 &4279387447589068753
 GameObject:
   m_ObjectHideFlags: 0

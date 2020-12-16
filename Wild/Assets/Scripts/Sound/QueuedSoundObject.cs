@@ -16,7 +16,7 @@ namespace SoundManager {
 
         private AudioSource source;
 
-        public override void Play() {
+        public override void Play(Vector3? position = null) {
             if (sounds.Length == 0) { Debug.LogWarning("Sound object is empty : " + name); return; }
 
             if (sounds.Length == 1) {
@@ -28,22 +28,22 @@ namespace SoundManager {
             index++;
             index %= sounds.Length;
 
-            Play(index);
+            Play(index, position);
         }
 
-        public void Play(int index, bool overwrite = true) {
+        public void Play(int index, Vector3? position = null, bool overwrite = true) {
             if (index >= sounds.Length) { Debug.LogWarning("Index exceed sounds length : " + index); return; }
 
             if (overwrite) this.index = index;
             if (oneSoundAtTime) Stop(source);
 
-            Play(sounds[index]);
+            Play(sounds[index], position);
         }
 
-        private void Play(Sound sound) {
+        private void Play(Sound sound, Vector3? position = null) {
             if (sound == null) { return; }
 
-            source = SoundManager.instance.Play(sound);
+            source = SoundManager.instance.Play(sound, position);
         }
 
         private void Stop(AudioSource source) {
