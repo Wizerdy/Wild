@@ -225,6 +225,8 @@ namespace SoundManager {
         public void PlayMusic(int index) {
             if (index >= musics.Length) { /*Debug.LogWarning("Music not set");*/ return; }
 
+            if (musics[level].Playing(index)) { return; }
+
             musics[level].Play(index);
         }
     }
