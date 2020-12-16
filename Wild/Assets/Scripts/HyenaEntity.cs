@@ -67,6 +67,10 @@ public class HyenaEntity : AnimalEntity {
     private Vector2 lastPreyPos = Vector2.zero;
     private bool destinationReached = false;
 
+    [Header("Sleeping")]
+    [Range(-1.0f, 1.0f)] public float moveX;
+    [Range(-1.0f, 1.0f)] public float moveY;
+
     public float suspiciousFactor = 0f;
     private float suspiciousSpeedFactor = 0f;
 
@@ -198,9 +202,16 @@ public class HyenaEntity : AnimalEntity {
         }
 
         animator.SetBool("Sleeping", awarness == Awarness.SLEEPING);
-
-        animator.SetFloat("MoveX", OrientDir.x);
-        animator.SetFloat("MoveY", OrientDir.y);
+        if (awarness == Awarness.SLEEPING)
+        {
+            animator.SetFloat("MoveX", moveX);
+            animator.SetFloat("MoveY", moveY);
+        }
+        else
+        {
+            animator.SetFloat("MoveX", OrientDir.x);
+            animator.SetFloat("MoveY", OrientDir.y);
+        }
 
         #region Angled animation
 
@@ -672,5 +683,6 @@ public class HyenaEntity : AnimalEntity {
         ChangeState(startAwarness);
         prey = null;
         suspiciousFactor = 0f;
+        ClearFollow();
     }
 }
