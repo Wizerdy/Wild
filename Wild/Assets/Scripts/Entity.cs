@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.AI;
 using SoundManager;
 
@@ -614,8 +615,10 @@ public class Entity : MonoBehaviour {
     IEnumerator DashCooldown(float time)
     {
         canDash = false;
+        GameManager.Instance.dashButton.GetComponent<Image>().color = GameManager.Instance.dashColor[0];
         yield return new WaitForSeconds(time);
         canDash = true;
+        GameManager.Instance.dashButton.GetComponent<Image>().color = GameManager.Instance.dashColor[1];
     }
 
     public void StartDashCooldown(float time)
@@ -624,10 +627,7 @@ public class Entity : MonoBehaviour {
         {
             StopCoroutine(startDashCooldown);
         }
-        else
-        {
-            startDashCooldown = StartCoroutine(DashCooldown(time));
-        }
+        startDashCooldown = StartCoroutine(DashCooldown(time));
     }
 
     public IEnumerator SpeedReducedForSeconds(float speed, float time)

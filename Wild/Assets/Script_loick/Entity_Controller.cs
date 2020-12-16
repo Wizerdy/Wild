@@ -14,97 +14,113 @@ public class Entity_Controller : MonoBehaviour {
     private bool isWalking;
     private Vector2 lateDirMove;
 
+    private HideZone hideZone = null;
+
     private void Awake() {
         animator = GetComponentInChildren<Animator>();
     }
 
-    private void Start()
-    {
+    private void Start() {
         runSpeed = player.speedMaxGlobal;
         walkSpeed = player.speedMaxGlobal / 2;
         _rewiredPlayer = ReInput.players.GetPlayer(_rewiredPlayerName);
     }
 
-    void Update()
-    {
+    void Update() {
         dirMove.x = _rewiredPlayer.GetAxis("Horizontal");
         dirMove.y = _rewiredPlayer.GetAxis("Vertical");
 
-        if (player.underEffect)
-        {
+        #region Snake
+        if (player.underEffect) {
             runSpeed = player.speedMaxGlobal;
             walkSpeed = player.speedMaxGlobal / 2;
-        } else
-        {
+            Tools.ChangePostProcessingProfile(GameManager.Instance.snakeProfile);
+        } else {
             runSpeed = player.defaultSpeedMax;
             walkSpeed = player.defaultSpeedMax / 2;
+            Tools.ChangePostProcessingProfile(GameManager.Instance.defaultProfile);
         }
+        #endregion
 
-        if (dirMove.sqrMagnitude < 0.7f * 0.7f)
-        {
+        #region Speed
+        if (dirMove.sqrMagnitude < 0.7f * 0.7f) {
             player.speedMax = walkSpeed;
             isWalking = true;
-        }
-        else
-        {
+        } else {
             player.speedMax = runSpeed;
             isWalking = false;
         }
+        #endregion
 
-        if (_rewiredPlayer.GetButtonDown("Dash"))
-        {
+        #region Dash
+        if (_rewiredPlayer.GetButtonDown("Dash")) {
             player.Dash();
         }
+        #endregion
 
-        if (_rewiredPlayer.GetButtonDown("Instinct"))
-        {
+        #region Instinct
+        if (_rewiredPlayer.GetButtonDown("Instinct")) {
             FindObjectOfType<SurbrillanceTrigger>().ActiveInstinctMode();
             //player.GetComponentInChildren<SurbrillanceTrigger>().ActiveInstinctMode();
         }
+        #endregion
 
-        if (animator != null && isWalking)
-        {
+        #region Hide
+        if (_rewiredPlayer.GetButtonDown("Hide") && hideZone != null) {
+            player.GetComponent<LionCubEntity>().Hide(hideZone);
+            Debug.LogWarning(player.GetComponent<LionCubEntity>().hidden);
+        }
+        #endregion
+
+        #region Animator
+        if (animator != null && isWalking) {
             animator.SetBool("Running", true);
             animator.SetBool("Walking", false);
             animator.SetFloat("MoveX", -dirMove.x);
             animator.SetFloat("MoveY", dirMove.y);
-            if (dirMove != Vector2.zero)
-            {
+            if (dirMove != Vector2.zero) {
                 lateDirMove.x = -dirMove.x;
                 lateDirMove.y = dirMove.y;
             }
             //animator.SetBool("Moving", dirMove != Vector2.zero);
-        }
-        else
-        {
+        } else {
             animator.SetBool("Walking", true);
             animator.SetBool("Running", false);
             animator.SetFloat("MoveX", -dirMove.x);
             animator.SetFloat("MoveY", dirMove.y);
-            if (dirMove != Vector2.zero)
-            {
+            if (dirMove != Vector2.zero) {
                 lateDirMove.x = -dirMove.x;
                 lateDirMove.y = dirMove.y;
             }
         }
 
-        if (null != animator && dirMove == Vector2.zero)
-        {
+        if (null != animator && dirMove == Vector2.zero) {
             animator.SetBool("Walking", false);
             animator.SetBool("Running", false);
             animator.SetFloat("MoveX", lateDirMove.x);
             animator.SetFloat("MoveY", lateDirMove.y);
         }
+        #endregion
 
         player.MoveDir(dirMove);
     }
 
-    private void OnTriggerStay(Collider other)
-    {
-        if (!(null == other.GetComponent<HideZone>()) && _rewiredPlayer.GetButtonDown("Hide"))
-        {
-            player.GetComponent<LionCubEntity>().Hide(other.GetComponent<HideZone>());
-            Debug.Log(player.GetComponent<LionCubEntity>().hidden);
+    private void OnTriggerEnter(Collider other) {
+        if (other.GetComponent<HideZone>() != null) {
+            hideZone = other.GetComponent<HideZone>();
         }
     }
+
+    private void OnTriggerExit(Collider other) {
+        if (other.GetComponent<HideZone>() != null) {
+            hideZone = null;
+        }
+    }
+
+    //private void OnTriggerStay(Collider other) {
+    //    if (_rewiredPlayer.GetButtonDown("Hide") && !(null == other.GetComponent<HideZone>())) {
+    //        player.GetComponent<LionCubEntity>().Hide(other.GetComponent<HideZone>());
+    //        Debug.LogWarning(player.GetComponent<LionCubEntity>().hidden);
+    //    }
+    //}
 }

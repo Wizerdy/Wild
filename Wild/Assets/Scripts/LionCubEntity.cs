@@ -47,7 +47,7 @@ public class LionCubEntity : AnimalEntity {
 
         if(Array.IndexOf(entity.entityGroup, predatorGroup) >= 0 && !isDying) {
             isDying = true;
-            StartCoroutine(gameOver());
+            gameOver();
            
         }
     }
@@ -56,11 +56,14 @@ public class LionCubEntity : AnimalEntity {
 
     public void Respawn() {
         Gameover.SetActive(false);
+        fondu.SetActive(false);
         isDying = false;
         Entity[] hyenas = EntitiesManager.FindEntities("Hyenas");
         MoveInstant(spawnPoint.ConvertTo3D());
 
         if (hyenas == null) return;
+
+        SoundManager.SoundManager.instance.PlayMusic(0);
 
         for (int i = 0; i < hyenas.Length; i++) {
             HyenaEntity hyena = hyenas[i].gameObject.GetComponent<HyenaEntity>();
@@ -71,10 +74,17 @@ public class LionCubEntity : AnimalEntity {
         }
     }
     
-    public IEnumerator gameOver() 
+    public void gameOver() 
     {
         fondu.SetActive(true);
         fondu.GetComponentInChildren<Animation>().Play();
+        Debug.Log("here");
+        StartCoroutine(nextgameover());
+
+    }
+
+    IEnumerator nextgameover() 
+    {
         yield return new WaitForSeconds(1);
         MachoirAnim.SetActive(true);
         MachoirAnim.GetComponentInChildren<Animation>().Play();
@@ -82,6 +92,7 @@ public class LionCubEntity : AnimalEntity {
         MachoirAnim.GetComponentInChildren<Animation>().Stop();
         MachoirAnim.SetActive(false);
         Gameover.SetActive(true);
+
     }
 
     public void ChangeSpawnPoint(Vector3 position) {

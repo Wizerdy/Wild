@@ -17,18 +17,18 @@ MonoBehaviour:
   - name: Theme
     sound:
       clip: {fileID: 8300000, guid: 86a419b5349645142bd650b5df96c3b4, type: 3}
-      volume: 0.29
-      pitch: 0.72
+      volume: 0.35
+      pitch: 0.9
       loop: 1
   - name: Chase
     sound:
       clip: {fileID: 8300000, guid: d3c30809ba6595e488aff0de95aba25f, type: 3}
-      volume: 1
-      pitch: 1
+      volume: 0.45
+      pitch: 0.9
       loop: 1
   - name: Loop
     sound:
       clip: {fileID: 8300000, guid: f75e6649240a2f74ebb361e5e37593e9, type: 3}
-      volume: 1
-      pitch: 1
+      volume: 0.35
+      pitch: 0.9
       loop: 1
