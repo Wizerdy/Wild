@@ -12,7 +12,7 @@ public class LionCubEntity : AnimalEntity {
     public GameObject MachoirAnim;
     public GameObject Gameover;
     public GameObject fondu;
-    public SoundManager.ISoundObject deathSound;
+    public SoundManager.SoundObject deathSound;
 
     //protected override void OnTriggerEnter(Collider collide) {
     //    base.OnTriggerEnter(collide);
