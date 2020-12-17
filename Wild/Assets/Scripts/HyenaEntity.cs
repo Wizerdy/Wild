@@ -91,7 +91,6 @@ public class HyenaEntity : AnimalEntity {
     private ParticleSystem[] fxs = null;
     private int fxIndex = -1;
 
-    public Transform rotatingTransform = null;
     public GameObject visionCone = null;
     public GameObject presenceCircle = null;
     
@@ -180,10 +179,6 @@ public class HyenaEntity : AnimalEntity {
 
         UpdateSuspicious();
         UpdateAnims();
-
-        if(rotatingTransform != null) {
-            rotatingTransform.localEulerAngles = Vector3.zero.Overwrite(Mathf.Atan2(direction.x, direction.y) * Mathf.Rad2Deg, Tools.IgnoreMode.Y);
-        }
     }
 
     #endregion

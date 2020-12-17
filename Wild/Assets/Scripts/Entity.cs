@@ -106,6 +106,8 @@ public class Entity : MonoBehaviour {
     private bool goToRotation = false;
     public AnimationCurve rotationAcceleration;
 
+    protected Transform rotatingTransform = null;
+
     [Header("Dash")]
     [SerializeField] protected MovementCurve dash = new MovementCurve();
     public float dashSpeed = 50f;
@@ -200,6 +202,8 @@ public class Entity : MonoBehaviour {
         navPath = new NavMeshPath();
         defaultSpeedMax = speedMax;
         speedMaxGlobal = speedMax;
+
+        rotatingTransform = transform.Find("Rotate");
     }
 
     protected virtual void FixedUpdate() {
@@ -211,6 +215,10 @@ public class Entity : MonoBehaviour {
         }
         if (!IsMovementForced)
             ApplySpeed();
+
+        if (rotatingTransform != null) {
+            rotatingTransform.localEulerAngles = Vector3.zero.Overwrite(Mathf.Atan2(direction.x, direction.y) * Mathf.Rad2Deg, Tools.IgnoreMode.Y);
+        }
     }
 
     #endregion

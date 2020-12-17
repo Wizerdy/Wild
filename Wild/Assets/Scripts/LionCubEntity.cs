@@ -12,7 +12,7 @@ public class LionCubEntity : AnimalEntity {
     public GameObject MachoirAnim;
     public GameObject Gameover;
     public GameObject fondu;
-   
+    public SoundManager.ISoundObject deathSound;
 
     //protected override void OnTriggerEnter(Collider collide) {
     //    base.OnTriggerEnter(collide);
@@ -48,7 +48,10 @@ public class LionCubEntity : AnimalEntity {
         if(Array.IndexOf(entity.entityGroup, predatorGroup) >= 0 && !isDying) {
             isDying = true;
             gameOver();
-           
+
+            if (deathSound != null) {
+                deathSound.Play();
+            }
         }
     }
 
