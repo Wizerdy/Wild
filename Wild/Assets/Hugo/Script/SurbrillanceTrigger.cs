@@ -77,18 +77,27 @@ public class SurbrillanceTrigger : MonoBehaviour
         if (other.gameObject.GetComponent<SurbrillanceSkinnedMesh>() != null) {
             other.gameObject.GetComponent<SurbrillanceSkinnedMesh>().Shine(true);
         }
+
+        if(other.gameObject.GetComponent<HyenaEntity>() != null) {
+            other.gameObject.GetComponent<HyenaEntity>().ShowVision(true);
+        }
     }
 
     private void OnTriggerExit(Collider other) {
         if (other.gameObject.GetComponentInChildren<Surbrillance2d>() != null) {
             other.gameObject.GetComponentInChildren<Surbrillance2d>().Shine(false);
         }
+
         if (other.gameObject.GetComponent<Surbrillance3d>() != null) {
             other.gameObject.GetComponent<Surbrillance3d>().Shine(false);
         } 
         
         if (other.gameObject.GetComponent<SurbrillanceSkinnedMesh>() != null) {
             other.gameObject.GetComponent<SurbrillanceSkinnedMesh>().Shine(false);
+        }
+
+        if (other.gameObject.GetComponent<HyenaEntity>() != null) {
+            other.gameObject.GetComponent<HyenaEntity>().ShowVision(false);
         }
     }
 }

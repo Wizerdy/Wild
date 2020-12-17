@@ -129,7 +129,7 @@ public class Entity : MonoBehaviour {
         set { transform.position = value; }
     }
 
-    private Vector2 MoveDirection {
+    protected Vector2 MoveDirection {
         get { return moveDirection; }
         set {
             moveDirection = value;

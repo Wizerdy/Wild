@@ -90,6 +90,10 @@ public class HyenaEntity : AnimalEntity {
 
     private ParticleSystem[] fxs = null;
     private int fxIndex = -1;
+
+    public Transform rotatingTransform = null;
+    public GameObject visionCone = null;
+    public GameObject presenceCircle = null;
     
 
     [Header("Sounds")]
@@ -119,6 +123,9 @@ public class HyenaEntity : AnimalEntity {
         startAwarness = awarness;
         startPosition = transform.position;
         startRotation = transform.rotation;
+
+        //visionCone = transform.Find("visionCone").gameObject;
+        //presenceCircle = transform.Find("presenceCircle").gameObject;
 
         FindVisionPoints();
 
@@ -173,6 +180,10 @@ public class HyenaEntity : AnimalEntity {
 
         UpdateSuspicious();
         UpdateAnims();
+
+        if(rotatingTransform != null) {
+            rotatingTransform.localEulerAngles = Vector3.zero.Overwrite(Mathf.Atan2(direction.x, direction.y) * Mathf.Rad2Deg, Tools.IgnoreMode.Y);
+        }
     }
 
     #endregion
@@ -688,5 +699,20 @@ public class HyenaEntity : AnimalEntity {
         ResetVelocityX();
         ResetVelocityY();
         goToDestination = false;
+    }
+
+    public void ShowVision(bool state) {
+        if (visionCone == null || presenceCircle == null) { Debug.LogWarning("Vision cone or presence circle not found"); return; }
+
+        Debug.Log(awarness);
+
+        if (awarness != Awarness.SLEEPING) {
+            visionCone.SetActive(state);
+            presenceCircle.SetActive(false);
+        } else {
+            presenceCircle.transform.localScale = new Vector3(presenceRadius /4f, presenceRadius /4f, 1f);
+            visionCone.SetActive(false);
+            presenceCircle.SetActive(state);
+        }
     }
 }
