@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 547998251022066924}
   - component: {fileID: 547998251022066927}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: Obstacle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -55,8 +55,8 @@ GameObject:
   - component: {fileID: 547998251123925783}
   - component: {fileID: 547998251123925782}
   - component: {fileID: 547998251123925777}
-  m_Layer: 0
-  m_Name: Colliision
+  m_Layer: 2
+  m_Name: Collision
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -87,8 +87,8 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 26.311611
-  m_Center: {x: 2.4674072, y: -12.5397415, z: -5.109497}
+  m_Radius: 20.243528
+  m_Center: {x: 2.467407, y: -12.539602, z: 0.95858574}
 --- !u!114 &547998251123925777
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -115,7 +115,7 @@ GameObject:
   - component: {fileID: 547998251131670670}
   - component: {fileID: 547998251131670671}
   m_Layer: 0
-  m_Name: GameObject (1)
+  m_Name: CollisionAction
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -179,7 +179,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   entityGroup: Hyenas
-  gizmosColor: {r: 1, g: 0, b: 0, a: 1}
+  showGizmos: 0
+  gizmosColor: {r: 0, g: 1, b: 0.84967804, a: 0.34117648}
 --- !u!1 &547998252311328529
 GameObject:
   m_ObjectHideFlags: 0

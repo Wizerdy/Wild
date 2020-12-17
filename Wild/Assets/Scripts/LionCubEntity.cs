@@ -12,7 +12,7 @@ public class LionCubEntity : AnimalEntity {
     public GameObject MachoirAnim;
     public GameObject Gameover;
     public GameObject fondu;
-   
+    public SoundManager.SoundObject deathSound;
 
     //protected override void OnTriggerEnter(Collider collide) {
     //    base.OnTriggerEnter(collide);
@@ -48,7 +48,10 @@ public class LionCubEntity : AnimalEntity {
         if(Array.IndexOf(entity.entityGroup, predatorGroup) >= 0 && !isDying) {
             isDying = true;
             gameOver();
-           
+
+            if (deathSound != null) {
+                deathSound.Play();
+            }
         }
     }
 
@@ -58,24 +61,24 @@ public class LionCubEntity : AnimalEntity {
         Gameover.SetActive(false);
         fondu.SetActive(false);
         isDying = false;
+        hidden = false;
         Entity[] hyenas = EntitiesManager.FindEntities("Hyenas");
         MoveInstant(spawnPoint.ConvertTo3D());
 
         if (hyenas == null) return;
 
+        SoundManager.SoundManager.instance.StopMusic();
         SoundManager.SoundManager.instance.PlayMusic(0);
 
         for (int i = 0; i < hyenas.Length; i++) {
             HyenaEntity hyena = hyenas[i].gameObject.GetComponent<HyenaEntity>();
-            //if (hyena != null && (hyena.awarness == HyenaEntity.Awarness.SUSPICIOUS || hyena.awarness == HyenaEntity.Awarness.CHASING)) {
-                hyenas[i].GetComponent<HyenaEntity>().ResetToStart();
-                //Debug.Log("Patrol " + hyenas[i].name);
-            //}
+            hyenas[i].GetComponent<HyenaEntity>().ResetToStart();
         }
     }
     
     public void gameOver() 
     {
+        hidden = true;
         fondu.SetActive(true);
         fondu.GetComponentInChildren<Animation>().Play();
         Debug.Log("here");

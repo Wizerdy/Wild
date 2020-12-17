@@ -1,0 +1,63 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e4b22725c5d0d04d9ec791f2212695f, type: 3}
+  m_Name: BushSounds
+  m_EditorClassIdentifier: 
+  sounds:
+  - sound:
+      clip: {fileID: 8300000, guid: 9109212128912034faa096e61508a128, type: 3}
+      volume: 1
+      pitch: 1
+      loop: 0
+    probability: 12
+  - sound:
+      clip: {fileID: 8300000, guid: de6b9dab1a6b064469942a7d1694ecd5, type: 3}
+      volume: 1
+      pitch: 1
+      loop: 0
+    probability: 12
+  - sound:
+      clip: {fileID: 8300000, guid: 61ee4577b2e17dc4f999699ae35dd71e, type: 3}
+      volume: 1
+      pitch: 1
+      loop: 0
+    probability: 12
+  - sound:
+      clip: {fileID: 8300000, guid: 45f3b648eee721441b8f58063069a075, type: 3}
+      volume: 1
+      pitch: 1
+      loop: 0
+    probability: 12
+  - sound:
+      clip: {fileID: 8300000, guid: 01472d5c032c10e4eb8db31a204801db, type: 3}
+      volume: 1
+      pitch: 1
+      loop: 0
+    probability: 12
+  - sound:
+      clip: {fileID: 8300000, guid: 0ca923fcd0934a344b8a2fb7a60e6a9a, type: 3}
+      volume: 1
+      pitch: 1
+      loop: 0
+    probability: 12
+  - sound:
+      clip: {fileID: 8300000, guid: c9832a52c60acb543859394467023ea7, type: 3}
+      volume: 1
+      pitch: 1
+      loop: 0
+    probability: 12
+  - sound:
+      clip: {fileID: 8300000, guid: adb4a156d0e62674d9a358727b7ae022, type: 3}
+      volume: 1
+      pitch: 1
+      loop: 0
+    probability: 12

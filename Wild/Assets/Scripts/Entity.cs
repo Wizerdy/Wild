@@ -87,7 +87,7 @@ public class Entity : MonoBehaviour {
     private GameObject goToFollow = null;
     private Vector3 followPositionDelta = Vector3.zero;
     private Vector3 destination = Vector3.zero;
-    private bool goToDestination = false;
+    protected bool goToDestination = false;
     protected Coroutine startDashCooldown;
 
     public float refreshPathDuration = 2f;
@@ -105,6 +105,8 @@ public class Entity : MonoBehaviour {
     private Vector3 rotateDestination = Vector3.zero;
     private bool goToRotation = false;
     public AnimationCurve rotationAcceleration;
+
+    protected Transform rotatingTransform = null;
 
     [Header("Dash")]
     [SerializeField] protected MovementCurve dash = new MovementCurve();
@@ -129,7 +131,7 @@ public class Entity : MonoBehaviour {
         set { transform.position = value; }
     }
 
-    private Vector2 MoveDirection {
+    protected Vector2 MoveDirection {
         get { return moveDirection; }
         set {
             moveDirection = value;
@@ -200,6 +202,8 @@ public class Entity : MonoBehaviour {
         navPath = new NavMeshPath();
         defaultSpeedMax = speedMax;
         speedMaxGlobal = speedMax;
+
+        rotatingTransform = transform.Find("Rotate");
     }
 
     protected virtual void FixedUpdate() {
@@ -211,6 +215,10 @@ public class Entity : MonoBehaviour {
         }
         if (!IsMovementForced)
             ApplySpeed();
+
+        if (rotatingTransform != null) {
+            rotatingTransform.localEulerAngles = Vector3.zero.Overwrite(Mathf.Atan2(direction.x, direction.y) * Mathf.Rad2Deg, Tools.IgnoreMode.Y);
+        }
     }
 
     #endregion

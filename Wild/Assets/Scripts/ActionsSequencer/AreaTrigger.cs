@@ -74,7 +74,6 @@ public class AreaTrigger : MonoBehaviour {
 
     private void OnDrawGizmos() {
         Color color = gizmosColor;
-        color.a = 0.5f;
         Gizmos.color = color;
         for (int i = 0; i < boxCollider.Length; i++) {
             Gizmos.DrawCube(transform.position + boxCollider[i].center, boxCollider[i].size);
