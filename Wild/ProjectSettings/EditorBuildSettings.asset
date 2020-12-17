@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Niveau 1 (Loick).unity
     guid: d09c7feca39ac5e4ea903c38804f847d
+  - enabled: 1
+    path: Assets/Scenes/Intro.unity
+    guid: ee7f586e5bdb9d44d92d5372b4fdf94a
   m_configObjects: {}

@@ -12,7 +12,8 @@ public class Scenemanager : MonoBehaviour
     public void LoadScene(string scene)
     {
         Application.backgroundLoadingPriority = ThreadPriority.High;
-        StartCoroutine(LoadGame(scene));
+        // StartCoroutine(LoadGame(scene));
+        SceneManager.LoadScene(scenename);
     }
 
     IEnumerator LoadGame(string scenename)
