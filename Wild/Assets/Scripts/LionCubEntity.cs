@@ -13,6 +13,8 @@ public class LionCubEntity : AnimalEntity {
     public GameObject Gameover;
     public GameObject fondu;
     public SoundManager.SoundObject deathSound;
+    public SoundManager.SoundObject CaveEnter;
+    public SoundManager.SoundObject CaveOut;
 
     //protected override void OnTriggerEnter(Collider collide) {
     //    base.OnTriggerEnter(collide);
@@ -110,10 +112,13 @@ public class LionCubEntity : AnimalEntity {
         if (hidden == false) {
             hidden = true;
             hideId = "Hole";
+            CaveEnter.Play();
             Position = zone.transform.position.Overwrite(Position.y, Tools.IgnoreMode.Y);
+            
         } else {
             hidden = false;
             hideId = "";
+            CaveOut.Play();
             Position = zone.exitPoint;
         }
     }

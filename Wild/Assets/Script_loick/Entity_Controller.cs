@@ -13,6 +13,7 @@ public class Entity_Controller : MonoBehaviour {
     private Animator animator;
     private bool isWalking;
     private Vector2 lateDirMove;
+    public SoundManager.SoundObject DashSound;
 
     private HideZone hideZone = null;
 
@@ -54,6 +55,7 @@ public class Entity_Controller : MonoBehaviour {
 
         #region Dash
         if (_rewiredPlayer.GetButtonDown("Dash")) {
+            DashSound.Play();
             player.Dash();
         }
         #endregion
